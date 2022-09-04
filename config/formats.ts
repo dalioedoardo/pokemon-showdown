@@ -490,6 +490,49 @@ export const Formats: FormatList = [
 		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 
+	
+	
+	
+	// GYM CHALLENGES - Harzen 04/09/2022
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "GYM CHALLENGES",
+	},
+	{
+		name: "1.1 ROCK TYPE GYM CHALLENGE",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod'],
+		banlist: ['ND Uber', 'Arena Trap', 'Moody', 'Power Construct', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'Bright Powder', 'King\'s Rock', 'Lax Incense', 'Razor Fang', 'Quick Claw', 'Baton Pass'],
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// National Dex
 	///////////////////////////////////////////////////////////////////
 
