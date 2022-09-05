@@ -23,6 +23,13 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return null;
 			}
 		},
+		onSourceModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).typeMod > 0) {
+				if(!(target.getTypes().includes('Fire') && target.getTypes().includes('Rock'))){
+					return this.chainModify(1.5);
+				}
+			}
+		},
 	},
 	
 	
