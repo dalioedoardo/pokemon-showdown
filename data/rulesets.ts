@@ -13,14 +13,15 @@ export const Rulesets: {[k: string]: FormatData} = {
 		effectType: 'Rule',
 		name: 'Scorching Dryness',
 		desc: "Water-type moves deals no damage, any damage that a non-Fire/Rock type pkm receives from the opponent’s attacks is multiplied by 1.5, any Fire/Rock pmn receives 1/8 damage from the opponent’s attacks",
-		onNegateImmunity: false,
 		onBegin() {
 			this.add('rule', 'Scorching Dryness');
 		},
-		onEffectivenessPriority: 1,
-		onEffectiveness(typeMod, target, type, move) {
-			// Water-type moves deals no damage
-			if (type === 'Water') return 3;
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				move.accuracy = true;
+				this.add('-immune', target, '[from] rule: Scorching Dryness');
+				return null;
+			}
 		},
 	},
 	
