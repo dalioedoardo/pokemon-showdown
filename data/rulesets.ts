@@ -15,7 +15,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Ancient Sand',
 		desc: "Rock type moves have STAB of 2 instead of 1.5 and any non-Rock type pokémon that is grounded has its ACCURACY lowered by 2 stages",
 		onBegin() {
-			this.add('rule', 'Scorching Dryness');
+			this.add('rule', 'Ancient Sand');
 		},
 		onModifyAccuracy(accuracy, pokemon) {
 			if (!pokemon.hasType('Rock') || !pokemon.hasAbility('Levitate') || !pokemon.hasType('Flying')) {
