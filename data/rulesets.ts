@@ -9,6 +9,27 @@ export const Rulesets: {[k: string]: FormatData} = {
 	// Rulesets
 	///////////////////////////////////////////////////////////////////
 	
+	
+	ancientsand: {
+		effectType: 'Rule',
+		name: 'Ancient Sand',
+		desc: "Rock type moves have STAB of 2 instead of 1.5 and any non-Rock type pokémon that is grounded has its ACCURACY lowered by 2 stages",
+		onBegin() {
+			this.add('rule', 'Scorching Dryness');
+		},
+		onModifyAccuracy(accuracy, pokemon) {
+			if (!pokemon.hasType('Rock') || !pokemon.hasAbility('Levitate') || !pokemon.hasType('Flying')) {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyMove(move) {
+			if(move.type === 'Rock'){
+				move.stab = 2;
+			}
+		},
+	},
+	
+	
 	scorchingdryness: {
 		effectType: 'Rule',
 		name: 'Scorching Dryness',
@@ -23,11 +44,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return null;
 			}
 		},
-		onSourceModifyDamage(damage, source, target, move) {
-			if (target.getMoveHitData(move).typeMod > 0) {
-				if(!(target.getTypes().includes('Fire') && target.getTypes().includes('Rock'))){
-					return this.chainModify(1.5);
-				}
+		onModifyDamage(damage, source, target, move) {
+			if(!(target.getTypes().includes('Fire') && target.getTypes().includes('Rock'))){
+				return this.chainModify(1.5);
+			}
+			else{
+				return this.chainModify(0.125);
 			}
 		},
 	},
