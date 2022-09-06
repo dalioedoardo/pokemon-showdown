@@ -18,7 +18,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Ancient Sand');
 		},
 		onModifyAccuracy(accuracy, pokemon) {
-			if (!pokemon.hasType('Rock') || !pokemon.hasAbility('Levitate') || !pokemon.hasType('Flying')) {
+			if (!pokemon.hasType('Rock') && !pokemon.hasAbility('Levitate') && !pokemon.hasType('Flying')) {
 				return this.chainModify(0.5);
 			}
 		},
