@@ -77,20 +77,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Solar Mirage');
 		},
-		onStart(pokemon) {
-			if(!(pokemon.getTypes().includes('Psychic') && pokemon.getTypes().includes('Rock'))){
-				pokemon.addVolatile('confusion');
-			}
-		},
-		onResidual(pokemon) {
+		onBeforeMove(pokemon, target, move) {
 			if (!(pokemon.getTypes().includes('Psychic') && pokemon.getTypes().includes('Rock')) && pokemon.hp) {
 				this.add('-activate', pokemon, 'rule: Solar Mirage');
-				pokemon.addVolatile('confusion');
-			}
-		},
-		onModifyDamage(damage, source, target, move) {
-			if(source===target && !(target.getTypes().includes('Psychic') && target.getTypes().includes('Rock'))){
-				return this.chainModify(2);
+				pokemon.addVolatile('heavyconfusion');
 			}
 		},
 	},
