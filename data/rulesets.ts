@@ -70,6 +70,30 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
+	solarmirage: {
+		effectType: 'Rule',
+		name: 'Solar Mirage',
+		desc: " All non-Rock/Psychic type pokémon are always confused and when any non-Rock/Psychic type pokémon hits itself in confusion deals double damage",
+		onBegin() {
+			this.add('rule', 'Solar Mirage');
+		},
+		onStart(pokemon) {
+			if(!(pokemon.getTypes().includes('Psychic') && pokemon.getTypes().includes('Rock'))){
+				pokemon.addVolatile('confusion');
+			}
+		},
+		onResidual(pokemon) {
+			if (!(pokemon.getTypes().includes('Psychic') && pokemon.getTypes().includes('Rock')) && pokemon.hp) {
+				this.add('-activate', pokemon, 'rule: Solar Mirage');
+				pokemon.addVolatile('confusion');
+			}
+		},
+		onModifyDamage(damage, source, target, move) {
+			if(source===target && !(target.getTypes().includes('Psychic') && target.getTypes().includes('Rock'))){
+				return this.chainModify(2);
+			}
+		},
+	},
 	
 	
 	
