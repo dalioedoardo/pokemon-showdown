@@ -63,7 +63,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'All non-Rock/Grass type pokémon have 50% chance to fall asleep at the end of each turn');
 		},
 		onResidual(pokemon) {
-			if (!(target.getTypes().includes('Fire') && target.getTypes().includes('Rock')) && pokemon.hp && !pokemon.status && this.randomChance(50, 100)) {
+			if (!(target.getTypes().includes('Grass') && target.getTypes().includes('Rock')) && pokemon.hp && !pokemon.status && this.randomChance(50, 100)) {
 				this.add('-activate', pokemon, 'rule: Unexpected Comfort');
 				pokemon.setStatus('slp', target);
 			}
