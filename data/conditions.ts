@@ -191,6 +191,27 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return false;
 		},
 	},
+	//Harzen 07/09/2022
+	heavyconfusion: {
+		name: 'heavyconfusion',
+		// this is a volatile status
+		onStart(target, source, sourceEffect) {
+			this.add('-start', target, 'heavyconfusion');
+		},
+		onBeforeMovePriority: 3,
+		onBeforeMove(pokemon) {
+			this.add('-activate', pokemon, 'confusion');
+			if (!this.randomChance(33, 100)) {
+				return;
+			}
+			this.activeTarget = pokemon;
+			const damage = this.actions.getConfusionDamage(pokemon, 80);
+			if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
+			const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
+			this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
+			return false;
+		},
+	},
 	flinch: {
 		name: 'flinch',
 		duration: 1,
