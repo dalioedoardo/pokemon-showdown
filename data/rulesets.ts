@@ -58,9 +58,9 @@ export const Rulesets: {[k: string]: FormatData} = {
 	unexpectedcomfort: {
 		effectType: 'Rule',
 		name: 'Unexpected Comfort',
-		desc: "Water-type moves deals no damage, any damage that a non-Fire/Rock type pkm receives from the opponent’s attacks is multiplied by 1.5, any Fire/Rock pmn receives 1/8 damage from the opponent’s attacks",
+		desc: "All non-Rock/Grass type pokémon have 50% chance to fall asleep at the end of each turn",
 		onBegin() {
-			this.add('rule', 'All non-Rock/Grass type pokémon have 50% chance to fall asleep at the end of each turn');
+			this.add('rule', 'Unexpected Comfort');
 		},
 		onResidual(pokemon) {
 			if (!(pokemon.getTypes().includes('Grass') && pokemon.getTypes().includes('Rock')) && pokemon.hp && !pokemon.status && this.randomChance(50, 100)) {
