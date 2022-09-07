@@ -167,7 +167,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 			} else {
 				this.add('-start', target, 'confusion');
 			}
-			this.effectState.time = this.random(2, 6);
+			//Harzen 7/9/2022
+			if(sourceEffect.id === 'statusmove' || sourceEffect.id === 'lockedmove'){
+				this.effectState.time = this.random(2, 6);
+			}
+			else{
+				this.effectState.time = this.random(200, 600);			
+			}
 		},
 		onEnd(target) {
 			this.add('-end', target, 'confusion');
@@ -184,31 +190,21 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return;
 			}
 			this.activeTarget = pokemon;
-			const damage = this.actions.getConfusionDamage(pokemon, 40);
-			if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
-			const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
-			this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
-			return false;
-		},
-	},
-	//Harzen 07/09/2022
-	heavyconfusion: {
-		name: 'heavyconfusion',
-		// this is a volatile status
-		onStart(target, source, sourceEffect) {
-			this.add('-start', target, 'heavyconfusion');
-		},
-		onBeforeMovePriority: 3,
-		onBeforeMove(pokemon) {
-			this.add('-activate', pokemon, 'confusion');
-			if (!this.randomChance(33, 100)) {
-				return;
+			
+			//Harzen 7/9/2022
+			if(sourceEffect.id === 'statusmove' || sourceEffect.id === 'lockedmove'){
+				const damage = this.actions.getConfusionDamage(pokemon, 40);
+				if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
+				const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
+				this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
 			}
-			this.activeTarget = pokemon;
-			const damage = this.actions.getConfusionDamage(pokemon, 80);
-			if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
-			const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
-			this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
+			else{
+				const damage = this.actions.getConfusionDamage(pokemon, 80);
+				if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
+				const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
+				this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
+			}
+
 			return false;
 		},
 	},
