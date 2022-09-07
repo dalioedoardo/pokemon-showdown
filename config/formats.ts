@@ -40,6 +40,18 @@ export const Formats: FormatList = [
 		ruleset: ['OHKO Clause', 'Scorching Dryness', 'Ancient Sand'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
 	},
+	{
+		name: "1.2 ROCK TYPE GYM CHALLENGE",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['OHKO Clause', 'Unexpected Comfort', 'Ancient Sand'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
+	},
 	
 	
 	
