@@ -85,25 +85,34 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
-	
 	prehistoricsirocco: {
 		effectType: 'Rule',
 		name: 'Prehistoric Sirocco',
-		desc: "...da mettere...",
-		onFoeTryMove(target, source, move) {
-			if (move.priority > 0.1) {
-				this.attrLastMove('[still]');
-				this.add('cant', this.effectState.target, 'rule: Prehistoric Sirocco', move, '');
+		desc: "The ability of all Rock/Flying pokèmon changes to Speed Boost, priority moves deal no damage, and all Rock/Flying type pokémon take no recoil damage",
+		onBegin() {
+			this.add('rule', 'Prehistoric Sirocco');
+		},
+		onBeforeMove(pokemon, target, move) {
+			if (move.priority>0.1) {
+				this.add('cant', pokemon, 'rule: Prehistoric Sirocco');
 				return false;
 			}
 		},
-		onStart(pokemon) {
-			if((pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Flying')) || (pokemon.getTypes().includes('Fire') && pokemon.getTypes().includes('Flying'))) {
-				pokemon.setAbility('speedboost', pokemon);
+		onUpdate(pokemon) {
+			if(pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Flying')) {
+				const oldAbility = pokemon.setAbility('speedboost', pokemon);
+				if (oldAbility && this.dex.abilities.get(oldAbility).name !== 'Speed Boost') {
+					this.add('-activate', pokemon, 'ability: Speed Boost', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
+				}
+			}
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'recoil' && source.getTypes().includes('Rock') && source.getTypes().includes('Flying')) {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
 			}
 		},
 	},
-	
 	
 	
 	
