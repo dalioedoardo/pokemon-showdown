@@ -192,6 +192,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return false;
 		},
 	},
+	solarmiragerule: {
+		name: 'solarmiragerule',
+		onStart(target, source, effect) {
+		        target.addVolatile('confusion');
+		},
+	},
 	heavyconfusion: {
 		name: 'heavyconfusion',
 		// this is a volatile status
