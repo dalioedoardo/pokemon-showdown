@@ -167,14 +167,20 @@ export const Conditions: {[k: string]: ConditionData} = {
 			} else {
 				this.add('-start', target, 'confusion');
 			}
-				this.effectState.time = this.random(2, 6);
+	
+			this.effectState.time = this.random(2, 6);
 		},
 		onEnd(target) {
 			this.add('-end', target, 'confusion');
 		},
 		onBeforeMovePriority: 3,
 		onBeforeMove(pokemon) {
-			pokemon.volatiles['confusion'].time--;
+			
+			//Harzen 08/09/2022
+			if(sourceEffect.id !== 'solarmiragerule'){
+				pokemon.volatiles['confusion'].time--;
+			}
+			
 			if (!pokemon.volatiles['confusion'].time) {
 				pokemon.removeVolatile('confusion');
 				return;
@@ -184,10 +190,19 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return;
 			}
 			this.activeTarget = pokemon;
-			const damage = this.actions.getConfusionDamage(pokemon, 40);
-			if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
-			const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
-			this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
+			
+			if(sourceEffect.id === 'solarmiragerule'){
+				const damage = this.actions.getConfusionDamage(pokemon, 80);
+				if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
+				const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
+				this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
+			}
+			else{
+				const damage = this.actions.getConfusionDamage(pokemon, 40);
+				if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
+				const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
+				this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
+			}
 
 			return false;
 		},
