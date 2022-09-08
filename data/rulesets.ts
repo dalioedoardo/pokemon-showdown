@@ -97,6 +97,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return false;
 			}
 		},
+		onStart(pokemon) {
+			if((pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Flying')) || (pokemon.getTypes().includes('Fire') && pokemon.getTypes().includes('Flying'))) {
+				pokemon.setAbility('speedboost', pokemon);
+			}
+		},
 	},
 	
 	
