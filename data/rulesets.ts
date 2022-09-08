@@ -86,7 +86,18 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
-	
+	prehistoricsirocco: {
+		effectType: 'Rule',
+		name: 'Prehistoric Sirocco',
+		desc: "...da mettere...",
+		onFoeTryMove(target, source, move) {
+			if (move.priority > 0.1) {
+				this.attrLastMove('[still]');
+				this.add('cant', this.effectState.target, 'rule: Prehistoric Sirocco', move, '');
+				return false;
+			}
+		},
+	},
 	
 	
 	
