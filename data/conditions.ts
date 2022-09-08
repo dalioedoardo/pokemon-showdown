@@ -167,8 +167,15 @@ export const Conditions: {[k: string]: ConditionData} = {
 			} else {
 				this.add('-start', target, 'confusion');
 			}
-	
 			this.effectState.time = this.random(2, 6);
+			
+			
+			if(sourceEffect.id === 'solarmiragerule'){
+				this.effectState.solarmiragerule = true;
+			}
+			else{
+				this.effectState.solarmiragerule = false;
+			}
 		},
 		onEnd(target) {
 			this.add('-end', target, 'confusion');
@@ -177,7 +184,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onBeforeMove(pokemon) {
 			
 			//Harzen 08/09/2022
-			if(sourceEffect.id !== 'solarmiragerule'){
+			if(!this.effectState.solarmiragerule){
 				pokemon.volatiles['confusion'].time--;
 			}
 			
@@ -191,7 +198,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			this.activeTarget = pokemon;
 			
-			if(sourceEffect.id === 'solarmiragerule'){
+			if(this.effectState.solarmiragerule){
 				const damage = this.actions.getConfusionDamage(pokemon, 80);
 				if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
 				const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
@@ -211,31 +218,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'solarmiragerule',
 		onStart(target, source, effect) {
 		        target.addVolatile('confusion');
-		},
-	},
-	heavyconfusion: {
-		name: 'heavyconfusion',
-		// this is a volatile status
-		onStart(target, source, sourceEffect) {
-			this.add('-start', target, 'heavyconfusion');
-			this.effectState.time = this.random(20, 60);
-		},
-		onEnd(target) {
-			this.add('-end', target, 'heavyconfusion');
-		},
-		onBeforeMovePriority: 3,
-		onBeforeMove(pokemon) {
-			this.add('-activate', pokemon, 'heavyconfusion');
-			if (!this.randomChance(33, 100)) {
-				return;
-			}
-			this.activeTarget = pokemon;
-			const damage = this.actions.getConfusionDamage(pokemon, 80);
-			if (typeof damage !== 'number') throw new Error("Confusion damage not dealt");
-			const activeMove = {id: this.toID('confused'), effectType: 'Move', type: '???'};
-			this.damage(damage, pokemon, pokemon, activeMove as ActiveMove);
-
-			return false;
 		},
 	},
 	flinch: {
