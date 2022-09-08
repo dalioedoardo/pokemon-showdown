@@ -80,7 +80,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBeforeMove(pokemon, target, move) {
 			if (!(pokemon.getTypes().includes('Psychic') && pokemon.getTypes().includes('Rock')) && pokemon.hp) {
 				this.add('-activate', pokemon, 'rule: Solar Mirage');
-				pokemon.addVolatile('heavyconfusion');
+				pokemon.addVolatile('solarmiragerule');
 			}
 		},
 	},
