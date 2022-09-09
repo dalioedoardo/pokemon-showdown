@@ -126,8 +126,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onModifyPriority(priority, pokemon, target, move) {
 			if(pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Water')) return priority + 2;
 		},
-		onAfterHit(target, source, move) {
-			if(source.getTypes().includes('Rock') && source.getTypes().includes('Water')){
+		onAfterMoveSecondary(target, source, move) {
+			if(move.category !== 'Status' && source.getTypes().includes('Rock') && source.getTypes().includes('Water')){
 				this.boost({atk: 1}, source);
 				this.boost({evasion: 1}, source);
 			}
