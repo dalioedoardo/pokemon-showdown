@@ -116,6 +116,25 @@ export const Rulesets: {[k: string]: FormatData} = {
 	
 	
 	
+	endlesslitostream: {
+		effectType: 'Rule',
+		name: 'Endless Litostream',
+		desc: "All the moves of Rock/Water type pokèmon gain +2 priority and all Rock/Water type pokémon raise their EVASION and their ATK by 1 stage each time they deal damage to the opponent",
+		onBegin() {
+			this.add('rule', 'Endless Litostream');
+		},
+		onModifyPriority(priority, pokemon, target, move) {
+			if(pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Water')) return priority + 2;
+		},
+		onAfterHit(target, source, move) {
+			if(source.getTypes().includes('Rock') && source.getTypes().includes('Water')){
+				this.boost({atk: 1}, source);
+				this.boost({evasion: 1}, source);
+			}
+		},
+	},
+	
+	
 	
 	
 	
