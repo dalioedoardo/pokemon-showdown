@@ -135,29 +135,78 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
-	bosschallenge: {
+	rockbosschallenge: {
 		effectType: 'Rule',
-		name: 'Boss Challenge',
+		name: 'Rock Boss Challenge',
 		desc: "[INVISIBLE RULE] allows to enforce the use of a single megastone and to make KO the first turn all lvl<100 pkm",
 		onValidateTeam(team) {
 			
 			const restrictedItems = [];
 			
+			const isBossTeam = [];
+			
+			const thereIsBoss = [];
+			const twoHenchmen = [];
+			
+			for (const set of team) {
+				if (set.level < 100) {
+					twoHenchmen.push(set);
+				}
+				if(set.species === 'Tyranitar'){
+					thereIsBoss.push(set);
+				}
+			}
+			
+			if (twoHenchmen.length === 2 && thereIsBoss.length === 1){
+				isBossTeam.push('true');
+			}
+			
 			for (const set of team) {
 				const item = this.dex.items.get(set.item);
-				if (!item.megaStone || restrictedItems.length > 0) {
+				if ((!item.megaStone || restrictedItems.length > 0) || (item === 'tyranitarite' && isBossTeam.length < 1)) {
 					restrictedItems.push(item.name);
 				}
 			}
 			
 			if (restrictedItems.length > 1) {
-				return [`You cannot use items, except for a single MegaStone (you have: ${restrictedItems.join(', ')})`];
+				return [`You cannot use items, except for a single MegaStone different from Tyranitarite (you have: ${restrictedItems.join(', ')})`];
 			}
 		},
+		onSwitchIn(pokemon) {
+			if(pokemon.species.id === 'tyranitar'){
+				this.boost({atk: 2}, source);
+				this.boost({def: 2}, source);
+				this.boost({spa: 2}, source);
+				this.boost({spd: 2}, source);
+				this.boost({spe: 2}, source);	
+			}
+			else{
+				if(pokemon.ability !== 'contrary'){
+					this.boost({atk: -2}, source);
+					this.boost({def: -2}, source);
+					this.boost({spa: -2}, source);
+					this.boost({spd: -2}, source);
+					this.boost({spe: -2}, source);
+				}
+				else{
+					this.boost({atk: 2}, source);
+					this.boost({def: 2}, source);
+					this.boost({spa: 2}, source);
+					this.boost({spd: 2}, source);
+					this.boost({spe: 2}, source);				
+				}
+			}
 		},
 		onUpdate(pokemon){
 			if (pokemon.level < 100){
 				this.damage(source.baseMaxhp, pokemon, pokemon);
+			}
+			
+			if (pokemon.species.id === 'tyranitar' && this.turn <= 3){
+				pokemon.canMegaEvo = null;
+			}
+			else{
+				pokemon.canMegaEvo = true;
 			}
 		},
 	},
@@ -170,20 +219,46 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Relentless Aura');
 		},
 		onResidual(pokemon) {
-			/*vorrei aggiungere questa regola solo a partire dal terzo turno...*/
-			if(pokemon.species.id !== 'tyranitarmega')
-				this.damage(source.baseMaxhp, pokemon, pokemon);
+			if(this.turn > 3 && pokemon.species.id !== 'tyranitarmega'){
+				this.damage(source.baseMaxhp/3, pokemon, pokemon);
+			}
 		},
 	},
-	
+		
 	risingenergy: {
 		effectType: 'Rule',
 		name: 'Rising Energy',
 		desc: "After each turn, the MEGA BOSS pokèmon has 50% chance to either: heal its status conditions, raise its ATK, DEF, SPATK, SPDEF, SPE by 1 stage, heal 50% of its maximum HP",
-		onBegin() {
-			this.add('rule', 'Rising Energy');
+		onResidual(pokemon) {
+			if(this.turn > 3 && pokemon.species.id === 'tyranitarmega'){
+				const r = this.random(100);
+				if (r < 50) {
+					const s = this.random(100);
+					if(s < 33 && pokemon.status){
+						pokemon.cureStatus();
+					}
+					if(s>33 && s<66){
+						this.heal(pokemon.baseMaxhp / 2);
+					}
+					if(s>66){
+						this.boost({atk: 1}, pokemon);
+						this.boost({def: 1}, pokemon);
+						this.boost({spa: 1}, pokemon);
+						this.boost({spd: 1}, pokemon);
+						this.boost({spe: 1}, pokemon);
+					}
+				}
+			}
 		},
 	},
+	
+	
+	
+	
+	
+	
+	
+	//--------------------------------END GYM CHALLENGES RULESETS
 	
 	
 	
