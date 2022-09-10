@@ -1,4 +1,4 @@
-﻿// Note: These are the rules that formats use
+// Note: These are the rules that formats use
 
 import {Utils} from "../lib";
 import {Pokemon} from "../sim/pokemon";
@@ -6,10 +6,8 @@ import {Pokemon} from "../sim/pokemon";
 // The list of formats is stored in config/formats.js
 export const Rulesets: {[k: string]: FormatData} = {
 
-	// Rulesets
-	///////////////////////////////////////////////////////////////////
-	
-	
+
+
 	ancientsand: {
 		effectType: 'Rule',
 		name: 'Ancient Sand',
@@ -53,8 +51,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
-	
-	
+
 	unexpectedcomfort: {
 		effectType: 'Rule',
 		name: 'Unexpected Comfort',
@@ -69,7 +66,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
-	
+
+
 	solarmirage: {
 		effectType: 'Rule',
 		name: 'Solar Mirage',
@@ -85,7 +83,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
-	prehistoricsirocco: {
+	
+        prehistoricsirocco: {
 		effectType: 'Rule',
 		name: 'Prehistoric Sirocco',
 		desc: "The ability of all Rock/Flying pokèmon changes to Speed Boost, priority moves deal no damage, and all Rock/Flying type pokémon take no recoil damage",
@@ -114,8 +113,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
-	
-	
+
 	endlesslitostream: {
 		effectType: 'Rule',
 		name: 'Endless Litostream',
@@ -133,8 +131,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
-	
-	
+
+
 	bosschallenge: {
 		effectType: 'Rule',
 		name: 'Boss Challenge',
@@ -195,19 +193,13 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onSwitchIn(pokemon) {
 			
-			const twoHenchmen = [];
-			
-			if(this.turn === 1) {
-				for (const allyActive of pokemon.allies()) {
-						twoHenchmen.push('B-A-M');
-				}
-			
-				if(twoHenchmen.length === 0){
-					pokemon.addVolatile('BOSS');
+			if(this.turn < 1) {
+				if((pokemon.adjacentAllies()).length === 0){
+					pokemon.addVolatile('boss');
 				}
 			}
-			
-			if(pokemon.volatiles['BOSS']){
+
+			if(pokemon.volatiles['boss']){
 				this.boost({atk: 2}, pokemon);
 				this.boost({def: 2}, pokemon);
 				this.boost({spa: 2}, pokemon);
@@ -236,18 +228,18 @@ export const Rulesets: {[k: string]: FormatData} = {
 				this.damage(pokemon.baseMaxhp, pokemon, pokemon);
 			}
 			
-			if (pokemon.volatiles['BOSS'] && this.turn <= 3){
+			if (pokemon.volatiles['boss'] && this.turn <= 3){
 				if(pokemon.canMegaEvo){
 					pokemon.canMegaEvo = null;
 				}
 			}
 			else{
-				if(pokemon.volatiles['BOSS']){
+				if(pokemon.volatiles['boss']){
 					pokemon.canMegaEvo = true;
 					this.actions.runMegaEvo(pokemon);
 					
 					if(this.turn === 4){
-						if(pokemon.volatiles['BOSS'] && pokemon.species.id === 'tyranitar'){
+						if(pokemon.volatiles['boss'] && pokemon.species.id === 'tyranitar'){
 							this.add('rule', 'Relentless Aura');
 						}
 						this.add('rule', 'Rising Energy');
@@ -273,7 +265,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Rising Energy',
 		desc: "After each turn, the MEGA BOSS pokèmon has 50% chance to either: heal its status conditions, raise its ATK, DEF, SPATK, SPDEF, SPE by 1 stage, heal 50% of its maximum HP",
 		onResidual(pokemon) {
-			if(this.turn > 3 && pokemon.volatiles['BOSS']){
+			if(this.turn > 3 && pokemon.volatiles['boss']){
 				const r = this.random(100);
 				if (r < 50) {
 					const s = this.random(100);
@@ -294,17 +286,29 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
-	
-	
-	
-	
-	
-	
-	
-	//--------------------------------END GYM CHALLENGES RULESETS
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// Rulesets
+	///////////////////////////////////////////////////////////////////
+
 	standard: {
 		effectType: 'ValidatorRule',
 		name: 'Standard',
