@@ -151,6 +151,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 			const possibleBoss = [];
 			const twoHenchmen = [];
 			
+			const alreadyAMegastone = [];
+			
 			for (const set of team) {
 				if (set.level < 100) {
 					twoHenchmen.push(set);
@@ -166,12 +168,27 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			for (const set of team) {
 				const item = this.dex.items.get(set.item);
-				if ( set.item && (!item.megaStone || restrictedItems.length > 0) || ((item === 'tyranitarite' || item === 'venusaurite' || item === 'medichamite' || item === 'metagrossite' || item === 'gengarite') && isBossTeam.length < 1)) {
-					restrictedItems.push(item.name);
+				if (set.item) {
+					if(!item.megaStone || alreadyAMegastone.length>0){
+						restrictedItems.push(set.item);
+					}
+					else{//first megastone
+						alreadyAMegastone.push(set.item);
+					}
 				}
 			}
 			
-			if (restrictedItems.length > 1) {
+			if (restrictedItems.length > 0
+				 || (isBossTeam.length<1
+					  &&
+						(alreadyAMegastone[0] === 'tyranitarite'
+						 || alreadyAMegastone[0] === 'venusaurite'
+						 || alreadyAMegastone[0] === 'medichamite'
+						 || alreadyAMegastone[0] === 'metagrossite'
+						 || alreadyAMegastone[0] === 'gengarite'
+						)
+					 )
+				) {
 				return [`You cannot use items, except for a single Mega Stone different from Tyranitarite, Venusaurite, Medichamite, Metagrossite or Gengarite (you have: ${restrictedItems.join(', ')})`];
 			}
 		},
