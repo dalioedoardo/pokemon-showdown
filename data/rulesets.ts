@@ -207,18 +207,22 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 			
 			if (pokemon.volatiles['BOSS'] && this.turn <= 3){
-				pokemon.canMegaEvo = null;
+				if(pokemon.canMegaEvo){
+					pokemon.canMegaEvo = null;
+				}
 			}
 			else{
-				pokemon.canMegaEvo = true;
-			}
-		},
-		onAfterMoveSecondary(target, source, move) {
-			if(this.turn === 4){
-				if(pokemon.volatiles['BOSS'] && pokemon.species.id === 'tyranitar'){
-					this.add('rule', 'Relentless Aura');
+				if(pokemon.volatiles['BOSS']){
+					pokemon.canMegaEvo = true;
+					this.actions.runMegaEvo(pokemon);
+					
+					if(this.turn === 4){
+						if(pokemon.volatiles['BOSS'] && pokemon.species.id === 'tyranitar'){
+							this.add('rule', 'Relentless Aura');
+						}
+						this.add('rule', 'Rising Energy');
+					}
 				}
-				this.add('rule', 'Rising Energy');
 			}
 		},
 	},
@@ -234,12 +238,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 		
-	risingenergy1: {
+	risingenergy: {
 		effectType: 'Rule',
 		name: 'Rising Energy',
 		desc: "After each turn, the MEGA BOSS pokèmon has 50% chance to either: heal its status conditions, raise its ATK, DEF, SPATK, SPDEF, SPE by 1 stage, heal 50% of its maximum HP",
 		onResidual(pokemon) {
-			if(this.turn > 3 && pokemon.species.id === 'tyranitarmega'){
+			if(this.turn > 3 && pokemon.volatiles['BOSS']){
 				const r = this.random(100);
 				if (r < 50) {
 					const s = this.random(100);
