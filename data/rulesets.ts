@@ -138,7 +138,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 	rockbosschallenge: {
 		effectType: 'Rule',
 		name: 'Rock Boss Challenge',
-		desc: "[INVISIBLE RULE] allows to enforce the use of a single megastone and to make KO the first turn all lvl<100 pkm",
+		desc: "allows to enforce the use of a single megastone and to make KO the first turn all lvl<100 pkm",
+		onBegin() {
+			this.add('rule', 'Rock Boss Challenge');
+		},
 		onValidateTeam(team) {
 			
 			const restrictedItems = [];
@@ -209,15 +212,18 @@ export const Rulesets: {[k: string]: FormatData} = {
 				pokemon.canMegaEvo = true;
 			}
 		},
+		onAfterMoveSecondary(target, source, move) {
+			if(pokemon.species.id === 'tyranitar' and this.turn === 4){
+				this.add('rule', 'Relentless Aura');
+				this.add('rule', 'Rising Energy');
+			}
+		},
 	},
 	
 	relentlessaura: {
 		effectType: 'Rule',
 		name: 'Relentless Aura',
 		desc: "After each turn, all non-MEGA BOSS pokèmon lose ⅓ of their maximum HP (this effect bypasses any protection and any semi-invulnerability condition).",
-		onBegin() {
-			this.add('rule', 'Relentless Aura');
-		},
 		onResidual(pokemon) {
 			if(this.turn > 3 && pokemon.species.id !== 'tyranitarmega'){
 				this.damage(source.baseMaxhp/3, pokemon, pokemon);
@@ -225,7 +231,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 		
-	risingenergy: {
+	risingenergy1: {
 		effectType: 'Rule',
 		name: 'Rising Energy',
 		desc: "After each turn, the MEGA BOSS pokèmon has 50% chance to either: heal its status conditions, raise its ATK, DEF, SPATK, SPDEF, SPE by 1 stage, heal 50% of its maximum HP",
