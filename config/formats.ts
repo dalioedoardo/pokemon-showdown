@@ -97,8 +97,9 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['OHKO Clause', 'Relentless Aura', 'Rising Energy', 'Ancient Sand'],
-		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
+		gameType: 'triples',
+		ruleset: ['OHKO Clause', 'Boss Challenge' 'Relentless Aura', 'Rising Energy', 'Ancient Sand'],
+		banlist: ['Endeavor', 'Destiny Bond'],
 	},
 	
 	
