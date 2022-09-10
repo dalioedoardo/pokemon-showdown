@@ -1,4 +1,12 @@
 export const Conditions: {[k: string]: ConditionData} = {
+	
+	//Harzen 10/09/2022
+	BOSS: {
+		name: 'BOSS',
+		effectType: 'Status',
+	},
+	
+	
 	brn: {
 		name: 'brn',
 		effectType: 'Status',
