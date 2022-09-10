@@ -157,7 +157,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 				else{
 					possibleBoss.push(set);
-					set.addVolatile('BOSS');
 				}
 			}
 			
