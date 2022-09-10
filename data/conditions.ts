@@ -1,9 +1,12 @@
 export const Conditions: {[k: string]: ConditionData} = {
 	
 	//Harzen 10/09/2022
-	BOSS: {
-		name: 'BOSS',
-		effectType: 'Status',
+	boss: {
+		name: 'boss',
+		// this is a volatile status
+		onStart(target, source, sourceEffect) {
+			this.add('-start', target, 'boss');
+		},
 	},
 	
 	
