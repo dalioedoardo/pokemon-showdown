@@ -206,32 +206,32 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 			
 			if(pokemon.volatiles['BOSS']){
-				this.boost({atk: 2}, source);
-				this.boost({def: 2}, source);
-				this.boost({spa: 2}, source);
-				this.boost({spd: 2}, source);
-				this.boost({spe: 2}, source);	
+				this.boost({atk: 2}, pokemon);
+				this.boost({def: 2}, pokemon);
+				this.boost({spa: 2}, pokemon);
+				this.boost({spd: 2}, pokemon);
+				this.boost({spe: 2}, pokemon);	
 			}
 			else{
 				if(pokemon.ability !== 'contrary'){
-					this.boost({atk: -2}, source);
-					this.boost({def: -2}, source);
-					this.boost({spa: -2}, source);
-					this.boost({spd: -2}, source);
-					this.boost({spe: -2}, source);
+					this.boost({atk: -2}, pokemon);
+					this.boost({def: -2}, pokemon);
+					this.boost({spa: -2}, pokemon);
+					this.boost({spd: -2}, pokemon);
+					this.boost({spe: -2}, pokemon);
 				}
 				else{
-					this.boost({atk: 2}, source);
-					this.boost({def: 2}, source);
-					this.boost({spa: 2}, source);
-					this.boost({spd: 2}, source);
-					this.boost({spe: 2}, source);				
+					this.boost({atk: 2}, pokemon);
+					this.boost({def: 2}, pokemon);
+					this.boost({spa: 2}, pokemon);
+					this.boost({spd: 2}, pokemon);
+					this.boost({spe: 2}, pokemon);			
 				}
 			}
 		},
 		onUpdate(pokemon){
 			if (pokemon.level < 100){
-				this.damage(source.baseMaxhp, pokemon, pokemon);
+				this.damage(pokemon.baseMaxhp, pokemon, pokemon);
 			}
 			
 			if (pokemon.volatiles['BOSS'] && this.turn <= 3){
@@ -261,7 +261,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		desc: "After each turn, all non-MEGA BOSS pokèmon lose ⅓ of their maximum HP (this effect bypasses any protection and any semi-invulnerability condition).",
 		onResidual(pokemon) {
 			if(this.turn > 3 && pokemon.species.id !== 'tyranitarmega'){
-				this.damage(source.baseMaxhp/3, pokemon, pokemon);
+				this.damage(pokemon.baseMaxhp/3, pokemon, pokemon);
 			}
 		},
 	},
