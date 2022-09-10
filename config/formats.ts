@@ -38,7 +38,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		ruleset: ['OHKO Clause', 'Scorching Dryness', 'Ancient Sand'],
-		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', 'Nature Madness'],
 	},
 	{
 		name: "1.2 ROCK TYPE GYM CHALLENGE",
@@ -50,7 +50,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		ruleset: ['OHKO Clause', 'Unexpected Comfort', 'Ancient Sand'],
-		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
 		name: "1.3 ROCK TYPE GYM CHALLENGE",
@@ -62,7 +62,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		ruleset: ['OHKO Clause', 'Solar Mirage', 'Ancient Sand'],
-		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
 		name: "1.4 ROCK TYPE GYM CHALLENGE",
@@ -73,7 +73,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['OHKO Clause', 'Prehistoric Sirocco', 'Ancient Sand'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
 	},
 	{
@@ -86,7 +86,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		ruleset: ['OHKO Clause', 'Endless Litostream', 'Ancient Sand'],
-		banlist: ['all items', 'Endeavor', 'Destiny Bond'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
 		name: "1.6 ROCK TYPE BOSS CHALLENGE",
@@ -99,7 +99,7 @@ export const Formats: FormatList = [
 		mod: 'gen8',
 		gameType: 'triples',
 		ruleset: ['OHKO Clause', 'Boss Challenge', 'Relentless Aura', 'Rising Energy', 'Ancient Sand'],
-		banlist: ['Endeavor', 'Destiny Bond'],
+		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
 	
