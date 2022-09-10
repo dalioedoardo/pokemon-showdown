@@ -135,12 +135,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
-	rockbosschallenge: {
+	bosschallenge: {
 		effectType: 'Rule',
-		name: 'Rock Boss Challenge',
+		name: 'Boss Challenge',
 		desc: "allows to enforce the use of a single megastone and to make KO the first turn all lvl<100 pkm",
 		onBegin() {
-			this.add('rule', 'Rock Boss Challenge');
+			this.add('rule', 'Boss Challenge');
 		},
 		onValidateTeam(team) {
 			
@@ -148,35 +148,36 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			const isBossTeam = [];
 			
-			const thereIsBoss = [];
+			const possibleBoss = [];
 			const twoHenchmen = [];
 			
 			for (const set of team) {
 				if (set.level < 100) {
 					twoHenchmen.push(set);
 				}
-				if(set.species === 'Tyranitar'){
-					thereIsBoss.push(set);
+				else{
+					possibleBoss.push(set);
+					set.addVolatile('BOSS');
 				}
 			}
 			
-			if (twoHenchmen.length === 2 && thereIsBoss.length === 1){
+			if (twoHenchmen.length === 2 && possibleBoss.length === 1){
 				isBossTeam.push('true');
 			}
 			
 			for (const set of team) {
 				const item = this.dex.items.get(set.item);
-				if ((!item.megaStone || restrictedItems.length > 0) || (item === 'tyranitarite' && isBossTeam.length < 1)) {
+				if ((!item.megaStone || restrictedItems.length > 0) || ((item === 'tyranitarite' || item === 'venusaurite' || item === 'medichamite' || item === 'metagrossite' || item === 'gengarite') && isBossTeam.length < 1)) {
 					restrictedItems.push(item.name);
 				}
 			}
 			
 			if (restrictedItems.length > 1) {
-				return [`You cannot use items, except for a single MegaStone different from Tyranitarite (you have: ${restrictedItems.join(', ')})`];
+				return [`You cannot use items, except for a single Mega Stone different from Tyranitarite, Venusaurite, Medichamite, Metagrossite or Gengarite (you have: ${restrictedItems.join(', ')})`];
 			}
 		},
 		onSwitchIn(pokemon) {
-			if(pokemon.species.id === 'tyranitar'){
+			if(pokemon.volatiles['BOSS']){
 				this.boost({atk: 2}, source);
 				this.boost({def: 2}, source);
 				this.boost({spa: 2}, source);
@@ -205,7 +206,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				this.damage(source.baseMaxhp, pokemon, pokemon);
 			}
 			
-			if (pokemon.species.id === 'tyranitar' && this.turn <= 3){
+			if (pokemon.volatiles['BOSS'] && this.turn <= 3){
 				pokemon.canMegaEvo = null;
 			}
 			else{
@@ -213,8 +214,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onAfterMoveSecondary(target, source, move) {
-			if(pokemon.species.id === 'tyranitar' and this.turn === 4){
-				this.add('rule', 'Relentless Aura');
+			if(this.turn === 4){
+				if(pokemon.volatiles['BOSS'] && pokemon.species.id === 'tyranitar'){
+					this.add('rule', 'Relentless Aura');
+				}
 				this.add('rule', 'Rising Energy');
 			}
 		},
