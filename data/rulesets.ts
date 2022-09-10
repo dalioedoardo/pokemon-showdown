@@ -177,6 +177,17 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onSwitchIn(pokemon) {
+			const twoHenchmen = [];
+			for (const allyActive of pokemon.allies()) {
+				if (allyActive.level < 100) {
+					twoHenchmen.push('B-A-M');
+				}
+			}
+			
+			if(twoHenchmen.length === 2){
+				pokemon.addVolatile('BOSS');
+			}
+			
 			if(pokemon.volatiles['BOSS']){
 				this.boost({atk: 2}, source);
 				this.boost({def: 2}, source);
