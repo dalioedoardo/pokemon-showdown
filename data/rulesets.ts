@@ -181,15 +181,16 @@ export const Rulesets: {[k: string]: FormatData} = {
 			if (restrictedItems.length > 0
 				 || (isBossTeam.length<1
 					  &&
-						(alreadyAMegastone[0] === 'tyranitarite'
-						 || alreadyAMegastone[0] === 'venusaurite'
-						 || alreadyAMegastone[0] === 'medichamite'
-						 || alreadyAMegastone[0] === 'metagrossite'
-						 || alreadyAMegastone[0] === 'gengarite'
+						(alreadyAMegastone[0] === 'Tyranitarite'
+						 || alreadyAMegastone[0] === 'Venusaurite'
+						 || alreadyAMegastone[0] === 'Medichamite'
+						 || alreadyAMegastone[0] === 'Metagrossite'
+						 || alreadyAMegastone[0] === 'Gengarite'
 						)
 					 )
 				) {
-				return [`You cannot use items, except for a single Mega Stone different from Tyranitarite, Venusaurite, Medichamite, Metagrossite or Gengarite (you have: ${restrictedItems.join(', ')})`];
+				const listForbiddenItems = (restrictedItems.length > 0) ? restrictedItems.join(', ') : alreadyAMegastone[0];
+				return [`You cannot use items, except for a single Mega Stone different from Tyranitarite, Venusaurite, Medichamite, Metagrossite or Gengarite (you have: ${listForbiddenItems})`];
 			}
 		},
 		onSwitchIn(pokemon) {
