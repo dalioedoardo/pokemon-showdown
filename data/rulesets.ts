@@ -166,7 +166,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			for (const set of team) {
 				const item = this.dex.items.get(set.item);
-				if ((!item.megaStone || restrictedItems.length > 0) || ((item === 'tyranitarite' || item === 'venusaurite' || item === 'medichamite' || item === 'metagrossite' || item === 'gengarite') && isBossTeam.length < 1)) {
+				if ( item && (!item.megaStone || restrictedItems.length > 0) || ((item === 'tyranitarite' || item === 'venusaurite' || item === 'medichamite' || item === 'metagrossite' || item === 'gengarite') && isBossTeam.length < 1)) {
 					restrictedItems.push(item.name);
 				}
 			}
