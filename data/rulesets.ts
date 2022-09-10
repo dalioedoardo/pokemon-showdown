@@ -194,15 +194,17 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onSwitchIn(pokemon) {
-			const twoHenchmen = [];
-			for (const allyActive of pokemon.allies()) {
-				if (allyActive.level < 100) {
-					twoHenchmen.push('B-A-M');
-				}
-			}
 			
-			if(twoHenchmen.length === 2){
-				pokemon.addVolatile('BOSS');
+			const twoHenchmen = [];
+			
+			if(this.turn === 1) {
+				for (const allyActive of pokemon.allies()) {
+						twoHenchmen.push('B-A-M');
+				}
+			
+				if(twoHenchmen.length === 0){
+					pokemon.addVolatile('BOSS');
+				}
 			}
 			
 			if(pokemon.volatiles['BOSS']){
