@@ -38,7 +38,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Scorching Dryness', 'Ancient Sand'],
-		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', 'Nature Madness'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
 		name: "1.2 ROCK TYPE GYM CHALLENGE",
