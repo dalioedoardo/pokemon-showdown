@@ -135,6 +135,55 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
+	bosschallenge: {
+		effectType: 'Rule',
+		name: 'Boss Challenge',
+		desc: "[INVISIBLE RULE] allows to enforce the use of a single megastone and to make KO the first turn all lvl<100 pkm",
+		onValidateTeam(team) {
+			
+			const restrictedItems = [];
+			
+			for (const set of team) {
+				const item = this.dex.items.get(set.item);
+				if (!item.megaStone || restrictedItems.length > 0) {
+					restrictedItems.push(item.name);
+				}
+			}
+			
+			if (restrictedItems.length > 1) {
+				return [`You cannot use items, except for a single MegaStone (you have: ${restrictedItems.join(', ')})`];
+			}
+		},
+		},
+		onUpdate(pokemon){
+			if (pokemon.level < 100){
+				this.damage(source.baseMaxhp, pokemon, pokemon);
+			}
+		},
+	},
+	
+	relentlessaura: {
+		effectType: 'Rule',
+		name: 'Relentless Aura',
+		desc: "After each turn, all non-MEGA BOSS pokèmon lose ⅓ of their maximum HP (this effect bypasses any protection and any semi-invulnerability condition).",
+		onBegin() {
+			this.add('rule', 'Relentless Aura');
+		},
+		onResidual(pokemon) {
+			/*vorrei aggiungere questa regola solo a partire dal terzo turno...*/
+			if(pokemon.species.id !== 'tyranitarmega')
+				this.damage(source.baseMaxhp, pokemon, pokemon);
+		},
+	},
+	
+	risingenergy: {
+		effectType: 'Rule',
+		name: 'Rising Energy',
+		desc: "After each turn, the MEGA BOSS pokèmon has 50% chance to either: heal its status conditions, raise its ATK, DEF, SPATK, SPDEF, SPE by 1 stage, heal 50% of its maximum HP",
+		onBegin() {
+			this.add('rule', 'Rising Energy');
+		},
+	},
 	
 	
 	
