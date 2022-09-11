@@ -26,7 +26,7 @@ export const Formats: FormatList = [
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "GYM CHALLENGES",
+		section: "ROCK GYM CHALLENGES",
 	},
 	{
 		name: "1.1 ROCK TYPE GYM CHALLENGE",
@@ -102,6 +102,22 @@ export const Formats: FormatList = [
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
+	
+	{
+		section: "GRASS GYM CHALLENGES",
+	},
+	{
+		name: "2.1 GRASS TYPE GYM CHALLENGE",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Dynamax Clause', 'OHKO Clause', "Tengu's Trick", 'Wrath of the Forest'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
+	},
 	
 	
 	
