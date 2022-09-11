@@ -342,23 +342,16 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', "Tengu's Trick");
 		},
-		onAnyRedirectTarget(target, source, source2, move) {
+		onTryHit(target, source, move){
+				if(target.getTypes().includes('Grass') && target.getTypes().includes('Dark')){
 			
-			if(!(source.getTypes().includes('Grass') && source.getTypes().includes('Dark'))) return;
-			
-			const damage = this.actions.getDamage(source, target, move);
-			
-			if(damage >= target)
-			
-			if (move.type !== 'Bug') return;
-			const redirectTarget = ['randomNormal', 'adjacentFoe'].includes(move.target) ? 'normal' : move.target;
-			if (this.validTarget(this.effectState.target, source, redirectTarget)) {
-				if (move.smartTarget) move.smartTarget = false;
-				if (this.effectState.target !== target) {
-					this.add('-activate', this.effectState.target, 'ability: Storm Drain');
+					const damage = this.actions.getDamage(source, target, move);
+					if(damage > target.baseMaxhp/2){
+						const autodamage = this.actions.getDamage(source, source, move);
+						this.damage(autodamage, source, source);
+						return null;
+					}
 				}
-				return this.effectState.target;
-			}
 		},
 	},
 
