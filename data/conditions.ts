@@ -8,6 +8,24 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-start', target, 'boss');
 		},
 	},
+
+	//Harzen 11/09/2022 - questo è lo stato di chi disturba la Boundless Forest con la sua arroganza
+	insolentfool: {
+		name: 'insolentfool',
+		// this is a volatile status
+		onStart(target, source, sourceEffect) {
+			this.add('-start', target, 'insolentfool');
+		},
+		onResidual(pokemon){
+			if(this.randomChance(75, 100)){
+				this.damage(pokemon.baseMaxhp);
+			}
+			else{
+				pokemon.removeVolatile('insolentfool');
+			}
+		}
+	},
+	
 	
 	
 	brn: {
