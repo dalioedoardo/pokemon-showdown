@@ -7,7 +7,12 @@ import {Pokemon} from "../sim/pokemon";
 export const Rulesets: {[k: string]: FormatData} = {
 
 
+	//----------------CUSTOM GYM LEADER RULES
+	
+	
 
+	//---HARZEN'S REALM:
+	
 	ancientsand: {
 		effectType: 'Rule',
 		name: 'Ancient Sand',
@@ -311,6 +316,51 @@ export const Rulesets: {[k: string]: FormatData} = {
 
 
 
+	
+	//---NILOX' REALM:
+	
+	wrathoftheforest: {
+		effectType: 'Rule',
+		name: 'Wrath of the Forest',
+		desc: "Fire type moves, Flying type moves, Ice type moves, Bug type moves, Poison type moves have 75% chance to make the non-grass type user faint at the end of the turn",
+		onBegin() {
+			this.add('rule', 'Wrath of the Forest');
+		},
+		onAfterMoveSecondary(target, source, move) {
+			source.getTypes
+			if(['Fire', 'Flying', 'Ice', 'Bug', 'Poison'].includes(move.type)
+					&& !source.getTypes().includes('Grass')){
+				source.addVolatile('insolentfool');
+			}
+		}
+	},
+	
+	tengustrick: {
+		effectType: 'Rule',
+		name: "Tengu's Trick",
+		desc: "All moves that deal 50% damage or more to a grass/dark pokèmon hit the user instead of the target",
+		onBegin() {
+			this.add('rule', "Tengu's Trick");
+		},
+		onAnyRedirectTarget(target, source, source2, move) {
+			
+			if(!(source.getTypes().includes('Grass') && source.getTypes().includes('Dark'))) return;
+			
+			const damage = this.actions.getDamage(source, target, move);
+			
+			if(damage >= target)
+			
+			if (move.type !== 'Bug') return;
+			const redirectTarget = ['randomNormal', 'adjacentFoe'].includes(move.target) ? 'normal' : move.target;
+			if (this.validTarget(this.effectState.target, source, redirectTarget)) {
+				if (move.smartTarget) move.smartTarget = false;
+				if (this.effectState.target !== target) {
+					this.add('-activate', this.effectState.target, 'ability: Storm Drain');
+				}
+				return this.effectState.target;
+			}
+		},
+	},
 
 
 
