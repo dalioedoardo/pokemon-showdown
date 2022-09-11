@@ -375,6 +375,24 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 
+	royalinfluence: {
+		effectType: 'Rule',
+		name: 'Royal Influence',
+		desc: "All pokémon change their ability into Contrary and all non-grass type pokémon have 50% chance to faint at the end of the turn if at least one of their stats is +1 or more",
+		onBegin() {
+			this.add('rule', 'Royal Influence');
+		},
+		onUpdate(pokemon) {		
+			const oldAbility = pokemon.setAbility('contrary', pokemon);
+			if (oldAbility && this.dex.abilities.get(oldAbility).name !== 'Contrary') {
+				this.add('-activate', pokemon, 'ability: Contrary', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
+			}
+	
+			if(!pokemon.getTypes().includes('Grass') && pokemon.positiveBoosts()>0 && !pokemon.volatiles['royalpain']){
+				pokemon.addVolatile('royalpain');	
+			}
+		},
+	},
 
 
 
