@@ -6,12 +6,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 		// this is a volatile status [invisible]
 	},
 
-	//Harzen 11/09/2022 - questo è lo stato di chi disturba la Boundless Forest con la sua arroganza
+	//Harzen 11/09/2022 - questo è il misero stato di chi disturba la Boundless Forest con la sua arroganza
 	insolentfool: {
 		name: 'insolentfool',
-		// this is a volatile status
+		// this is a volatile status [invisible]
 		onStart(target, source, sourceEffect) {
-			this.add('-start', target, 'insolentfool');
+			//this.add('-start', target, 'insolentfool'); //commented, invisible for now
 		},
 		onResidual(pokemon){
 			if(this.randomChance(75, 100)){
@@ -19,22 +19,23 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			else{
 				pokemon.removeVolatile('insolentfool');
-				this.add('-end', pokemon, 'insolentfool');
+				//this.add('-end', pokemon, 'insolentfool');
 			}
 		}
 	},
 	
 	royalpain: {
 		name: 'royalpain',
-		// this is a volatile status
+		// this is a volatile status [invisible]
 		onStart(target, source, sourceEffect) {
 			if(!target.getTypes().includes('Grass')){
-				this.add('-start', target, 'royalpain');
+				//this.add('-start', target, 'royalpain');
 			}
 		},
 		onResidual(pokemon){
 			if(pokemon.positiveBoosts()===0){
-				this.add('-end', pokemon, 'royalpain');		
+				pokemon.removeVolatile('royalpain');
+				//this.add('-end', pokemon, 'royalpain');		
 			}
 			else if(this.randomChance(50, 100)){
 				this.damage(pokemon.baseMaxhp);
