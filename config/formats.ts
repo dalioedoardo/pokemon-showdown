@@ -25,8 +25,9 @@ export const Formats: FormatList = [
 	// GYM CHALLENGES - Harzen 04/09/2022
 	///////////////////////////////////////////////////////////////////
 
+	//---ROCK!
 	{
-		section: "ROCK GYM CHALLENGES",
+		section: "ROCK TYPE GYM CHALLENGES",
 	},
 	{
 		name: "1.1 ROCK TYPE GYM CHALLENGE",
@@ -103,8 +104,11 @@ export const Formats: FormatList = [
 	},
 	
 	
+	
+	
+	//---GRASS!
 	{
-		section: "GRASS GYM CHALLENGES",
+		section: "GRASS TYPE GYM CHALLENGES",
 	},
 	{
 		name: "2.1 GRASS TYPE GYM CHALLENGE",
