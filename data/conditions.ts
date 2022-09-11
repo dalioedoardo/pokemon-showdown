@@ -31,10 +31,15 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'royalpain',
 		// this is a volatile status
 		onStart(target, source, sourceEffect) {
-			this.add('-start', target, 'insolentfool');
+			if(!target.getTypes().includes('Grass')){
+				this.add('-start', target, 'royalpain');
+			}
 		},
 		onResidual(pokemon){
-			if(this.randomChance(50, 100) && pokemon.positiveBoosts()>0){
+			if(pokemon.positiveBoosts()===0){
+				this.add('-end', pokemon, 'royalpain');		
+			}
+			else if(this.randomChance(50, 100)){
 				this.damage(pokemon.baseMaxhp);
 			}
 		}
