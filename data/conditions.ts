@@ -3,10 +3,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 	//Harzen 10/09/2022
 	boss: {
 		name: 'boss',
-		// this is a volatile status
-		onStart(target, source, sourceEffect) {
-			this.add('-start', target, 'boss');
-		},
+		// this is a volatile status [invisible]
 	},
 
 	//Harzen 11/09/2022 - questo è lo stato di chi disturba la Boundless Forest con la sua arroganza
