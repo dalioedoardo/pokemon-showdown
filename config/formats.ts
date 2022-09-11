@@ -134,6 +134,18 @@ export const Formats: FormatList = [
 		ruleset: ['Dynamax Clause', 'OHKO Clause', "Green Curse", 'Wrath of the Forest'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
+	{
+		name: "2.3 GRASS TYPE GYM CHALLENGE",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Dynamax Clause', 'OHKO Clause', "Royal Influence", 'Wrath of the Forest'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
+	},
 	
 	
 	
