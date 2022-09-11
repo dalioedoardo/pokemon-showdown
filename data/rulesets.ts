@@ -147,16 +147,25 @@ export const Rulesets: {[k: string]: FormatData} = {
 			const isBossTeam = [];
 			
 			const possibleBoss = [];
-			const twoHenchmen = [];
+			const twoHenchmen = []; //henchmen of the BOSS must be lvl 1 pkms
 			
 			const alreadyAMegastone = [];
 			
 			for (const set of team) {
-				if (set.level < 100) {
+				if (set.level === 1) {
 					twoHenchmen.push(set);
 				}
 				else{
-					possibleBoss.push(set);
+					if(set.level === 100
+							&& (
+									(set.name === 'Tyranitar' && this.format == '1.6 ROCK TYPE BOSS CHALLENGE')
+									|| (set.name === 'Venusaur' && this.format == '2.6 GRASS TYPE BOSS CHALLENGE')
+									|| (set.name === 'Medicham' && this.format == '3.6 PSYCHIC TYPE BOSS CHALLENGE')
+									|| (set.name === 'Metagross' && this.format == '4.6 STEEL TYPE BOSS CHALLENGE')
+									|| (set.name === 'Gengar' && this.format == '5.6 GHOST TYPE BOSS CHALLENGE')
+								)
+						)
+						possibleBoss.push(set);
 				}
 			}
 			
