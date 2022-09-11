@@ -89,7 +89,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
-        prehistoricsirocco: {
+   prehistoricsirocco: {
 		effectType: 'Rule',
 		name: 'Prehistoric Sirocco',
 		desc: "The ability of all Rock/Flying pokèmon changes to Speed Boost, priority moves deal no damage, and all Rock/Flying type pokémon take no recoil damage",
@@ -352,6 +352,26 @@ export const Rulesets: {[k: string]: FormatData} = {
 						return null;
 					}
 				}
+		},
+	},
+	
+	greencurse: {
+		effectType: 'Rule',
+		name: 'Green Curse',
+		desc: "All non-Ghost type pokémon get cursed and all non-Grass type pokémon get leech-seeded",
+		onBegin() {
+			this.add('rule', 'Green Curse');
+		},
+		onUpdate(pokemon) {
+			for (const target of pokemon.adjacentFoes()) {
+				if(!target.getTypes().includes('Grass') && !target.volatiles['leechseed']){
+					target.addVolatile('leechseed', pokemon);		
+				}
+			}
+
+			if(!pokemon.getTypes().includes('Ghost') && !pokemon.volatiles['curse']){
+				pokemon.addVolatile('curse');	
+			}
 		},
 	},
 
