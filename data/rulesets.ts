@@ -218,8 +218,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onSwitchIn(pokemon) {
 
 			if(this.turn < 1) {
-this.add('-message', 'first condition:'+(pokemon.adjacentAllies()).length === 0)
-this.add('-message', 'second condition:'+(pokemon.species.name === 'Tyranitar' && pokemon.item === 'tyranitarite' && this.format === '1.6 ROCK TYPE BOSS CHALLENGE'))
 				if((pokemon.adjacentAllies()).length === 0
 				    && (
 							(pokemon.species.name === 'Tyranitar' && pokemon.item === 'tyranitarite' && this.format.name === '1.6 ROCK TYPE BOSS CHALLENGE')
