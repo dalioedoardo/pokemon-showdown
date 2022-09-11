@@ -218,7 +218,15 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onSwitchIn(pokemon) {
 			
 			if(this.turn < 1) {
-				if((pokemon.adjacentAllies()).length === 0){
+				if((pokemon.adjacentAllies()).length === 0
+				    && (
+							(pokemon.species.name === 'Tyranitar' && pokemon.item === 'tyranitarite' && this.format === '1.6 ROCK TYPE BOSS CHALLENGE')
+							|| (pokemon.species.name === 'Venusaur' && pokemon.item === 'venusaurite' && this.format === '2.6 GRASS TYPE BOSS CHALLENGE')
+							|| (pokemon.species.name === 'Medicham' && pokemon.item === 'medichamite' && this.format === '3.6 PSYCHIC TYPE BOSS CHALLENGE')
+							|| (pokemon.species.name === 'Metagross' && pokemon.item === 'metagrossite' && this.format === '4.6 STEEL TYPE BOSS CHALLENGE')
+							|| (pokemon.species.name === 'Gengar' && pokemon.item === 'gengarite' && this.format === '5.6 GHOST TYPE BOSS CHALLENGE')
+						 )
+				  ){
 					pokemon.addVolatile('boss');
 				}
 			}
