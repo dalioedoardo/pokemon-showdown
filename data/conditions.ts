@@ -22,6 +22,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			else{
 				pokemon.removeVolatile('insolentfool');
+				this.add('-end', pokemon, 'insolentfool');
 			}
 		}
 	},
