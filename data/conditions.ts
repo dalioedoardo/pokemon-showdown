@@ -27,6 +27,19 @@ export const Conditions: {[k: string]: ConditionData} = {
 		}
 	},
 	
+	royalpain: {
+		name: 'royalpain',
+		// this is a volatile status
+		onStart(target, source, sourceEffect) {
+			this.add('-start', target, 'insolentfool');
+		},
+		onResidual(pokemon){
+			if(this.randomChance(50, 100) && pokemon.positiveBoosts()>0){
+				this.damage(pokemon.baseMaxhp);
+			}
+		}
+	},
+	
 	
 	
 	brn: {
