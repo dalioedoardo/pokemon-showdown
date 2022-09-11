@@ -240,20 +240,22 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			if (pokemon.volatiles['boss'] && this.turn <= 3){
 				if(pokemon.canMegaEvo){
-					pokemon.canMegaEvo = null;
+					pokemon.canMegaEvo = false; //Harzen 11/09/2022 - differenzio dal null
 				}
 			}
 			else{
-				if(pokemon.volatiles['boss']){
-					pokemon.canMegaEvo = true;
+				
+				if(pokemon.volatiles['boss'] && pokemon.canMegaEvo === false){
+					
+					pokemon.canMegaEvo = pokemon.name+'-Mega';
+				
 					this.actions.runMegaEvo(pokemon);
 					
-					if(this.turn === 4){
-						if(pokemon.volatiles['boss'] && pokemon.species.id === 'tyranitar'){
-							this.add('rule', 'Relentless Aura');
-						}
-						this.add('rule', 'Rising Energy');
-					}
+					pokemon.canMegaEvo = null;
+					
+					this.add('rule', 'Relentless Aura');
+					this.add('rule', 'Rising Energy');
+
 				}
 			}
 		},
