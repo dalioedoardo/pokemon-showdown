@@ -240,18 +240,16 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			if (pokemon.volatiles['boss'] && this.turn <= 3){
 				if(pokemon.canMegaEvo){
-					pokemon.canMegaEvo = false; //Harzen 11/09/2022 - differenzio dal null
+					pokemon.canMegaEvo = null;
 				}
 			}
 			else{
 				
-				if(pokemon.volatiles['boss'] && pokemon.canMegaEvo === false){
+				if(pokemon.volatiles['boss'] && !pokemon.details.includes("-Mega")){
 					
 					pokemon.canMegaEvo = pokemon.name+'-Mega';
 				
 					this.actions.runMegaEvo(pokemon);
-					
-					pokemon.canMegaEvo = null;
 					
 					this.add('rule', 'Relentless Aura');
 					this.add('rule', 'Rising Energy');
