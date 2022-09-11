@@ -176,19 +176,29 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 			}
 			
-			if (restrictedItems.length > 0
-				 || (isBossTeam.length<1
-					  &&
-						(alreadyAMegastone[0] === 'Tyranitarite'
-						 || alreadyAMegastone[0] === 'Venusaurite'
-						 || alreadyAMegastone[0] === 'Medichamite'
-						 || alreadyAMegastone[0] === 'Metagrossite'
-						 || alreadyAMegastone[0] === 'Gengarite'
-						)
-					 )
-				) {
-				const listForbiddenItems = (restrictedItems.length > 0) ? restrictedItems.join(', ') : alreadyAMegastone[0];
-				return [`You cannot use items, except for a single Mega Stone different from Tyranitarite, Venusaurite, Medichamite, Metagrossite or Gengarite (you have: ${listForbiddenItems})`];
+			const restrictedMegastone = [];
+
+			if(this.format == '1.6 ROCK TYPE BOSS CHALLENGE')
+				restrictedMegastone.push('Tyranitarite');
+			else if(this.format == '2.6 GRASS TYPE BOSS CHALLENGE')
+				restrictedMegastone.push('Venusaurite');
+			else if(this.format == '3.6 PSYCHIC TYPE BOSS CHALLENGE')
+				restrictedMegastone.push('Medichamite');
+			else if(this.format == '4.6 STEEL TYPE BOSS CHALLENGE')
+				restrictedMegastone.push('Metagrossite');
+			else if(this.format == '5.6 GHOST TYPE BOSS CHALLENGE')
+				restrictedMegastone.push('Gengarite');
+			else
+				restrictedMegastone.push('');
+			
+			if((isBossTeam.length<1 && alreadyAMegastone[0] === restrictedMegastone[0])
+				|| (isBossTeam.length>=1 && alreadyAMegastone[0] !== restrictedMegastone[0])){
+				restrictedItems.push(alreadyAMegastone[0]);
+			}
+			
+			
+			if (restrictedItems.length > 0) {
+				return [`You cannot use items, except for a single Mega Stone different from ${restrictedMegastone[0]}. If you are the GYM LEADER, you must have ${restrictedMegastone}... (you have: ${restrictedItems.join(', ')})`];
 			}
 		},
 		onSwitchIn(pokemon) {
