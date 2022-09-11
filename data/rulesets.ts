@@ -393,6 +393,36 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
+	
+	wrathofthesnowyforest: {
+		effectType: 'Rule',
+		name: 'Wrath of the Snowy Forest',
+		desc: "Flying type moves, Fighting type moves, Rock type moves, Steel type moves, Bug type moves, Poison type moves have 80% chance to make the non-grass/ice type user faint after the move is selected, fire type moves have 100% chance to make the non-grass/ice type user faint after the move is selected and all grass/ice pokèmon receive halved damage",
+		onBegin() {
+			this.add('rule', 'Wrath of the Snowy Forest');
+		},
+		onBeforeMove(source, target, move){
+			if(!(source.getTypes().includes('Grass') && source.getTypes().includes('Ice'))){
+				if(['Fighting', 'Steel', 'Flying', 'Rock', 'Bug', 'Poison'].includes(move.type)){
+					if(this.randomChance(80,100)){
+						this.damage(source.baseMaxhp, source, source);
+						return null;
+					}
+				}
+				if(move.type === 'Fire'){
+					this.damage(source.baseMaxhp, source, source);		
+					return null;
+				}
+			}
+			
+		},
+		onModifyDamage(damage, source, target, move) {
+			if(target.getTypes().includes('Grass') && target.getTypes().includes('Ice')){
+				return this.chainModify(0.5);
+			}
+		},
+		
+	},
 
 
 
