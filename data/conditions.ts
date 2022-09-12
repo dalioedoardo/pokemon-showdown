@@ -43,6 +43,14 @@ export const Conditions: {[k: string]: ConditionData} = {
 		}
 	},
 	
+	ambusher: {
+		name: 'ambusher',
+		// this is a volatile status [invisible]
+		onResidual(pokemon){
+			pokemon.removeVolatile('ambusher');
+		}
+	},
+	
 	
 	
 	brn: {
