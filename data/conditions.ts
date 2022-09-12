@@ -123,8 +123,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 	},
 	
-	naturallyrich: {
-		name: 'naturallyrich',
+	abundance: {
+		name: 'abundance',
 		// this is a volatile status [invisible]
 		onUpdate(pokemon) {
 			if(this.effectState.turn != this.turn) {
