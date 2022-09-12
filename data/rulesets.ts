@@ -488,7 +488,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			if(!pokemon.volatiles['psychicatmosphere']){
 				pokemon.addVolatile('psychicatmosphere');
 			}
-			if(target.getTypes().includes('Psychic') && !pokemon.volatiles['freshminded']){
+			if(pokemon.getTypes().includes('Psychic') && !pokemon.volatiles['freshminded']){
 				pokemon.addVolatile('freshminded');
 			}
 		},
