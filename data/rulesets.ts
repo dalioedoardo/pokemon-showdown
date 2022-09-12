@@ -462,7 +462,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				const amounts = [];
 				for (const target of pokemon.adjacentFoes()) {
 					this.damage(target.baseMaxhp/6, target, target);
-					if(amounts.length>1){
+					if(amounts.length>0){
 						amounts.push(amounts.pop()+(target.baseMaxhp/6));
 					}
 					else{
