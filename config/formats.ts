@@ -203,6 +203,10 @@ export const Formats: FormatList = [
 		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Natural Abundance', 'Fresh Mind'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
+	
+	
+	
+	/*
 	{
 		name: "3.2 PSYCHIC TYPE GYM CHALLENGE",
 		threads: [
@@ -264,7 +268,7 @@ export const Formats: FormatList = [
 		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Mindful Aura', 'Rising Energy', 'Fresh Mind'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
-	
+	*/
 	
 	
 	
