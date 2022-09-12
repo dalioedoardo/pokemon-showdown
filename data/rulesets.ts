@@ -475,7 +475,49 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 
 	
-
+	//---LEO'S REALM:
+	
+	freshmind: {
+		effectType: 'Rule',
+		name: 'Fresh Mind',
+		desc: "Psychic type pokémon go first in their priority bracket and any psychic type move gains 50% chance to summon a variant of Psychic Terrain that affects also non-grounded pokemon",
+		onBegin() {
+			this.add('rule', 'Natural Abundance');
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Bug') {
+				move.accuracy = true;
+				this.add('-immune', target, '[from] rule: Natural Abundance');
+				return null;
+			}
+		},
+		onUpdate(pokemon) {
+			if(target.getTypes().includes('Psychic') && !pokemon.volatiles['freshminded']){
+				pokemon.addVolatile('freshminded');
+			}
+		},
+	},
+	
+	naturalabundance: {
+		effectType: 'Rule',
+		name: 'Natural Abundance',
+		desc: "Bug type moves deal no damage and any Grass/Psychic type pokèmon has 75% chance to restore up to 75% of its maximum HP at the beginning of its turn",
+		onBegin() {
+			this.add('rule', 'Natural Abundance');
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Bug') {
+				move.accuracy = true;
+				this.add('-immune', target, '[from] rule: Natural Abundance');
+				return null;
+			}
+		},
+		onUpdate(pokemon) {
+			if((pokemon.getTypes().includes('Grass') && target.getTypes().includes('Psychic')) && !pokemon.volatiles['naturallyrich']){
+				pokemon.addVolatile('naturallyrich');
+			}
+		},
+	},
 
 
 
