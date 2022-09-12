@@ -273,7 +273,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 				
 					this.actions.runMegaEvo(pokemon);
 					
-					this.add('rule', 'Relentless Aura');
+					if(this.format.name === '1.6 ROCK TYPE BOSS CHALLENGE')
+						this.add('rule', 'Relentless Aura');
+					else if(this.format.name === '2.6 GRASS TYPE BOSS CHALLENGE')
+						this.add('rule', 'Voracious Aura');						
+					
+					
 					this.add('rule', 'Rising Energy');
 
 				}
@@ -448,7 +453,28 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 
+	voraciousaura: {
+		effectType: 'Rule',
+		name: 'Voracious Aura',
+		desc: "After each turn, all non-MEGA BOSS pokèmon lose ⅙ of their maximum HP and the MEGA BOSS pokèmon gains the sum of that amount of HP",
+		onResidual(pokemon) {
+			if(this.turn > 3 && pokemon.species.id === 'venusaurmega'){
+				const amounts = [];
+				for (const target of pokemon.adjacentFoes()) {
+					this.damage(pokemon.baseMaxhp/6, pokemon, pokemon);
+					if(amounts.length>1){
+						amounts.push(amounts.pop()+(pokemon.baseMaxhp/6));
+					}
+					else{
+						amounts.push(pokemon.baseMaxhp/6);
+					}
+				}
+				this.heal(amounts);
+			}
+		},
+	},
 
+	
 
 
 
