@@ -6,6 +6,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		// this is a volatile status [invisible]
 	},
 
+	
+	//---NILOX' CONDITIONS:
+	
 	//Harzen 11/09/2022 - questo è il misero stato di chi disturba la Boundless Forest con la sua arroganza
 	insolentfool: {
 		name: 'insolentfool',
@@ -94,6 +97,53 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		}
 	},
+	
+	
+	
+	//---LEO'S CONDITIONS:
+	
+	psychicatmosphere: {
+		name: 'psychicatmosphere',
+		// this is a volatile status [invisible]
+		onTryHit(target, source, move) {
+			if(this.field.terrain==='psychicterrain' && !target.isGrounded()){
+				this.hint("This Psychic Terrain also affects the atmosphere!");
+				return null;
+			}
+		}
+	},
+	
+	freshminded: {
+		name: 'freshminded',
+		// this is a volatile status [invisible]
+		onFractionalPriority(priority, pokemon) {
+			if (priority <= 0) {
+				this.add('-activate', pokemon, 'rule: Fresh Mind');
+				return 0.1;
+			}
+		},
+	},
+	
+	naturallyrich: {
+		name: 'naturallyrich',
+		// this is a volatile status [invisible]
+		onUpdate(pokemon) {
+			if(this.effectState.turn != this.turn) {
+				if(this.randomChance(75,100)){
+					this.heal(pokemon.baseMaxhp*3/4);
+				}
+				this.effectState.turn = this.turn;
+			}
+		},
+	},
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
