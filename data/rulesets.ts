@@ -493,9 +493,9 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onAfterMoveSecondary(target, source, move){
-			if(move.type === 'Psychic' && !this.field.terrain==='psychicterrain' && this.randomChance(1,2)){
+			if(move.type === 'Psychic' && !(this.field.terrain==='psychicterrain') && this.randomChance(1,2)){
 				this.field.setTerrain('psychicterrain');
-				this.add('-message', "This Psychic Terrain is so strong that imbues the atmosphere!");
+				this.add('-message', "This force is so strong that imbues the atmosphere!");
 			}
 		},
 	},
