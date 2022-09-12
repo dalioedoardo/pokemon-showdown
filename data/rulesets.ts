@@ -482,18 +482,20 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Fresh Mind',
 		desc: "Psychic type pokémon go first in their priority bracket and any psychic type move gains 50% chance to summon a variant of Psychic Terrain that affects also non-grounded pokemon",
 		onBegin() {
-			this.add('rule', 'Natural Abundance');
-		},
-		onTryHit(target, source, move) {
-			if (target !== source && move.type === 'Bug') {
-				move.accuracy = true;
-				this.add('-immune', target, '[from] rule: Natural Abundance');
-				return null;
-			}
+			this.add('rule', 'Fresh Mind');
 		},
 		onUpdate(pokemon) {
+			if(!pokemon.volatiles['psychicatmosphere']){
+				pokemon.addVolatile('psychicatmosphere');
+			}
 			if(target.getTypes().includes('Psychic') && !pokemon.volatiles['freshminded']){
 				pokemon.addVolatile('freshminded');
+			}
+		},
+		onAfterMoveSecondary(target, source, move){
+			if(move.type === 'Psychic' && !this.field.terrain==='psychicterrain' && this.randomChance(1,2)){
+				this.field.setTerrain('psychicterrain');
+				this.add('-message', "This psychic terrain floods the atmosphere!");
 			}
 		},
 	},
