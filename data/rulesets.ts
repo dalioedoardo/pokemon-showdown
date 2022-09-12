@@ -461,15 +461,15 @@ export const Rulesets: {[k: string]: FormatData} = {
 			if(this.turn > 3 && pokemon.species.id === 'venusaurmega'){
 				const amounts = [];
 				for (const target of pokemon.adjacentFoes()) {
-					this.damage(pokemon.baseMaxhp/6, pokemon, pokemon);
+					this.damage(target.baseMaxhp/6, target, target);
 					if(amounts.length>1){
-						amounts.push(amounts.pop()+(pokemon.baseMaxhp/6));
+						amounts.push(amounts.pop()+(target.baseMaxhp/6));
 					}
 					else{
-						amounts.push(pokemon.baseMaxhp/6);
+						amounts.push(target.baseMaxhp/6);
 					}
 				}
-				this.heal(amounts);
+				this.heal(amounts[0]);
 			}
 		},
 	},
