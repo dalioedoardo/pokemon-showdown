@@ -515,7 +515,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onUpdate(pokemon) {
-			if((pokemon.getTypes().includes('Grass') && target.getTypes().includes('Psychic')) && !pokemon.volatiles['naturallyrich']){
+			if((pokemon.getTypes().includes('Grass') && pokemon.getTypes().includes('Psychic')) && !pokemon.volatiles['naturallyrich']){
 				pokemon.addVolatile('naturallyrich');
 			}
 		},
