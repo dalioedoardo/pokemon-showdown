@@ -46,8 +46,52 @@ export const Conditions: {[k: string]: ConditionData} = {
 	ambusher: {
 		name: 'ambusher',
 		// this is a volatile status [invisible]
+		onStart(target, source, sourceEffect){
+			if(target.ability !== 'contrary'){
+				this.boost({def: 2}, target);
+				this.boost({spd: 2}, target);
+			}
+			else{
+				this.boost({def: -2}, target);
+				this.boost({spd: -2}, target);
+			}
+			
+			for (const opponent of target.adjacentFoes()) {
+				if(opponent.ability !== 'contrary'){
+					this.boost({atk: -2}, opponent);
+					this.boost({spa: -2}, opponent);
+					this.boost({accuracy: -2}, opponent);
+				}
+				else{
+					this.boost({atk: 2}, opponent);
+					this.boost({spa: 2}, opponent);
+					this.boost({accuracy: 2}, opponent);
+				}
+			}
+		},
 		onResidual(pokemon){
 			pokemon.removeVolatile('ambusher');
+			if(pokemon.ability !== 'contrary'){
+				this.boost({def: -2}, pokemon);
+				this.boost({spd: -2}, pokemon);
+			}
+			else{
+				this.boost({def: 2}, pokemon);
+				this.boost({spd: 2}, pokemon);
+			}
+			
+			for (const opponent of pokemon.adjacentFoes()) {
+				if(opponent.ability !== 'contrary'){
+					this.boost({atk: 2}, opponent);
+					this.boost({spa: 2}, opponent);
+					this.boost({accuracy: 2}, opponent);
+				}
+				else{
+					this.boost({atk: -2}, opponent);
+					this.boost({spa: -2}, opponent);
+					this.boost({accuracy: -2}, opponent);
+				}
+			}
 		}
 	},
 	
