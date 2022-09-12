@@ -429,9 +429,24 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return this.chainModify(0.5);
 			}
 		},
-		
 	},
 
+	ambushersplayground: {
+		effectType: 'Rule',
+		name: "Ambusher's Playground",
+		desc: "The pokémon that starts first raises its DEF and SPDEF by 2 stages until the end of the turn and the pokémon that moves last has its ATK , SPATK and ACCURACY halved until the end of the turn",
+		onBegin() {
+			this.add('rule', "Tengu's Trick");
+		},
+		onAfterMoveSecondary(target, source, move){
+			for (const target of source.adjacentFoes()) {
+				if(target.volatiles['ambusher']){
+					return;
+				}
+			}
+			source.addVolatile('ambusher');
+		},
+	},
 
 
 
