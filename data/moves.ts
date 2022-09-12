@@ -13245,7 +13245,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (target.isSemiInvulnerable() || target.isAlly(source)) return;
 				if (!target.isGrounded()) {
 					const baseMove = this.dex.moves.get(effect.id);
-					if (baseMove.priority > 0) {
+					if (baseMove.priority > 0 && !target.volatiles['psychicatmosphere']) {
 						this.hint("Psychic Terrain doesn't affect Pokémon immune to Ground.");
 					}
 					return;
