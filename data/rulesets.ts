@@ -583,14 +583,14 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onDamage(damage, target, source, effect) {
-			if (target.volatiles['ancestralruins']) {
+			if (target.volatiles['ancestralprotection']) {
 				this.hint("The ancestral ruins prevented the damage!");
 				return 0;
 			}
 		},
 		onSwitchIn(pokemon) {
 			if (pokemon.getTypes().includes('Psychic') && pokemon.getTypes().includes('Flying')) {
-				pokemon.addVolatile('ancestralruins');
+				pokemon.addVolatile('ancestralprotection');
 			}
 		},
 	},	
