@@ -579,7 +579,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (move.type === 'Psychic' && (type === 'Steel' || type === 'Dark')){
-				this.hint("The ancestral ruins warped the effectiveness!");
 				return 1;
 			}
 		},
