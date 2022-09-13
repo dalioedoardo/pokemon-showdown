@@ -106,7 +106,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'psychicatmosphere',
 		// this is a volatile status [invisible]
 		onTryHit(target, source, move) {
-			if(this.field.terrain==='psychicterrain' && !target.isGrounded()){
+			if(this.field.terrain==='psychicterrain' && !target.isGrounded() && move.priority>0){
 				this.hint("This Psychic Terrain also affects the atmosphere!");
 				return null;
 			}
