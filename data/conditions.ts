@@ -136,16 +136,16 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 	},
 	
-	ancestralruins: {
-		name: 'ancestralruins',
+	ancestralprotection: {
+		name: 'ancestralprotection',
 		// this is a volatile status [invisible]
 		onStart(target, source, sourceEffect) {
 			this.effectState.time = 2;
 		},
 		onResidual(pokemon){
-			pokemon.volatiles['ancestralruins'].time--;
-			if(pokemon.volatiles['ancestralruins'].time===0){
-				pokemon.removeVolatile('ancestralruins');
+			pokemon.volatiles['ancestralprotection'].time--;
+			if(pokemon.volatiles['ancestralprotection'].time===0){
+				pokemon.removeVolatile('ancestralprotection');
 			}
 		}
 	},
