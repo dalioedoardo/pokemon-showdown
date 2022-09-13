@@ -560,7 +560,35 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 			}
 		},
-		
+	},	
+	
+	ancestralruins: {
+		effectType: 'Rule',
+		name: 'Ancestral Ruins',
+		desc: "Psychic type moves deal super effective damage on Dark and Steel type pokémon and Psychic/Flying type pokémon receive no damage for the first two turns",
+		onBegin() {
+			this.add('rule', 'Ancestral Ruins');
+		},
+		onModifyMove(move) {
+			if(move.type==='Psychic'){
+				if (!move.ignoreImmunity) move.ignoreImmunity = {};
+				if (move.ignoreImmunity !== true) {
+					move.ignoreImmunity['Psychic'] = true;
+				}
+			}
+		},
+		onEffectiveness(typeMod, target, type, move) {
+			if (move.type === 'Psychic' && (type === 'Steel' || type === 'Dark')){
+				this.hint("The ancestral ruins warped the effectiveness!");
+				return 1;
+			}
+		},
+		onDamage(damage, target, source, effect) {
+			if (target.getTypes().includes('Psychic') && target.getTypes().includes('Flying') && this.turn < 3) {
+				this.hint("The ancestral ruins prevented the damage!");
+				return 0;
+			}
+		},
 	},	
 
 
