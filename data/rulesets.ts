@@ -521,6 +521,22 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 
+	wuwei: {
+		effectType: 'Rule',
+		name: 'Wu Wei',
+		desc: "Water/Psychic type pokémon deal damage to the opponent equal to ¼ of its maximum HP while using status moves that heal them",
+		onBegin() {
+			this.add('rule', 'Wu Wei');
+		},
+		onAfterMoveSecondary(target, source, move) {
+			if (source.getTypes().includes('Water') && source.getTypes().includes('Psychic') && move.flags['heal'] && move.category === 'Status') {
+				this.hint("Sometimes doing nothing is the best thing to do!");
+				for (const target of source.adjacentFoes()) {
+					this.damage(target.baseMaxhp/4, target, target);
+				}
+			}
+		},
+	},
 
 
 
