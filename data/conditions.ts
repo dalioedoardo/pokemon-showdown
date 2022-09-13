@@ -143,8 +143,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.effectState.time = 2;
 		},
 		onResidual(pokemon){
-			this.effectState.time = this.effectState.time-1;
-			if(this.effectState.time===0){
+			pokemon.volatiles['ancestralruins'].time--;
+			if(pokemon.volatiles['ancestralruins'].time===0){
 				pokemon.removeVolatile('ancestralruins');
 			}
 		}
