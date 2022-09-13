@@ -136,6 +136,26 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 	},
 	
+	ancestralruins: {
+		name: 'ancestralruins',
+		// this is a volatile status [invisible]
+		onStart(target, source, sourceEffect) {
+			this.effectState.time = 2;
+		},
+		onDamage(damage, target, source, effect) {
+			if (target.getTypes().includes('Psychic') && target.getTypes().includes('Flying')) {
+				this.hint("The ancestral ruins prevented the damage!");
+				return 0;
+			}
+		},
+		onResidual(pokemon){
+			this.effectState.time = this.effectState.time-1;
+			if(this.effectState.time===0){
+				pokemon.removeVolatile('ancestralruins');
+			}
+		}
+	},
+	
 	
 	
 	
