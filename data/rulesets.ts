@@ -538,6 +538,30 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 
+	silentinsight: {
+		effectType: 'Rule',
+		name: 'Silent Insight',
+		desc: "Psychic/Fairy type pokémon receive only 1/3 by any type of damame and non-Psychic/Fairy type pokémon cannot raise their stats",
+		onBegin() {
+			this.add('rule', 'Silent Insight');
+		},
+		onDamage(damage, target, source, effect) {
+			if (target.getTypes().includes('Psychic') && target.getTypes().includes('Fairy')) {
+				return damage/3;
+			}
+		},
+		onBoost(boost, target, source, effect) {
+			if (target.getTypes().includes('Psychic') && target.getTypes().includes('Fairy')) return;
+			let i: BoostID;
+			for (i in boost) {
+				if(boost[i] && ((boost[i]>0 && target.ability!=='Contrary') || (boost[i]<0 && target.ability==='Contrary'))){
+					this.hint("The Silent Insight prevented the boost!");
+					delete boost[i];
+				}
+			}
+		},
+		
+	},	
 
 
 
