@@ -632,9 +632,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 		effectType: 'Rule',
 		name: 'Mindful Aura',
 		desc: "Every move used by the MEGA BOSS pokémon will always hit",
-		onBegin() {
-			this.add('rule', 'Mindful Aura');
-		},
 		onUpdate(pokemon) {
 			if(this.turn > 3 && pokemon.species.id === 'medichammega'){
 				if(!pokemon.volatiles['mindfulness']){
