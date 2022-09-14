@@ -153,20 +153,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 	mindfulness: {
 		name: 'mindfulness',
 		// this is a volatile status [invisible]
-		onAnyInvulnerability(target, source, move) {
-			if (move && source.volatiles['mindfulness']) return 0;
-		},
-		onAnyAccuracy(accuracy, target, source, move) {
-			if (move && source.volatiles['mindfulness']) {
-				return true;
-			}
-			return accuracy;
-		},
-		onModifyMove(move, attacker) {
-			if(attacker.volatiles['mindfulness']){
-				delete move.flags['protect'];
-			}
-		},
 	},
 	
 	
