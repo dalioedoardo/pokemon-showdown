@@ -167,7 +167,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				delete move.flags['protect'];
 			}
 		},
-	}
+	},
 	
 	
 	
