@@ -273,11 +273,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 				
 					this.actions.runMegaEvo(pokemon);
 					
-					if(this.format.name === '1.6 ROCK TYPE BOSS CHALLENGE')
+					if(this.format.name.includes('1.6 ROCK TYPE BOSS CHALLENGE'))
 						this.add('rule', 'Relentless Aura');
-					else if(this.format.name === '2.6 GRASS TYPE BOSS CHALLENGE')
+					else if(this.format.name.includes('2.6 GRASS TYPE BOSS CHALLENGE'))
 						this.add('rule', 'Voracious Aura');	
-					else if(this.format.name === '3.6 PSYCHIC TYPE BOSS CHALLENGE')
+					else if(this.format.name.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
 						this.add('rule', 'Mindful Aura');
 					
 					this.add('rule', 'Rising Energy');
