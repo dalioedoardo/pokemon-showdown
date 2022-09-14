@@ -30,7 +30,7 @@ export const Formats: FormatList = [
 		section: "ROCK TYPE GYM CHALLENGES",
 	},
 	{
-		name: "1.1 ROCK TYPE GYM CHALLENGE",
+		name: "[Gen 8] 1.1 ROCK TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -42,7 +42,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "1.2 ROCK TYPE GYM CHALLENGE",
+		name: "[Gen 8] 1.2 ROCK TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -54,7 +54,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "1.3 ROCK TYPE GYM CHALLENGE",
+		name: "[Gen 8] 1.3 ROCK TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -66,7 +66,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "1.4 ROCK TYPE GYM CHALLENGE",
+		name: "[Gen 8] 1.4 ROCK TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -78,7 +78,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "1.5 ROCK TYPE GYM CHALLENGE",
+		name: "[Gen 8] 1.5 ROCK TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -90,7 +90,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "1.6 ROCK TYPE BOSS CHALLENGE",
+		name: "[Gen 8] 1.6 ROCK TYPE BOSS CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -111,7 +111,7 @@ export const Formats: FormatList = [
 		section: "GRASS TYPE GYM CHALLENGES",
 	},
 	{
-		name: "2.1 GRASS TYPE GYM CHALLENGE",
+		name: "[Gen 8] 2.1 GRASS TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -123,7 +123,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "2.2 GRASS TYPE GYM CHALLENGE",
+		name: "[Gen 8] 2.2 GRASS TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -135,7 +135,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "2.3 GRASS TYPE GYM CHALLENGE",
+		name: "[Gen 8] 2.3 GRASS TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -147,7 +147,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "2.4 GRASS TYPE GYM CHALLENGE",
+		name: "[Gen 8] 2.4 GRASS TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -159,7 +159,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "2.5 GRASS TYPE GYM CHALLENGE",
+		name: "[Gen 8] 2.5 GRASS TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -171,7 +171,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "2.6 GRASS TYPE BOSS CHALLENGE",
+		name: "[Gen 8] 2.6 GRASS TYPE BOSS CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -192,7 +192,7 @@ export const Formats: FormatList = [
 		section: "PSYCHIC TYPE GYM CHALLENGES",
 	},
 	{
-		name: "3.1 PSYCHIC TYPE GYM CHALLENGE",
+		name: "[Gen 8] 3.1 PSYCHIC TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -204,7 +204,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "3.2 PSYCHIC TYPE GYM CHALLENGE",
+		name: "[Gen 8] 3.2 PSYCHIC TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -216,7 +216,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "3.3 PSYCHIC TYPE GYM CHALLENGE",
+		name: "[Gen 8] 3.3 PSYCHIC TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -228,7 +228,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "3.4 PSYCHIC TYPE GYM CHALLENGE",
+		name: "[Gen 8] 3.4 PSYCHIC TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -240,7 +240,7 @@ export const Formats: FormatList = [
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
-		name: "3.5 PSYCHIC TYPE GYM CHALLENGE",
+		name: "[Gen 8] 3.5 PSYCHIC TYPE GYM CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -253,7 +253,7 @@ export const Formats: FormatList = [
 	},
 	/*
 	{
-		name: "3.6 PSYCHIC TYPE BOSS CHALLENGE",
+		name: "[Gen 8] 3.6 PSYCHIC TYPE BOSS CHALLENGE",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
