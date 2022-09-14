@@ -276,8 +276,9 @@ export const Rulesets: {[k: string]: FormatData} = {
 					if(this.format.name === '1.6 ROCK TYPE BOSS CHALLENGE')
 						this.add('rule', 'Relentless Aura');
 					else if(this.format.name === '2.6 GRASS TYPE BOSS CHALLENGE')
-						this.add('rule', 'Voracious Aura');						
-					
+						this.add('rule', 'Voracious Aura');	
+					else if(this.format.name === '3.6 PSYCHIC TYPE BOSS CHALLENGE')
+						this.add('rule', 'Mindful Aura');
 					
 					this.add('rule', 'Rising Energy');
 
@@ -626,6 +627,20 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},	
+	
+	mindfulaura: {
+		effectType: 'Rule',
+		name: 'Mindful Aura',
+		desc: "Every move used by the MEGA BOSS pokémon will always hit",
+		onBegin() {
+			this.add('rule', 'Mindful Aura');
+		},
+		onUpdate(pokemon) {
+			if(pokemon.volatiles['boss'] && !pokemon.volatiles['mindfulness']){
+				pokemon.addVolatile('mindfulness');
+			}
+		},
+	}
 
 
 
