@@ -595,7 +595,37 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},	
 
-
+	neatwisdom: {
+		effectType: 'Rule',
+		name: 'Neat Wisdom',
+		desc: "Normal/Psychic type pokémon change their ability into Simple and Normal/Psychic type pokémon heal 25% of their maximum HP when they raise one or more oÿ their stats",
+		onBegin() {
+			this.add('rule', 'Neat Wisdom');
+		},
+		onUpdate(pokemon) {
+			if(pokemon.getTypes().includes('Normal') && pokemon.getTypes().includes('Psychic')) {
+				const oldAbility = pokemon.setAbility('simple', pokemon);
+				if (oldAbility && this.dex.abilities.get(oldAbility).name !== 'Simple') {
+					this.add('-activate', pokemon, 'ability: Simple', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
+				}
+			}
+		},
+		onBoost(boost, target, source, effect) {
+			if (!(target.getTypes().includes('Normal') && target.getTypes().includes('Psychic'))) return;
+			let i: BoostID = false;
+			let anyPositiveBoost: Boolean;
+			for (i in boost) {
+				if(boost[i] && ((boost[i]>0 && target.ability!=='Contrary') || (boost[i]<0 && target.ability==='Contrary'))){
+					anyPositiveBoost = true;
+					break;
+				}
+			}
+			
+			if(anyPositiveBoost){
+				this.heal(target.baseMaxhp/4);
+			}
+		},
+	},	
 
 
 
