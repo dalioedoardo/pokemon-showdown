@@ -251,7 +251,6 @@ export const Formats: FormatList = [
 		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Neat Wisdom', 'Fresh Mind'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
-	/*
 	{
 		name: "[Gen 8] 3.6 PSYCHIC TYPE BOSS CHALLENGE",
 		threads: [
@@ -265,7 +264,6 @@ export const Formats: FormatList = [
 		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Mindful Aura', 'Rising Energy', 'Fresh Mind'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
-	*/
 	
 	
 	
