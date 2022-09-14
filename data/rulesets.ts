@@ -636,8 +636,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Mindful Aura');
 		},
 		onUpdate(pokemon) {
-			if(pokemon.volatiles['boss'] && !pokemon.volatiles['mindfulness']){
-				pokemon.addVolatile('mindfulness');
+			if(this.turn > 3 && pokemon.species.id !== 'medichammega'){
+				if(!pokemon.volatiles['mindfulness']){
+					pokemon.addVolatile('mindfulness');
+				}
 			}
 		},
 	},
