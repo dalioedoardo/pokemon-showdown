@@ -640,7 +640,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				pokemon.addVolatile('mindfulness');
 			}
 		},
-	}
+	},
 
 
 
