@@ -163,11 +163,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 				else{
 					if(set.level === 100
 							&& (
-									(set.name === 'Tyranitar' && this.format.includes('1.6 ROCK TYPE BOSS CHALLENGE'))
-									|| (set.name === 'Venusaur' && this.format.includes('2.6 GRASS TYPE BOSS CHALLENGE'))
-									|| (set.name === 'Medicham' && this.format.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
-									|| (set.name === 'Metagross' && this.format.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
-									|| (set.name === 'Gengar' && this.format.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
+									(set.name === 'Tyranitar' && this.format.name.includes('1.6 ROCK TYPE BOSS CHALLENGE'))
+									|| (set.name === 'Venusaur' && this.format.name.includes('2.6 GRASS TYPE BOSS CHALLENGE'))
+									|| (set.name === 'Medicham' && this.format.name.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
+									|| (set.name === 'Metagross' && this.format.name.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
+									|| (set.name === 'Gengar' && this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
 								)
 						)
 						possibleBoss.push(set);
@@ -192,15 +192,15 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			const restrictedMegastone = [];
 
-			if(this.format.includes('1.6 ROCK TYPE BOSS CHALLENGE'))
+			if(this.format.name.includes('1.6 ROCK TYPE BOSS CHALLENGE'))
 				restrictedMegastone.push('Tyranitarite');
-			else if(this.format.includes('2.6 GRASS TYPE BOSS CHALLENGE'))
+			else if(this.format.name.includes('2.6 GRASS TYPE BOSS CHALLENGE'))
 				restrictedMegastone.push('Venusaurite');
-			else if(this.format.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
+			else if(this.format.name.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
 				restrictedMegastone.push('Medichamite');
-			else if(this.format.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
+			else if(this.format.name.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
 				restrictedMegastone.push('Metagrossite');
-			else if(this.format.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
+			else if(this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
 				restrictedMegastone.push('Gengarite');
 			else
 				restrictedMegastone.push('');
