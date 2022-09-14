@@ -220,11 +220,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 			if(this.turn < 1) {
 				if((pokemon.adjacentAllies()).length === 0
 				    && (
-							(pokemon.species.name === 'Tyranitar' && pokemon.item === 'tyranitarite' && this.format.name === '1.6 ROCK TYPE BOSS CHALLENGE')
-							|| (pokemon.species.name === 'Venusaur' && pokemon.item === 'venusaurite' && this.format.name === '2.6 GRASS TYPE BOSS CHALLENGE')
-							|| (pokemon.species.name === 'Medicham' && pokemon.item === 'medichamite' && this.format.name === '3.6 PSYCHIC TYPE BOSS CHALLENGE')
-							|| (pokemon.species.name === 'Metagross' && pokemon.item === 'metagrossite' && this.format.name === '4.6 STEEL TYPE BOSS CHALLENGE')
-							|| (pokemon.species.name === 'Gengar' && pokemon.item === 'gengarite' && this.format.name === '5.6 GHOST TYPE BOSS CHALLENGE')
+							(pokemon.species.name === 'Tyranitar' && pokemon.item === 'tyranitarite' && this.format.name.includes('1.6 ROCK TYPE BOSS CHALLENGE'))
+							|| (pokemon.species.name === 'Venusaur' && pokemon.item === 'venusaurite' && this.format.name.includes('2.6 GRASS TYPE BOSS CHALLENGE'))
+							|| (pokemon.species.name === 'Medicham' && pokemon.item === 'medichamite' && this.format.name.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
+							|| (pokemon.species.name === 'Metagross' && pokemon.item === 'metagrossite' && this.format.name.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
+							|| (pokemon.species.name === 'Gengar' && pokemon.item === 'gengarite' && this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
 						 )
 				  ){
 					pokemon.addVolatile('boss');
