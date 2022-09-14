@@ -639,6 +639,28 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 			}
 		},
+		onModifyMove(move, pokemon) {
+			if(pokemon.volatiles['mindfulness']){
+				if (!move.ignoreImmunity) move.ignoreImmunity = {};
+				if (move.ignoreImmunity !== true) {
+					move.ignoreImmunity['Psychic'] = true;
+					move.ignoreImmunity['Fighting'] = true;
+					move.ignoreImmunity['Normal'] = true;
+					move.ignoreImmunity['Ghost'] = true;
+				}
+			}
+		},
+		onAnyAccuracy(accuracy, target, source, move) {
+			if (move && source.volatiles['mindfulness']) {
+				return true;
+			}
+			return accuracy;
+		},
+		onModifyMove(move, attacker) {
+			if(attacker.volatiles['mindfulness']){
+				delete move.flags['protect'];
+			}
+		},
 	},
 
 
