@@ -157,6 +157,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 	mindfulness: {
 		name: 'mindfulness',
 		// this is a volatile status [invisible]
+		onAnyInvulnerabilityPriority: 1,
+		onAnyInvulnerability(target, source, move) {
+			if (move && (source === this.effectState.target)) return 0;
+		},
 	},
 	
 	
