@@ -647,18 +647,13 @@ export const Rulesets: {[k: string]: FormatData} = {
 					move.ignoreImmunity['Fighting'] = true;
 					move.ignoreImmunity['Normal'] = true;
 					move.ignoreImmunity['Ghost'] = true;
+					move.ignoreImmunity['Ground'] = true;
+					move.ignoreImmunity['Dragon'] = true;
+					move.ignoreImmunity['Electric'] = true;
+					move.ignoreImmunity['Poison'] = true;
 				}
-			}
-		},
-		onAnyAccuracy(accuracy, target, source, move) {
-			if (move && source.volatiles['mindfulness']) {
-				return true;
-			}
-			return accuracy;
-		},
-		onModifyMove(move, attacker) {
-			if(attacker.volatiles['mindfulness']){
 				delete move.flags['protect'];
+				move.accuracy = true;
 			}
 		},
 	},
