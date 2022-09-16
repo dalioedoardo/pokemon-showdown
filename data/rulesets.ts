@@ -781,7 +781,42 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
-	
+	bulletproofskypatroller: {
+		effectType: 'Rule',
+		name: 'Bulletproof Sky Patroller',
+		desc: "All Flying/Steel type pokémon have their EVASION, ACCURACY and SPEED doubled and all Flying type moves of a Flying/Steel type pokémon become Steel type, always result in a critical hit, deal super effective damage on any pokémon that is weak to Flying type moves",
+		onBegin() {
+			this.add('rule', 'Bulletproof Sky Patroller');
+		},
+		onSwitchIn(pokemon) {
+			if (pokemon.getTypes().includes('Flying') && pokemon.getTypes().includes('Steel')) {
+				this.boost({spe: 2}, pokemon);
+				this.boost({accuracy: 2}, pokemon);
+				this.boost({evasion: 2}, pokemon);
+				//todo:contrary
+			}
+		},
+		onModifyType(move, pokemon) {
+			if(move.id !== 'explosion') return;
+			
+			move.type = 'Steel';
+		},
+		onModifyMove(move, pokemon) {
+			if(move.id !== 'explosion') return;
+			
+			delete move.selfdestruct;
+		},
+		onModifyDamage(damage, source, target, move) {
+			if(move.id !== 'explosion') return;
+			
+			if(target.getTypes().includes("Steel")
+				|| target.getTypes().includes("Fire")
+				|| target.getTypes().includes("Water")
+				|| target.getTypes().includes("Electric")){
+				return this.chainModify(2);
+			}
+		},
+	},
 	
 
 
