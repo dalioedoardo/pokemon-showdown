@@ -784,37 +784,33 @@ export const Rulesets: {[k: string]: FormatData} = {
 	bulletproofskypatroller: {
 		effectType: 'Rule',
 		name: 'Bulletproof Sky Patroller',
-		desc: "All Flying/Steel type pokémon have their EVASION, ACCURACY and SPEED doubled and all Flying type moves of a Flying/Steel type pokémon become Steel type, always result in a critical hit, deal super effective damage on any pokémon that is weak to Flying type moves",
+		desc: "All Flying/Steel type pokémon have their EVASION, ACCURACY and SPEED doubled and all Flying type moves of a Flying/Steel type pokémon become also Steel type and will always result in a critical hit",
 		onBegin() {
 			this.add('rule', 'Bulletproof Sky Patroller');
 		},
 		onSwitchIn(pokemon) {
 			if (pokemon.getTypes().includes('Flying') && pokemon.getTypes().includes('Steel')) {
-				this.boost({spe: 2}, pokemon);
-				this.boost({accuracy: 2}, pokemon);
-				this.boost({evasion: 2}, pokemon);
-				//todo:contrary
+				if(pokemon.ability!=='Contrary'){
+					this.boost({spe: 2}, pokemon);
+					this.boost({accuracy: 2}, pokemon);
+					this.boost({evasion: 2}, pokemon);
+				}
+				else{
+					this.boost({spe: -2}, pokemon);
+					this.boost({accuracy: -2}, pokemon);
+					this.boost({evasion: -2}, pokemon);			
+				}
 			}
 		},
 		onModifyType(move, pokemon) {
-			if(move.id !== 'explosion') return;
+			if(move.type !== 'Flying') return;
 			
 			move.type = 'Steel';
+			move.willCrit = true;
 		},
-		onModifyMove(move, pokemon) {
-			if(move.id !== 'explosion') return;
-			
-			delete move.selfdestruct;
-		},
-		onModifyDamage(damage, source, target, move) {
-			if(move.id !== 'explosion') return;
-			
-			if(target.getTypes().includes("Steel")
-				|| target.getTypes().includes("Fire")
-				|| target.getTypes().includes("Water")
-				|| target.getTypes().includes("Electric")){
-				return this.chainModify(2);
-			}
+		onEffectiveness(typeMod, target, type, move) {
+			if(this.dex.moves.get(move.id).type !== 'Flying') return typeMod;
+			return typeMod + this.dex.getEffectiveness('Flying', type);
 		},
 	},
 	
