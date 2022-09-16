@@ -164,7 +164,34 @@ export const Conditions: {[k: string]: ConditionData} = {
 	},
 	
 	
-	
+	//---ELIA'S CONDITIONS:
+	kniferainfall: {
+		name: 'KnifeRain',
+		effectType: 'Weather',
+		duration: 0,
+		onTryMovePriority: 1,
+		onWeatherModifyDamage(damage, attacker, defender, move) {
+			if (move.type === 'Steel') {
+				return this.chainModify(1.5);
+			}
+		},
+		onFieldStart(field, source, effect) {
+			this.add('-weather', 'KnifeRain', '', '');
+		},
+		onFieldResidualOrder: 1,
+		onFieldResidual() {
+			this.add('-weather', 'KnifeRain', '[upkeep]');
+			if (this.field.isWeather('kniferainfall')) this.eachEvent('Weather');
+		},
+		onWeather(target) {
+			if(target.getTypes().includes('Steel')){
+				this.heal(target.baseMaxhp/4)
+			}
+			else{
+				this.damage(target.baseMaxhp/4);			
+			}
+		},
+	},
 	
 	
 	
