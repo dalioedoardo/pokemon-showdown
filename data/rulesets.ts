@@ -659,6 +659,99 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 
 
+	
+	//---ELIA'S REALM:
+	
+	traininghall: {
+		effectType: 'Rule',
+		name: 'Training Hall',
+		desc: "After they deal damage, all Steel type pokémon raise their offensive stat that was involved in the damage calculation by 1 stage and after they receive damage, all Steel type pokémon raise their defensive stat that was involved in the damage calculation by 1 stage",
+		onBegin() {
+			this.add('rule', 'Training Hall');
+		},
+		onAfterMoveSecondary(target, source, move) {
+			//steel pokemon that deals damage:
+			if (source.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
+				if(move.overrideOffensiveStat){
+					switch (move.overrideOffensiveStat) {
+						case 'atk':
+							this.boost({atk: 1}, source);	
+						case 'def':
+							this.boost({def: 1}, source);	
+						case 'spa':
+							this.boost({spa: 1}, source);	
+						case 'spd':
+							this.boost({spd: 1}, source);
+						case 'spe':
+							this.boost({spe: 1}, source);	
+					}
+				}
+				else{
+					if(move.category==='Physical'){
+						this.boost({atk: 1}, source);	
+					}
+					else{
+						this.boost({spa: 1}, source);	
+					}
+				}
+			}
+			
+			//steel pokemon that receives damage:
+			if (target.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
+				if(move.overrideDefensiveStat){
+					switch (move.overrideDefensiveStat) {
+						case 'atk':
+							this.boost({atk: 1}, target);	
+						case 'def':
+							this.boost({def: 1}, target);	
+						case 'spa':
+							this.boost({spa: 1}, target);	
+						case 'spd':
+							this.boost({spd: 1}, target);
+						case 'spe':
+							this.boost({spe: 1}, target);	
+					}
+				}
+				else{
+					if(move.category==='Physical'){
+						this.boost({def: 1}, target);	
+					}
+					else{
+						this.boost({spd: 1}, target);	
+					}
+				}
+			}
+		},
+	},
+	
+	
+	explosiveexpertise: {
+		effectType: 'Rule',
+		name: 'Explosive Expertise',
+		desc: "Explosion becomes Steel type and deals no damage to the user, explosion gains +2 priority and Explosion deals x2 damage to the targets that resist it",
+		onBegin() {
+			this.add('rule', 'Explosive Expertise');
+		},
+		onModifyMove(move, pokemon) {
+			if(move.id !== 'explosion') return;
+			
+			move.type = 'Steel';
+			move.priority = 2;
+			delete move.selfdestruct;
+		},
+		onModifyDamage(damage, source, target, move) {
+			if(move.id !== 'explosion') return;
+			
+			if(["Steel", "Fire", "Water", "Electric"].includes(target.getTypes())){
+				return this.chainModify(2);
+			}
+		},
+	},
+	
+	
+	
+	
+	
 
 
 
