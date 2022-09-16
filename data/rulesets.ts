@@ -676,14 +676,19 @@ export const Rulesets: {[k: string]: FormatData} = {
 					switch (move.overrideOffensiveStat) {
 						case 'atk':
 							this.boost({atk: 1}, source);	
+							break;
 						case 'def':
-							this.boost({def: 1}, source);	
+							this.boost({def: 1}, source);
+							break;
 						case 'spa':
-							this.boost({spa: 1}, source);	
+							this.boost({spa: 1}, source);
+							break;
 						case 'spd':
 							this.boost({spd: 1}, source);
+							break;
 						case 'spe':
 							this.boost({spe: 1}, source);	
+							break;
 					}
 				}
 				else{
@@ -702,14 +707,19 @@ export const Rulesets: {[k: string]: FormatData} = {
 					switch (move.overrideDefensiveStat) {
 						case 'atk':
 							this.boost({atk: 1}, target);	
+							break;
 						case 'def':
-							this.boost({def: 1}, target);	
+							this.boost({def: 1}, target);
+							break;
 						case 'spa':
-							this.boost({spa: 1}, target);	
+							this.boost({spa: 1}, target);
+							break;
 						case 'spd':
 							this.boost({spd: 1}, target);
+							break;
 						case 'spe':
 							this.boost({spe: 1}, target);	
+							break;
 					}
 				}
 				else{
@@ -732,17 +742,26 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Explosive Expertise');
 		},
-		onModifyMove(move, pokemon) {
+		onModifyPriority(priority, pokemon, target, move) {
+			if(move.id === 'explosion') return priority + 2;
+		},
+		onModifyType(move, pokemon) {
 			if(move.id !== 'explosion') return;
 			
 			move.type = 'Steel';
-			move.priority = 2;
+		},
+		onModifyMove(move, pokemon) {
+			if(move.id !== 'explosion') return;
+			
 			delete move.selfdestruct;
 		},
 		onModifyDamage(damage, source, target, move) {
 			if(move.id !== 'explosion') return;
 			
-			if(["Steel", "Fire", "Water", "Electric"].includes(target.getTypes())){
+			if(target.getTypes().includes("Steel")
+				|| target.getTypes().includes("Fire")
+				|| target.getTypes().includes("Water")
+				|| target.getTypes().includes("Electric")){
 				return this.chainModify(2);
 			}
 		},
