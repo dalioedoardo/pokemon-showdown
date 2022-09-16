@@ -166,7 +166,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 	
 	//---ELIA'S CONDITIONS:
 	kniferainfall: {
-		name: 'KnifeRain',
+		name: 'KnifeRainfall',
 		effectType: 'Weather',
 		duration: 0,
 		onTryMovePriority: 1,
@@ -176,11 +176,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onFieldStart(field, source, effect) {
-			this.add('-weather', 'KnifeRain', '', '');
+			this.add('-weather', 'KnifeRainfall', '', '');
 		},
 		onFieldResidualOrder: 1,
 		onFieldResidual() {
-			this.add('-weather', 'KnifeRain', '[upkeep]');
+			this.add('-weather', 'KnifeRainfall', '[upkeep]');
 			if (this.field.isWeather('kniferainfall')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
