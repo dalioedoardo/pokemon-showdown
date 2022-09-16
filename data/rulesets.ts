@@ -773,10 +773,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 		desc: "The weather is permanently set to Knife Rain [a variant of Rain where the boost in power applies to Steel type moves instead of Water type moves and all non-Steel type pokémon lose ¼ of their maximum HP each turn while all Steel type pokémon heal ¼ of their maximum HP each turn]",
 		onBegin() {
 			this.add('rule', 'Knife Rain');
+			this.field.setWeather('kniferainfall');
 		},
 		onAnySetWeather(target, source, weather) {
-			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
-			if (this.field.getWeather().id === 'primordialsea' && !strongWeathers.includes(weather.id)) return false;
+			if(this.field.getWeather().id !== 'kniferainfall')
+				return false;
 		},
 	
 	
