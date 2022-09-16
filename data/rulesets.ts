@@ -776,9 +776,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.field.setWeather('kniferainfall');
 		},
 		onAnySetWeather(target, source, weather) {
-			if(this.field.getWeather().id !== 'kniferainfall')
+			if(weather.id !== 'kniferainfall')
 				return false;
 		},
+	},
 	
 	
 	
