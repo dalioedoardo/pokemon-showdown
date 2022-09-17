@@ -1514,7 +1514,7 @@ export class Pokemon {
 			for (const s of this.statusState.statuses) {
 				if(this.volatiles['q'+s.name]){
 					this.removeVolatile('q'+s.name);
-					this.add('-end', this, 'q'+s.name);
+					this.battle.add('-end', this, 'q'+s.name);
 				}
 			}
 			
@@ -1660,7 +1660,7 @@ export class Pokemon {
 			for (const s of this.statusState.statuses) {
 				if(this.volatiles['q'+s.name]){
 					this.removeVolatile('q'+s.name);
-					this.add('-end', this, 'q'+s.name);
+					this.battle.add('-end', this, 'q'+s.name);
 				}
 			}
 			
