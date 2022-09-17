@@ -1544,6 +1544,45 @@ export class Pokemon {
 		}
 		const prevStatus = this.status;
 		const prevStatusState = this.statusState;
+		
+		//Harzen 17/09/2022 - se ha il quantumstate devo semplicemente aggiornare params, non aggiungere uno stato nuovo
+		if(prevStatus==='quantumstate'){
+			//non voglio aggiungere lo stato se già presente nell'array statuses
+			if(this.statusState.statuses.map(({ name }) => name).includes(status.id) || this.getTypes().includes('Ghost')){
+				return false;
+			}
+			
+			//altrimenti lo aggiungo:
+			let timestatus: number = -1;
+			let startTimestatus: number = -1;
+			let stagestatus: number = -1;
+
+			//preparation of the variables:
+			if(status.id === 'slp'){
+				startTimestatus = this.random(2, 5);
+				timestatus = startTimestatus;
+			}
+
+			if(status.id === 'tox'){
+				stagestatus = 0;
+			}
+
+			this.statusState.statuses.push(
+				{
+					name: status.id,
+					params: {
+						time: timestatus,
+						startTime: startTimestatus,
+						stage: stagestatus
+					}
+				}
+			);
+			
+			return true;
+		}
+		//FINE Harzen 17/09/2022
+		
+			
 		if (status.id) {
 			const result: boolean = this.battle.runEvent('SetStatus', this, source, sourceEffect, status);
 			if (!result) {
