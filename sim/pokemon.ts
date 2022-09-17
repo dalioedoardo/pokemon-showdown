@@ -1585,6 +1585,11 @@ export class Pokemon {
 				return false;
 			}
 			
+			//non voglio aggiungere lo stato neppure se ci sono misty terrain o safeguard attive:
+			if(this.side.sideConditions.includes('safeguard') || this.battle.field.isTerrain('mistyterrain')){
+				return false;
+			}
+			
 			//altrimenti lo aggiungo:
 			let timestatus: number = -1;
 			let startTimestatus: number = -1;
