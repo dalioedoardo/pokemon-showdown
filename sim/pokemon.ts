@@ -1493,6 +1493,11 @@ export class Pokemon {
 	}
 
 	trySetStatus(status: string | Condition, source: Pokemon | null = null, sourceEffect: Effect | null = null) {
+		//Harzen 17/09/2022
+		if(this.status==='quantumstate'){
+			return this.setStatus(status, source, sourceEffect);		
+		}
+		
 		return this.setStatus(this.status || status, source, sourceEffect);
 	}
 
