@@ -236,6 +236,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 						this.add('-start', pokemon, 'q'+s.name);
 					}
 				}
+				//rimuovo le qvolatiles che non esistono più
+				for(const key of Object.keys(pokemon.volatiles)){
+					if(['qbrn', 'qpar', 'qfrz', 'qslp', 'qpsn', 'qtox'].includes(key) && !pokemon.statusState.statuses.map(({ name }) => 'q'+name).includes(key)){
+						pokemon.removeVolatile(key);
+						this.add('-end', pokemon, key);					
+					}
+				}
 			}
 		},
 		onSetStatus(status, target, source, effect) {
