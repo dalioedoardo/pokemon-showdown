@@ -197,6 +197,28 @@ export const Conditions: {[k: string]: ConditionData} = {
 	
 	//---PICCIA'S CONDITIONS:
 	
+	//this affects ghost type mons
+	quantumquirk: {
+		name: 'quantumquirk',
+		onStart(target, source, sourceEffect) {
+			if(target.ability !== 'contrary'){
+				this.boost({evasion: 6}, pokemon);
+			}
+			else{
+				this.boost({def: -6}, pokemon);
+			}
+		},
+		onEnd(target){
+			if(target.ability !== 'contrary'){
+				this.boost({evasion: -6}, pokemon);
+			}
+			else{
+				this.boost({def: 6}, pokemon);
+			}
+		},
+	},
+	
+	//this affects non-ghost type mons
 	quantumstate: {
 		name: 'quantumstate',
 		effectType: 'Status',
@@ -208,8 +230,134 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onSetStatus(status, target, source, effect) {
 			//inserita in sim/pokemon.ts nella funzione setStatus(...)
+		},
+		onSwitchIn(pokemon) {
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox'))){
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="tox");
+				this.effectState.statuses[i].params.stage = 0;	
+			}
+		},
+		onResidualOrder: 10,
+		onResidual(pokemon) {
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('brn'))){
+				this.damage(pokemon.baseMaxhp / 16);
+			}
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('psn'))){
+				this.damage(pokemon.baseMaxhp / 8);
+			}
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox'))){
+				if (this.effectState.statuses[i].params.stage < 15) {
+					this.effectState.statuses[i].params.stage++;
+				}
+				this.damage(this.clampIntRange(pokemon.baseMaxhp / 16, 1) * this.effectState.statuses[i].params.stage);
+			}
+		},
+		onModifySpe(spe, pokemon) {
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('par'))){
+				// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
+				spe = this.finalModify(spe);
+				if (!pokemon.hasAbility('quickfeet')) {
+					spe = Math.floor(spe * 50 / 100);
+				}
+				return spe;
+			}
+		},
+		onBeforeMovePriority: 10,
+		onBeforeMove(pokemon, target, move) {
+			
+			let toBeReturned : string = '';
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('slp'))){
+				
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="slp");
+				
+				if (pokemon.hasAbility('earlybird')) {
+					pokemon.statusState.statuses[i].params.time--;
+				}
+				pokemon.statusState.statuses[i].params.time--;
+				if (pokemon.statusState.statuses[i].params.time <= 0) {
+					//rimuovo la condizione di slp:
+					pokemon.statusState.statuses.splice(i, 1);
+				}
+				else{
+					if (!move.sleepUsable) {
+						this.add('cant', pokemon, 'quantumstate');
+						toBeReturned='false';
+					}
+				}
+			}
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('par'))){
+				if (this.randomChance(1, 4)) {
+					this.add('cant', pokemon, 'quantumstate');
+					toBeReturned = 'false';
+				}
+			}
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+				
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="frz");
+				
+				if (!move.flags['defrost']){
+					if (this.randomChance(1, 5)) {
+						//rimuovo la condizione di frz:
+						pokemon.statusState.statuses.splice(i, 1);
+					}
+					else{
+						this.add('cant', pokemon, 'quantumstate');
+						toBeReturned = 'false';
+					}
+				}
+			}
+			
+			if(toBeReturned==='false'){
+				return false;	
+			}
+			else{
+				return;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="frz");
+				if (move.flags['defrost']) {
+					//rimuovo la condizione di frz:
+					pokemon.statusState.statuses.splice(i, 1);	
+				}
+			}
+		},
+		onAfterMoveSecondary(target, source, move) {
+			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+				const i = target.statusState.statuses.findIndex((st) => st.name=="frz");
+				if (move.thawsTarget) {
+					//rimuovo la condizione di frz:
+					target.statusState.statuses.splice(i, 1);	
+				}
+			}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+				const i = target.statusState.statuses.findIndex((st) => st.name=="frz");
+				if (move.type === 'Fire' && move.category !== 'Status') {
+					//rimuovo la condizione di frz:
+					target.statusState.statuses.splice(i, 1);	
+				}
+			}
 		},	
+		
 	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	brn: {
@@ -292,6 +440,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return false;
 		},
 	},
+	
 	frz: {
 		name: 'frz',
 		effectType: 'Status',
