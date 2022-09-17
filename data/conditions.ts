@@ -248,6 +248,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			
 			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox')){
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="tox");
 				if (this.effectState.statuses[i].params.stage < 15) {
 					this.effectState.statuses[i].params.stage++;
 				}
