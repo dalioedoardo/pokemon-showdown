@@ -279,6 +279,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 						this.add('rule', 'Voracious Aura');	
 					else if(this.format.name.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
 						this.add('rule', 'Mindful Aura');
+					else if(this.format.name.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
+						this.add('rule', 'Mighty Aura');
+					else if(this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
+						this.add('rule', 'Entropic Aura');
 					
 					this.add('rule', 'Rising Energy');
 
@@ -988,6 +992,16 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
+	mightyaura: {
+		effectType: 'Rule',
+		name: 'Mighty Aura',
+		desc: "Any damage that a non-MEGA BOSS pokèmon receives from the MEGA BOSS pokèmon is multiplied by 2",
+		onModifyDamage(damage, source, target, move) {
+			if(this.turn > 3 && source.species.id === 'metagrossmega'){
+				return this.chainModify(2);
+			}
+		},
+	},
 	
 	
 	
