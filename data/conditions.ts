@@ -298,6 +298,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 				if (pokemon.statusState.statuses[i].params.time <= 0) {
 					//rimuovo la condizione di slp:
 					pokemon.statusState.statuses.splice(i, 1);
+					pokemon.removeVolatile('qslp');
+					this.add('-end', pokemon, 'qslp');	
 				}
 				else{
 					if (!move.sleepUsable) {
@@ -322,6 +324,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 					if (this.randomChance(1, 5)) {
 						//rimuovo la condizione di frz:
 						pokemon.statusState.statuses.splice(i, 1);
+						pokemon.removeVolatile('qfrz');
+						this.add('-end', pokemon, 'qfrz');	
 					}
 					else{
 						this.add('cant', pokemon, 'quantumstate');
@@ -343,6 +347,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 				if (move.flags['defrost']) {
 					//rimuovo la condizione di frz:
 					pokemon.statusState.statuses.splice(i, 1);	
+					pokemon.removeVolatile('qfrz');
+					this.add('-end', pokemon, 'qfrz');	
 				}
 			}
 		},
@@ -351,7 +357,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 				const i = target.statusState.statuses.findIndex((st) => st.name=="frz");
 				if (move.thawsTarget) {
 					//rimuovo la condizione di frz:
-					target.statusState.statuses.splice(i, 1);	
+					target.statusState.statuses.splice(i, 1);
+					target.removeVolatile('qfrz');
+					this.add('-end', target, 'qfrz');
 				}
 			}
 		},
@@ -361,6 +369,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 				if (move.type === 'Fire' && move.category !== 'Status') {
 					//rimuovo la condizione di frz:
 					target.statusState.statuses.splice(i, 1);	
+					target.removeVolatile('qfrz');
+					this.add('-end', target, 'qfrz');
 				}
 			}
 		},	
