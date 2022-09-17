@@ -963,7 +963,30 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
-	
+	ultimatearmor: {
+		effectType: 'Rule',
+		name: 'Ultimate Armor',
+		desc: "All attacks towards a Steel/Rock type pokémon involve its DEF instead of its SPDEF and all Steel/Rock type pokémon become immune to super effective moves",
+		onBegin() {
+			this.add('rule', 'Ultimate Armor');
+		},
+		onTryHit(target, source, move) {
+			if ( !(target.getTypes().includes('Rock') && target.getTypes().includes('Steel')) || move.category === 'Status') return;
+			if (target.runEffectiveness(move) > 0) {
+				if (move.smartTarget) {
+					move.smartTarget = false;
+				} else {
+					this.add('-immune', target, '[from] rule: Ultimate Armor');
+				}
+				return null;
+			}
+			else{
+				if(move.category === 'Special' || (move.overrideDefensiveStat && move.overrideDefensiveStat !== 'def')){
+					move.overrideDefensiveStat = 'def';
+				}
+			}
+		},
+	},
 	
 	
 	
