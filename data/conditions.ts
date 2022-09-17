@@ -195,23 +195,46 @@ export const Conditions: {[k: string]: ConditionData} = {
 	
 	
 	//---PICCIA'S CONDITIONS:
+	
 	quantumstate: {
 		name: 'quantumstate',
 		effectType: 'Status',
 		onStart(target, source, sourceEffect) {
-			//Harzen 17/09/2022 - in statuses voglio memorizzare un array di questo oggetto:
-			//{nomestatus: {time: thetime, startTime: theStartTime, stage: theStage}}
-			//
+			//Harzen 17/09/2022 - in statuses voglio memorizzare:
+			//[{name: <statusid>, params: {time: <thetime>, startTime: <theStartTime>, stage: <theStage>}}, {...}, {...}]
 			this.effectState.statuses = [];
 		},
 		onSetStatus(status, target, source, effect) {
 			if(target.getTypes().includes('Ghost')) return;
 			
-			if(!target.volatiles['quantumstate'].statuses.includes(target.status){
-				target.volatiles['quantumstate'].statuses.push(target.status);
+			if(!target.statusState.statuses.includes(status.id){
+				
+				let timestatus: number = -1;
+				let startTimestatus: number = -1;
+				let stagestatus: number = -1;
+				
+				//preparation of the variables:
+				if(status.id === 'slp'){
+					startTimestatus = this.random(2, 5);
+					timestatus = startTimestatus;
+				}
+				
+				if(status.id === 'tox'){
+					stagestatus = 0;
+				}
+			
+				target.statusState.statuses.push(
+					{
+						name: status.id,
+						params: {
+							time: timestatus,
+							startTime: startTimestatus,
+							stage: stagestatus
+						}
+					}
+				);
 			}
-		},
-		
+		},	
 	},
 	
 	
