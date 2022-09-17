@@ -1585,7 +1585,7 @@ export class Pokemon {
 
 			//preparation of the variables:
 			if(status.id === 'slp'){
-				startTimestatus = this.random(2, 5);
+				startTimestatus = this.battle.random(2, 5);
 				timestatus = startTimestatus;
 			}
 
