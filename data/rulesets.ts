@@ -1015,7 +1015,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Quantum Festival');
 		},
-		onUpdate(pokemon){
+		onSwitchIn(pokemon){
 			if(!pokemon.getTypes().includes('Ghost') && pokemon.status!=='quantumstate'){
 				pokemon.setStatus('quantumstate',pokemon);
 				this.hint("This pokemon can be affected by multiple statuses!");
