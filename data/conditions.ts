@@ -245,9 +245,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 				}
 			}
 		},
+		/*
 		onSetStatus(status, target, source, effect) {
 			//inserita in sim/pokemon.ts nella funzione setStatus(...)
 		},
+		*/
 		onSwitchIn(pokemon) {
 			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox')){
 				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="tox");
