@@ -14011,8 +14011,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 			target.clearStatus();
 			const result = target.setStatus('slp', source, move);
 			if (!result) return result;
-			target.statusState.time = 3;
-			target.statusState.startTime = 3;
+			if(target.statusId !== 'quantumstate'){
+				target.statusState.time = 3;
+				target.statusState.startTime = 3;
+			}
+			else{
+				const i = target.statusState.statuses.findIndex((st) => st.name=="slp");
+				target.statusState.statuses[i].params.time = 3;
+				target.statusState.statuses[i].params.startTime = 3;
+			}
 			this.heal(target.maxhp); // Aesthetic only as the healing happens after you fall asleep in-game
 		},
 		secondary: null,
