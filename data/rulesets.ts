@@ -1019,8 +1019,14 @@ export const Rulesets: {[k: string]: FormatData} = {
 			if(!pokemon.getTypes.includes('Ghost')){
 				pokemon.setStatus('quantumstate',pokemon);
 			}
-			else{
-				
+			
+			if(this.turn<4 && pokemon.getTypes.includes('Ghost')){
+				pokemon.addVolatile('quantumquirk');
+			}
+		},
+		onUpdate(pokemon){
+			if(this.turn>3 && pokemon.volatiles['quantumquirk']){
+				pokemon.removeVolatile('quantumquirk');
 			}
 		},
 	},
