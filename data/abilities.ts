@@ -489,7 +489,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.add('-ability', pokemon, 'Comatose');
 		},
 		onSetStatus(status, target, source, effect) {
-			if ((effect as Move)?.status) {
+			if ((effect as Move)?.status && status.id !== 'quantumstate') {
 				this.add('-immune', target, '[from] ability: Comatose');
 			}
 			return false;
