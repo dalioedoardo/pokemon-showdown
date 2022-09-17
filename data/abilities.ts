@@ -242,7 +242,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onResidual(pokemon) {
 			if (!pokemon.hp) return;
 			for (const target of pokemon.foes()) {
-				if (target.status === 'slp' || target.hasAbility('comatose')) {
+				if (target.status === 'slp' || target.hasAbility('comatose') || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('slp'))) {
 					this.damage(target.baseMaxhp / 8, target, pokemon);
 				}
 			}
@@ -986,7 +986,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	flareboost: {
 		onBasePowerPriority: 19,
 		onBasePower(basePower, attacker, defender, move) {
-			if (attacker.status === 'brn' && move.category === 'Special') {
+			if ((attacker.status === 'brn' || (attacker.status === 'quantumstate' && attacker.statusState.statuses.map(({ name }) => name).includes('brn'))) && move.category === 'Special') {
 				return this.chainModify(1.5);
 			}
 		},
@@ -1632,9 +1632,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	immunity: {
 		onUpdate(pokemon) {
+			
 			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
 				this.add('-activate', pokemon, 'ability: Immunity');
 				pokemon.cureStatus();
+				return;
+			}
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('psn')){
+				this.add('-activate', pokemon, 'ability: Immunity');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="psn");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox')){
+				this.add('-activate', pokemon, 'ability: Immunity');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="tox");
+				pokemon.statusState.statuses.splice(i, 1);
 			}
 		},
 		onSetStatus(status, target, source, effect) {
@@ -1705,6 +1719,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	insomnia: {
 		onUpdate(pokemon) {
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('slp')){
+				this.add('-activate', pokemon, 'ability: Insomnia');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="slp");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			
 			if (pokemon.status === 'slp') {
 				this.add('-activate', pokemon, 'ability: Insomnia');
 				pokemon.cureStatus();
@@ -1882,6 +1903,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	limber: {
 		onUpdate(pokemon) {
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('par')){
+				this.add('-activate', pokemon, 'ability: Limber');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="par");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			
 			if (pokemon.status === 'par') {
 				this.add('-activate', pokemon, 'ability: Limber');
 				pokemon.cureStatus();
@@ -1992,6 +2020,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	magmaarmor: {
 		onUpdate(pokemon) {
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('frz')){
+				this.add('-activate', pokemon, 'ability: Magma Armor');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="frz");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			
 			if (pokemon.status === 'frz') {
 				this.add('-activate', pokemon, 'ability: Magma Armor');
 				pokemon.cureStatus();
@@ -3994,7 +4029,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	toxicboost: {
 		onBasePowerPriority: 19,
 		onBasePower(basePower, attacker, defender, move) {
-			if ((attacker.status === 'psn' || attacker.status === 'tox') && move.category === 'Physical') {
+			if ((attacker.status === 'psn' || attacker.status === 'tox' || (attacker.status === 'quantumstate' && attacker.statusState.statuses.map(({ name }) => name).includes('psn')) || (attacker.status === 'quantumstate' && attacker.statusState.statuses.map(({ name }) => name).includes('tox'))) && move.category === 'Physical') {
 				return this.chainModify(1.5);
 			}
 		},
@@ -4173,6 +4208,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	vitalspirit: {
 		onUpdate(pokemon) {
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('slp')){
+				this.add('-activate', pokemon, 'ability: Vital Spirit');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="slp");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			
 			if (pokemon.status === 'slp') {
 				this.add('-activate', pokemon, 'ability: Vital Spirit');
 				pokemon.cureStatus();
@@ -4266,6 +4308,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onUpdate(pokemon) {
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('brn')){
+				this.add('-activate', pokemon, 'ability: Water Bubble');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="brn");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			
 			if (pokemon.status === 'brn') {
 				this.add('-activate', pokemon, 'ability: Water Bubble');
 				pokemon.cureStatus();
@@ -4295,6 +4344,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	waterveil: {
 		onUpdate(pokemon) {
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('brn')){
+				this.add('-activate', pokemon, 'ability: Water Veil');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="brn");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			
 			if (pokemon.status === 'brn') {
 				this.add('-activate', pokemon, 'ability: Water Veil');
 				pokemon.cureStatus();
