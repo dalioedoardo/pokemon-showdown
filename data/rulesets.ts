@@ -1015,13 +1015,13 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Quantum Festival');
 		},
-		onSwitchIn(pokemon){
+		onUpdate(pokemon){
 			if(!pokemon.getTypes().includes('Ghost') && pokemon.status!=='quantumstate'){
 				pokemon.setStatus('quantumstate',pokemon);
 				this.hint("This pokemon can be affected by multiple statuses!");
 			}
 			
-			if(this.turn<4 && pokemon.getTypes().includes('Ghost')){
+			if(this.turn<4 && pokemon.getTypes().includes('Ghost') && !pokemon.volatiles['quantumquirk']){
 				pokemon.addVolatile('quantumquirk');
 			}
 		},
