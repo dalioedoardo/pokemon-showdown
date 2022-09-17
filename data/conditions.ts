@@ -232,22 +232,22 @@ export const Conditions: {[k: string]: ConditionData} = {
 			//inserita in sim/pokemon.ts nella funzione setStatus(...)
 		},
 		onSwitchIn(pokemon) {
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox'))){
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox')){
 				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="tox");
 				this.effectState.statuses[i].params.stage = 0;	
 			}
 		},
 		onResidualOrder: 10,
 		onResidual(pokemon) {
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('brn'))){
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('brn')){
 				this.damage(pokemon.baseMaxhp / 16);
 			}
 			
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('psn'))){
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('psn')){
 				this.damage(pokemon.baseMaxhp / 8);
 			}
 			
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox'))){
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox')){
 				if (this.effectState.statuses[i].params.stage < 15) {
 					this.effectState.statuses[i].params.stage++;
 				}
@@ -255,7 +255,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('par'))){
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('par')){
 				// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
 				spe = this.finalModify(spe);
 				if (!pokemon.hasAbility('quickfeet')) {
@@ -269,7 +269,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			
 			let toBeReturned : string = '';
 			
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('slp'))){
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('slp')){
 				
 				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="slp");
 				
@@ -289,14 +289,14 @@ export const Conditions: {[k: string]: ConditionData} = {
 				}
 			}
 			
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('par'))){
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('par')){
 				if (this.randomChance(1, 4)) {
 					this.add('cant', pokemon, 'quantumstate');
 					toBeReturned = 'false';
 				}
 			}
 			
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('frz')){	
 				
 				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="frz");
 				
@@ -320,7 +320,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifyMove(move, pokemon) {
-			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('frz')){	
 				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="frz");
 				if (move.flags['defrost']) {
 					//rimuovo la condizione di frz:
@@ -329,7 +329,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onAfterMoveSecondary(target, source, move) {
-			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('frz')){	
 				const i = target.statusState.statuses.findIndex((st) => st.name=="frz");
 				if (move.thawsTarget) {
 					//rimuovo la condizione di frz:
@@ -338,7 +338,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onDamagingHit(damage, target, source, move) {
-			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('frz'))){	
+			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('frz')){	
 				const i = target.statusState.statuses.findIndex((st) => st.name=="frz");
 				if (move.type === 'Fire' && move.category !== 'Status') {
 					//rimuovo la condizione di frz:
