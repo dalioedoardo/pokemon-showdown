@@ -446,7 +446,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: "Ambusher's Playground",
 		desc: "The pokémon that starts first raises its DEF and SPDEF by 2 stages until the end of the turn and the pokémon that moves last has its ATK , SPATK and ACCURACY halved until the end of the turn",
 		onBegin() {
-			this.add('rule', "Tengu's Trick");
+			this.add('rule', "Ambusher's Playground");
 		},
 		onAfterMoveSecondary(target, source, move){
 			for (const target of source.adjacentFoes()) {
@@ -588,6 +588,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onDamage(damage, target, source, effect) {
+			//TODO: da vedere se va spostata per chiarezza dentro la volatile ancestralprotection
 			if (target.volatiles['ancestralprotection']) {
 				this.hint("The ancestral ruins prevented the damage!");
 				return 0;
@@ -1002,6 +1003,30 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
+	
+	
+	
+	//---PICCIA'S REALM:
+	
+	quantumfestival: {
+		effectType: 'Rule',
+		name: 'Quantum Festival',
+		desc: "All non-Ghost type pokémon can be affected by multiple non-volatile status conditions at the same time and for the first 3 turns all Ghost type pokémon have their EVASION maximized",
+		onBegin() {
+			this.add('rule', 'Quantum Festival');
+		},
+		onSwitchIn(pokemon){
+			if(!pokemon.getTypes.includes('Ghost')){
+				pokemon.setStatus('quantumstate',pokemon);
+			}
+			else{
+				
+			}
+		},
+	},
+	
+	
+	
 	
 	
 	
