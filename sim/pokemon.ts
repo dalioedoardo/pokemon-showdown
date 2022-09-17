@@ -1562,6 +1562,15 @@ export class Pokemon {
 		const prevStatus = this.status;
 		const prevStatusState = this.statusState;
 		
+		//Harzen 17/09/2022 - se lo status che devo andare a settare è il quantumstate, procedo subito senza indugi e ritorno
+		if(status.id==='quantumstate'){
+			this.status = status.id;
+			this.statusState = {id: status.id, target: this, statuses: []};
+			if (source) this.statusState.source = source;
+
+			return true;
+		}
+		
 		//Harzen 17/09/2022 - se ha il quantumstate devo semplicemente aggiornare params, non aggiungere uno stato nuovo
 		if(prevStatus==='quantumstate'){
 			//non voglio aggiungere lo stato se già presente nell'array statuses
