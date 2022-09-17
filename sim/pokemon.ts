@@ -1586,7 +1586,7 @@ export class Pokemon {
 			}
 			
 			//non voglio aggiungere lo stato neppure se ci sono misty terrain o safeguard attive:
-			if(this.side.sideConditions.includes('safeguard') || this.battle.field.isTerrain('mistyterrain')){
+			if(Object.keys(this.side.sideConditions).includes('safeguard') || this.battle.field.isTerrain('mistyterrain')){
 				return false;
 			}
 			
