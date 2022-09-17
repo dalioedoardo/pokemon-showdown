@@ -1511,6 +1511,13 @@ export class Pokemon {
 				return false;
 			}
 			
+			for (const s of this.statusState.statuses) {
+				if(this.volatiles['q'+s.name]){
+					this.removeVolatile('q'+s.name);
+					this.add('-end', this, 'q'+s.name);
+				}
+			}
+			
 			this.statusState.statuses = [];
 			return true;
 		}
@@ -1648,6 +1655,13 @@ export class Pokemon {
 		if(this.status==='quantumstate'){
 			if(this.statusState.statuses.length === 0){
 				return false;
+			}
+			
+			for (const s of this.statusState.statuses) {
+				if(this.volatiles['q'+s.name]){
+					this.removeVolatile('q'+s.name);
+					this.add('-end', this, 'q'+s.name);
+				}
 			}
 			
 			this.statusState.statuses = [];
