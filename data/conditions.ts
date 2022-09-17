@@ -144,6 +144,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'ancestralprotection',
 		// this is a volatile status [invisible]
 		onStart(target, source, sourceEffect) {
+			if(this.turn>2){
+				pokemon.removeVolatile('ancestralprotection');
+			}
 		},
 		onUpdate(pokemon){
 			if(this.turn>2 && pokemon.volatiles['ancestralprotection']){
