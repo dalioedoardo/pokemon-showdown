@@ -672,62 +672,69 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onAfterMoveSecondary(target, source, move) {
 			//steel pokemon that deals damage:
 			if (source.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
+				
+				const positiveboost = (source.getAbility()!=='Contrary') ? 1 : -1;
+				
+				//attacker is boosted
 				if(move.overrideOffensiveStat){
 					switch (move.overrideOffensiveStat) {
 						case 'atk':
-							this.boost({atk: 1}, source);	
+							this.boost({atk: positiveboost}, source);	
 							break;
 						case 'def':
-							this.boost({def: 1}, source);
+							this.boost({def: positiveboost}, source);
 							break;
 						case 'spa':
-							this.boost({spa: 1}, source);
+							this.boost({spa: positiveboost}, source);
 							break;
 						case 'spd':
-							this.boost({spd: 1}, source);
+							this.boost({spd: positiveboost}, source);
 							break;
 						case 'spe':
-							this.boost({spe: 1}, source);	
+							this.boost({spe: positiveboost}, source);	
 							break;
 					}
 				}
 				else{
 					if(move.category==='Physical'){
-						this.boost({atk: 1}, source);	
+						this.boost({atk: positiveboost}, source);	
 					}
 					else{
-						this.boost({spa: 1}, source);	
+						this.boost({spa: positiveboost}, source);	
 					}
 				}
 			}
 			
 			//steel pokemon that receives damage:
 			if (target.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
+				
+				const positiveboost = (target.getAbility()!=='Contrary') ? 1 : -1;
+				
 				if(move.overrideDefensiveStat){
 					switch (move.overrideDefensiveStat) {
 						case 'atk':
-							this.boost({atk: 1}, target);	
+							this.boost({atk: positiveboost}, target);	
 							break;
 						case 'def':
-							this.boost({def: 1}, target);
+							this.boost({def: positiveboost}, target);
 							break;
 						case 'spa':
-							this.boost({spa: 1}, target);
+							this.boost({spa: positiveboost}, target);
 							break;
 						case 'spd':
-							this.boost({spd: 1}, target);
+							this.boost({spd: positiveboost}, target);
 							break;
 						case 'spe':
-							this.boost({spe: 1}, target);	
+							this.boost({spe: positiveboost}, target);	
 							break;
 					}
 				}
 				else{
 					if(move.category==='Physical'){
-						this.boost({def: 1}, target);	
+						this.boost({def: positiveboost}, target);	
 					}
 					else{
-						this.boost({spd: 1}, target);	
+						this.boost({spd: positiveboost}, target);	
 					}
 				}
 			}
@@ -813,6 +820,157 @@ export const Rulesets: {[k: string]: FormatData} = {
 			return typeMod + this.dex.getEffectiveness('Flying', type);
 		},
 	},
+	
+	
+	hauntedtraininghall: {
+		effectType: 'Rule',
+		name: 'Haunted Training Hall',
+		desc: "After they deal damage, all Steel type pokémon raise their offensive stat (ATK or SPATK) that was involved in the damage calculation by 1 stage and lower the opponent’s defensive stat (DEF or SPDEF) that was involved in the damage calculation by 1 stage and after they receive damage, all Steel type pokémon raise their defensive stat (DEF or SPDEF) that was involved in the damage calculation by 1 stage and lower the opponent’s offensive stat (ATK or SPATK) that was involved in the damage calculation by 1 stage",
+		onBegin() {
+			this.add('rule', 'Haunted Training Hall');
+		},
+		onAfterMoveSecondary(target, source, move) {
+			//steel pokemon that deals damage:
+			if (source.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
+				
+				const positiveboost = (this.dex.abilities.get(source.getAbility()).name !== 'Contrary') ? 1 : -1;
+				const negativeboost = (this.dex.abilities.get(target.getAbility()).name !== 'Contrary') ? -1 : 1;
+				
+				//attacker is boosted
+				if(move.overrideOffensiveStat){
+					switch (move.overrideOffensiveStat) {
+						case 'atk':
+							this.boost({atk: positiveboost}, source);	
+							break;
+						case 'def':
+							this.boost({def: positiveboost}, source);
+							break;
+						case 'spa':
+							this.boost({spa: positiveboost}, source);
+							break;
+						case 'spd':
+							this.boost({spd: positiveboost}, source);
+							break;
+						case 'spe':
+							this.boost({spe: positiveboost}, source);	
+							break;
+					}
+				}
+				else{
+					if(move.category==='Physical'){
+						this.boost({atk: positiveboost}, source);	
+					}
+					else{
+						this.boost({spa: positiveboost}, source);	
+					}
+				}
+				
+				//defender is nerfed
+				if(move.overrideDefensiveStat){
+					switch (move.overrideDefensiveStat) {
+						case 'atk':
+							this.boost({atk: negativeboost}, target);	
+							break;
+						case 'def':
+							this.boost({def: negativeboost}, target);
+							break;
+						case 'spa':
+							this.boost({spa: negativeboost}, target);
+							break;
+						case 'spd':
+							this.boost({spd: negativeboost}, target);
+							break;
+						case 'spe':
+							this.boost({spe: negativeboost}, target);	
+							break;
+					}
+				}
+				else{
+					if(move.category==='Physical'){
+						this.boost({def: negativeboost}, target);	
+					}
+					else{
+						this.boost({spd: negativeboost}, target);	
+					}
+				}
+				
+			}
+			
+			//steel pokemon that receives damage:
+			if (target.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
+				
+				const positiveboost = (this.dex.abilities.get(target.getAbility()).name !== 'Contrary') ? 1 : -1;
+				const negativeboost = (this.dex.abilities.get(source.getAbility()).name !== 'Contrary') ? -1 : 1;
+				
+				if(move.overrideDefensiveStat){
+					switch (move.overrideDefensiveStat) {
+						case 'atk':
+							this.boost({atk: positiveboost}, target);	
+							break;
+						case 'def':
+							this.boost({def: positiveboost}, target);
+							break;
+						case 'spa':
+							this.boost({spa: positiveboost}, target);
+							break;
+						case 'spd':
+							this.boost({spd: positiveboost}, target);
+							break;
+						case 'spe':
+							this.boost({spe: positiveboost}, target);	
+							break;
+					}
+				}
+				else{
+					if(move.category==='Physical'){
+						this.boost({def: positiveboost}, target);	
+					}
+					else{
+						this.boost({spd: positiveboost}, target);	
+					}
+				}
+				
+				//attacker is nerfed
+				if(move.overrideOffensiveStat){
+					switch (move.overrideOffensiveStat) {
+						case 'atk':
+							this.boost({atk: negativeboost}, source);	
+							break;
+						case 'def':
+							this.boost({def: negativeboost}, source);
+							break;
+						case 'spa':
+							this.boost({spa: negativeboost}, source);
+							break;
+						case 'spd':
+							this.boost({spd: negativeboost}, source);
+							break;
+						case 'spe':
+							this.boost({spe: negativeboost}, source);	
+							break;
+					}
+				}
+				else{
+					if(move.category==='Physical'){
+						this.boost({atk: negativeboost}, source);	
+					}
+					else{
+						this.boost({spa: negativeboost}, source);	
+					}
+				}
+			}
+		},
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 
