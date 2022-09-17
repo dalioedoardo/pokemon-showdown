@@ -14007,6 +14007,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 			}
 		},
 		onHit(target, source, move) {
+			//Harzen 17/09/2022 - devo aggiungere il clearstatus, altrimenti il quantumstate eviterebbe la cura degli stati
+			target.clearStatus();
 			const result = target.setStatus('slp', source, move);
 			if (!result) return result;
 			target.statusState.time = 3;
