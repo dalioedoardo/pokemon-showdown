@@ -673,7 +673,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			//steel pokemon that deals damage:
 			if (source.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
 				
-				const positiveboost = (source.getAbility()!=='Contrary') ? 1 : -1;
+				const positiveboost = (this.dex.abilities.get(source.getAbility()).name !== 'Contrary') ? 1 : -1;
 				
 				//attacker is boosted
 				if(move.overrideOffensiveStat){
@@ -708,7 +708,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			//steel pokemon that receives damage:
 			if (target.getTypes().includes('Steel') && (move.category === 'Physical' || move.category === 'Special')) {
 				
-				const positiveboost = (target.getAbility()!=='Contrary') ? 1 : -1;
+				const positiveboost = (this.dex.abilities.get(target.getAbility()).name !== 'Contrary') ? 1 : -1;
 				
 				if(move.overrideDefensiveStat){
 					switch (move.overrideDefensiveStat) {
