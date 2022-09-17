@@ -228,6 +228,16 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.effectState.statuses = [];
 			this.add('-status', target, 'quantumstate', '[from] rule: Quantum Festival');
 		},
+		onUpdate(pokemon){
+			if(pokemon.status === 'quantumstate'){
+				for (const s of pokemon.statusState.statuses) {
+					if(!pokemon.volatiles['q'+s.name]){
+						pokemon.addVolatile('q'+s.name);
+						this.add('-start', pokemon, 'q'+s.name);
+					}
+				}
+			}
+		},
 		onSetStatus(status, target, source, effect) {
 			//inserita in sim/pokemon.ts nella funzione setStatus(...)
 		},
