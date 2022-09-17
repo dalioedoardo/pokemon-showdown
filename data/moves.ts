@@ -19674,7 +19674,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		volatileStatus: 'yawn',
 		onTryHit(target) {
-			if (target.status || !target.runStatusImmunity('slp')) {
+			if ((target.status !== 'quantumstate' || !target.statusState.statuses.map(({ name }) => name).includes('slp')) && (target.status || !target.runStatusImmunity('slp'))) {
 				return false;
 			}
 		},
