@@ -327,7 +327,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Ultimate Armor'. 'Training Hall'],
+		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Ultimate Armor', 'Training Hall'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
