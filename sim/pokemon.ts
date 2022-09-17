@@ -1499,6 +1499,18 @@ export class Pokemon {
 	/** Unlike clearStatus, gives cure message */
 	cureStatus(silent = false) {
 		if (!this.hp || !this.status) return false;
+		
+		//Harzen 17/09/2022
+		if(this.status==='quantumstate'){
+			if(this.statusState.statuses.length === 0){
+				return false;
+			}
+			
+			this.statusState.statuses = [];
+			return true;
+		}
+		
+		
 		this.battle.add('-curestatus', this, this.status, silent ? '[silent]' : '[msg]');
 		if (this.status === 'slp' && this.removeVolatile('nightmare')) {
 			this.battle.add('-end', this, 'Nightmare', '[silent]');
@@ -1573,8 +1585,8 @@ export class Pokemon {
 					params: {
 						time: timestatus,
 						startTime: startTimestatus,
-						stage: stagestatus
-					}
+						stage: stagestatus,
+					},
 				}
 			);
 			
@@ -1617,6 +1629,18 @@ export class Pokemon {
 	 */
 	clearStatus() {
 		if (!this.hp || !this.status) return false;
+		
+		//Harzen 17/09/2022
+		if(this.status==='quantumstate'){
+			if(this.statusState.statuses.length === 0){
+				return false;
+			}
+			
+			this.statusState.statuses = [];
+			return true;
+		}
+		
+		
 		if (this.status === 'slp' && this.removeVolatile('nightmare')) {
 			this.battle.add('-end', this, 'Nightmare', '[silent]');
 		}
