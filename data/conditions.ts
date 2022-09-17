@@ -185,10 +185,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onWeather(target) {
 			if(target.getTypes().includes('Steel')){
-				this.heal(target.baseMaxhp/4)
+				this.heal(target.baseMaxhp/8)
 			}
 			else{
-				this.damage(target.baseMaxhp/4);			
+				this.damage(target.baseMaxhp/8);			
 			}
 		},
 	},
