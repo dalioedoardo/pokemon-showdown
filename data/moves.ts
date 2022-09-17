@@ -3823,7 +3823,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1, heal: 1},
 		drain: [1, 2],
 		onTryImmunity(target) {
-			return target.status === 'slp' || target.hasAbility('comatose');
+			return target.status === 'slp' || target.hasAbility('comatose') || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('slp'));
 		},
 		secondary: null,
 		target: "normal",
@@ -13995,7 +13995,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onTry(source) {
-			if (source.status === 'slp' || source.hasAbility('comatose')) return false;
+			if (source.status === 'slp' || source.hasAbility('comatose') || (source.status === 'quantumstate' && source.statusState.statuses.map(({ name }) => name).includes('slp'))) return false;
 
 			if (source.hp === source.maxhp) {
 				this.add('-fail', source, 'heal');
@@ -15791,7 +15791,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		sleepUsable: true,
 		onTry(source) {
-			return source.status === 'slp' || source.hasAbility('comatose');
+			return source.status === 'slp' || source.hasAbility('comatose') || (source.status === 'quantumstate' && source.statusState.statuses.map(({ name }) => name).includes('slp'));
 		},
 		onHit(pokemon) {
 			const noSleepTalk = [
@@ -15937,7 +15937,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 70,
 		basePowerCallback(pokemon, target, move) {
-			if (target.status === 'par') return move.basePower * 2;
+			if (target.status === 'par' || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('par'))) return move.basePower * 2;
 			return move.basePower;
 		},
 		category: "Physical",
@@ -15948,6 +15948,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onHit(target) {
 			if (target.status === 'par') target.cureStatus();
+			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('par')){
+				const i = target.statusState.statuses.findIndex((st) => st.name=="par");
+				target.statusState.statuses.splice(i, 1);
+			}
 		},
 		secondary: null,
 		target: "normal",
@@ -16084,7 +16088,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1, sound: 1, bypasssub: 1},
 		sleepUsable: true,
 		onTry(source) {
-			return source.status === 'slp' || source.hasAbility('comatose');
+			return source.status === 'slp' || source.hasAbility('comatose') || (source.status === 'quantumstate' && source.statusState.statuses.map(({ name }) => name).includes('slp'));
 		},
 		secondary: {
 			chance: 30,
@@ -16288,6 +16292,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			for (const pokemon of this.getAllActive()) {
 				if (pokemon !== source && pokemon.removeVolatile('sparklingaria') && pokemon.status === 'brn' && !source.fainted) {
 					pokemon.cureStatus();
+				}
+				if (pokemon !== source && pokemon.removeVolatile('sparklingaria') && (pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('brn')) && !source.fainted) {
+					const i = pokemon.statusState.statuses.findIndex((st) => st.name=="slp");
+					pokemon.statusState.statuses.splice(i, 1);
 				}
 			}
 		},
@@ -18808,8 +18816,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 			const foeActiveTeam = target.side.foe.activeTeam();
 			for (const [i, allyActive] of activeTeam.entries()) {
 				if (allyActive && allyActive.status === 'slp') allyActive.cureStatus();
+				if (allyActive && (allyActive.status === 'quantumstate' && allyActive.statusState.statuses.map(({ name }) => name).includes('slp'))){
+					const i = allyActive.statusState.statuses.findIndex((st) => st.name=="slp");
+					allyActive.statusState.statuses.splice(i, 1);
+				}
+				
 				const foeActive = foeActiveTeam[i];
 				if (foeActive && foeActive.status === 'slp') foeActive.cureStatus();
+				if (allyActive && (foeActive.status === 'quantumstate' && foeActive.statusState.statuses.map(({ name }) => name).includes('slp'))){
+					const i = foeActive.statusState.statuses.findIndex((st) => st.name=="slp");
+					foeActive.statusState.statuses.splice(i, 1);
+				}
 			}
 		},
 		condition: {
@@ -18914,7 +18931,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		onHit(target, source, move) {
-			if (target.status === 'psn' || target.status === 'tox') {
+			if (target.status === 'psn' || target.status === 'tox' || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('psn')) || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('tox'))) {
 				return !!this.boost({atk: -1, spa: -1, spe: -1}, target, source, move);
 			}
 			return false;
@@ -18935,7 +18952,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onBasePower(basePower, pokemon, target) {
-			if (target.status === 'psn' || target.status === 'tox') {
+			if (target.status === 'psn' || target.status === 'tox' || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('psn')) || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('tox'))) {
 				return this.chainModify(2);
 			}
 		},
@@ -19024,7 +19041,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 70,
 		basePowerCallback(pokemon, target, move) {
-			if (target.status === 'slp' || target.hasAbility('comatose')) return move.basePower * 2;
+			if (target.status === 'slp' || target.hasAbility('comatose') || (pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('slp'))) return move.basePower * 2;
 			return move.basePower;
 		},
 		category: "Physical",
@@ -19035,6 +19052,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onHit(target) {
 			if (target.status === 'slp') target.cureStatus();
+			if(target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('slp')){
+				const i = target.statusState.statuses.findIndex((st) => st.name=="slp");
+				target.statusState.statuses.splice(i, 1);
+			}
 		},
 		secondary: null,
 		target: "normal",
