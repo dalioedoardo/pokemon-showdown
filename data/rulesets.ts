@@ -1018,6 +1018,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onSwitchIn(pokemon){
 			if(!pokemon.getTypes.includes('Ghost')){
 				pokemon.setStatus('quantumstate',pokemon);
+				this.hint("This pokemon can be affected by multiple statuses!");
 			}
 			
 			if(this.turn<4 && pokemon.getTypes.includes('Ghost')){
