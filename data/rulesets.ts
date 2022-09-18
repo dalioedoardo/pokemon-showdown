@@ -1132,9 +1132,29 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 
-		
-		
-		
+	quantumbreath: {
+		effectType: 'Rule',
+		name: 'Quantum Breath',
+		desc: "Quantum Festival+Vacuum Lab",
+		onBegin() {
+			this.add('rule', 'Quantum Breath');
+		},
+		ruleset: ['Quantum Festival', 'Vacuum Lab'],
+	},	
+	
+	fancymask: {
+		effectType: 'Rule',
+		name: 'Fancy Mask',
+		desc: "",
+		onBegin() {
+			this.add('rule', 'Fancy Mask');
+		},
+		onModifyDamage(damage, source, target, move) {
+			if(target.getTypes().includes('Ghost') && move.type==='Dark'){
+				return this.chainModify(0.5);
+			}
+		},
+	},
 		
 		
 		
