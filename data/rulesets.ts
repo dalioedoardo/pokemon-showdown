@@ -1080,12 +1080,39 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 
 	
+	itsadleiavde: {
+		effectType: 'Rule',
+		name: "It's Adleiavde!",
+		desc: "All damages that a Bug/Ghost pokémon receives are delayed by 5 turns",
+		onBegin() {
+			this.add('rule', "It's Adleiavde!");
+		},
+		onDamage(damage, target, source, move) {
+			if((target.getTypes().includes('Bug') && target.getTypes().includes('Ghost')) && this.turn<=5){
+				target.damageAccumulation += damage;
+				return false;
+			}
+		},
+		onUpdate(pokemon){
+			if((pokemon.getTypes().includes('Bug') && pokemon.getTypes().includes('Ghost')) && this.turn>5){
+				if(pokemon.damageAccumulation>0){
+					this.damage(pokemon.damageAccumulation);
+					if(pokemon.damageAccumulation>=pokemon.baseMaxhp){
+						pokemon.faint();
+					}
+				}
+			}
+		},
+	},
 	
 	
-	
-	
-	
-	
+
+		
+		
+		
+		
+		
+		
 	
 	
 	
