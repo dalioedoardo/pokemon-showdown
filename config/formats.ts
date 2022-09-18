@@ -347,7 +347,7 @@ export const Formats: FormatList = [
 	
 	//---GHOST!
 	{
-		section: "ROCK TYPE GYM CHALLENGES",
+		section: "GHOST TYPE GYM CHALLENGES",
 	},
 	{
 		name: "[Gen 8] 5.1 GHOST TYPE GYM CHALLENGE",
@@ -358,7 +358,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Quantum Festival'],
+		ruleset: ['Dynamax Clause', 'OHKO Clause', 'The Spicy Taste of Hell', 'Quantum Festival'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
