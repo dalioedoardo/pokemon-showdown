@@ -13325,20 +13325,43 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		onTryHit(target, source, move) {
 			if (!source.status) return false;
+			if(target.status!=='quantumstate' && target.status!='') return false;
+			if(source.status==='quantumstate' && source.statusState.statuses.length===0) return false;
 			
 			if(target.status==='quantumstate'){
-				if(target.getTypes().includes('Ghost')) return false;
-				//ricopio tutti gli statuses
-				for(const s of source.statusState.statuses){
-					source.setStatus(s.name, target);
+				if(source.status==='quantumstate'){
+					//ricopio tutti gli statuses
+					for(const s of source.statusState.statuses){
+						target.setStatus(s.name, target);
+					}
+					source.cureStatus();
+				}
+				else{
+					source.setStatus(source.status, target);
+					source.cureStatus();
 				}
 			}
-			
-			move.status = source.status;
+			else{
+				if(source.status==='quantumstate'){
+					//ricopio uno stato a caso tra quelli che ha
+					const randomStatusIndex = this.random(1000)%source.statusState.statuses.length;
+					const randomStatus = source.statusState.statuses[randomStatusIndex];
+					for(const s of source.statusState.statuses){
+						target.setStatus(randomStatus.name, target);
+					}
+					//tolgo SOLO lo status che ho passato all'avversario
+					source.statusState.statuses.splice(randomStatusIndex, 1);
+				}
+				else{
+					move.status = source.status;
+				}
+			}
 		},
 		self: {
 			onHit(pokemon) {
-				pokemon.cureStatus();
+				if(pokemon.status!=='quantumstate'){
+					pokemon.cureStatus();
+				}
 			},
 		},
 		secondary: null,
