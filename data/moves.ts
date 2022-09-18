@@ -13325,6 +13325,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		onTryHit(target, source, move) {
 			if (!source.status) return false;
+			
+			if(target.status==='quantumstate'){
+				if(target.getTypes().includes('Ghost')) return false;
+				//ricopio tutti gli statuses
+				for(const s of source.statusState.statuses){
+					source.setStatus(s.name, target);
+				}
+			}
+			
 			move.status = source.status;
 		},
 		self: {
@@ -13948,7 +13957,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {snatch: 1},
 		onHit(pokemon) {
 			if (['', 'slp', 'frz'].includes(pokemon.status)) return false;
-			pokemon.cureStatus();
+			
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.length>0){
+				//curo tutti gli stati eccetto slp e frz
+				for (const s of pokemon.statusState.statuses) {
+					if(!['slp', 'frz'].includes(s.name)){
+						const i = pokemon.statusState.statuses.findIndex((st) => st.name==s.name);
+						pokemon.statusState.statuses.splice(i, 1);
+					}
+				}
+			}
+			else{
+				pokemon.cureStatus();
+			}
 		},
 		secondary: null,
 		target: "self",
@@ -16294,7 +16315,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					pokemon.cureStatus();
 				}
 				if (pokemon !== source && pokemon.removeVolatile('sparklingaria') && (pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('brn')) && !source.fainted) {
-					const i = pokemon.statusState.statuses.findIndex((st) => st.name=="slp");
+					const i = pokemon.statusState.statuses.findIndex((st) => st.name=="brn");
 					pokemon.statusState.statuses.splice(i, 1);
 				}
 			}
@@ -19604,6 +19625,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (pokemon.status === 'slp') {
 					pokemon.cureStatus();
 				}
+				if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('slp')){
+					const i = pokemon.statusState.statuses.findIndex((st) => st.name=="slp");
+					pokemon.statusState.statuses.splice(i, 1);
+				}
+				
 				return;
 			}
 			return false;
