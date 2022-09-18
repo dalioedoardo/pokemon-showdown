@@ -226,6 +226,33 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-status', target, 'quantumstate', '[from] rule: Quantum Festival');
 		},
 		onUpdate(pokemon){
+			//ci sono casi in cui un pkm può acquisire il tipo Ghost (e.g. Trick-o-Treat), e quindi perdere il quantumstate 
+			if(pokemon.status === 'quantumstate' && pokemon.getTypes().includes('Ghost')){
+				//infliggo come stato principale uno degli stati presenti in statuses
+				const statusToInflict = '';
+				
+				if(pokemon.statusState.statuses.length>0){
+					statusToInflict = (pokemon.statusState.statuses[this.random(1000)%pokemon.statusState.statuses.length]).name;
+					
+					//rimuovo le qvolatiles:
+					for(const key of Object.keys(pokemon.volatiles)){
+					if(['qbrn', 'qpar', 'qfrz', 'qslp', 'qpsn', 'qtox'].includes(key)){
+						pokemon.removeVolatile(key);
+						this.add('-end', pokemon, key);					
+					}
+				}
+				
+				//non posso rimuovere il quantumstate con clearstatus o curestatus.... devo procedere a mano:
+				pokemon.statusId = '';
+				pokemon.statusState = [];
+				
+				if(statusToInflict!==''){
+					pokemon.setStatus(statusToInflict, pokemon);
+				}
+					
+				return;
+			}
+			
 			if(pokemon.status === 'quantumstate'){
 				
 				for (const s of pokemon.statusState.statuses) {
