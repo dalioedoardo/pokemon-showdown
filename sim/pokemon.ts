@@ -1630,10 +1630,10 @@ export class Pokemon {
 							},
 						}
 					);
-					
-					if(!this.volatiles['curse']){
-						this.addVolatile('curse');
-					}
+				}
+				
+				if(!this.volatiles['curse']){
+					this.addVolatile('curse');
 				}
 			}
 			
