@@ -185,11 +185,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (this.field.isWeather('kniferainfall')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
-			if(target.getTypes().includes('Steel')){
-				this.heal(target.baseMaxhp/8)
-			}
-			else{
-				this.damage(target.baseMaxhp/8);			
+			if(!target.getTypes().includes('Steel')){
+				this.damage(target.baseMaxhp/6);	
 			}
 		},
 	},
