@@ -373,7 +373,18 @@ export const Formats: FormatList = [
 		ruleset: ['Dynamax Clause', 'OHKO Clause', "It's Adleiavde!", 'Quantum Festival'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
-	
+	{
+		name: "[Gen 8] 5.3 GHOST TYPE GYM CHALLENGE",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Vacuum Lab', 'Quantum Festival'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
+	},
 	
 	
 	
