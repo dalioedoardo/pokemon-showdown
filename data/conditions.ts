@@ -229,7 +229,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			//ci sono casi in cui un pkm può acquisire il tipo Ghost (e.g. Trick-o-Treat), e quindi perdere il quantumstate 
 			if(pokemon.status === 'quantumstate' && pokemon.getTypes().includes('Ghost')){
 				//infliggo come stato principale uno degli stati presenti in statuses
-				const statusToInflict = '';
+				let statusToInflict : string = '';
 				
 				if(pokemon.statusState.statuses.length>0){
 					statusToInflict = (pokemon.statusState.statuses[this.random(1000)%pokemon.statusState.statuses.length]).name;
