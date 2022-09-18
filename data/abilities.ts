@@ -492,7 +492,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if ((effect as Move)?.status && status.id !== 'quantumstate') {
 				this.add('-immune', target, '[from] ability: Comatose');
 			}
-			return false;
+			
+			if(status.id !== 'quantumstate'){
+				return false;
+			}
 		},
 		// Permanent sleep "status" implemented in the relevant sleep-checking effects
 		isPermanent: true,
