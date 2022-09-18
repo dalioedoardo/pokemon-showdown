@@ -1032,6 +1032,54 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
+	thespicytasteofhell: {
+		effectType: 'Rule',
+		name: 'The Spicy Taste of Hell',
+		desc: "Every move of a Ghost/Fire pokémon gains 50% chance to burn the target and each time a Ghost/Fire pokémon burns the opposing pokémon, the target also becomes cursed and paralyzed",
+		onBegin() {
+			this.add('rule', 'The Spicy Taste of Hell');
+		},
+		onSwitchIn(pokemon){
+			if(!(pokemon.getTypes().includes('Fire') && pokemon.getTypes().includes('Ghost'))){
+				pokemon.addVolatile('hellvisitor');
+			}
+		},
+		onAfterMoveSecondary(target, source, move) {
+			if(source.getTypes().includes('Fire') && source.getTypes().includes('Ghost')){
+				if(this.randomChance(50,100)){
+					target.trySetStatus('brn', source);
+				}
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			//questo è per gli altri spettri
+			if(status.id==='brn' && (source.getTypes().includes('Fire') && source.getTypes().includes('Ghost'))){
+				//metto l'if perchè il burn non è ancora stato settato, e non voglio mettere par al posto del burn
+				if(target.status.id==='quantumstate'){//non dovrebbe mai essere vera...
+					target.trySetStatus('par', source);
+				}
+				if(!target.volatiles['curse']){
+					target.addVolatile('curse');		
+				}
+			}
+		},
+		onAddVolatile(status, target, source, effect) {
+			//questo è per chi è affetto da quantumstate
+			if(status.id==='qbrn' && (source.getTypes().includes('Fire') && source.getTypes().includes('Ghost'))){
+				target.trySetStatus('par', source);
+				if(!target.volatiles['curse']){
+					target.addVolatile('curse');		
+				}
+			}
+		},
+		onUpdate(pokemon){
+			if(this.turn>3 && pokemon.volatiles['quantumquirk']){
+				pokemon.removeVolatile('quantumquirk');
+			}
+		},
+	},
+
+	
 	
 	
 	
