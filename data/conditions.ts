@@ -244,7 +244,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				}
 				
 				//non posso rimuovere il quantumstate con clearstatus o curestatus.... devo procedere a mano:
-				pokemon.statusId = '';
+				pokemon.status = '';
 				pokemon.statusState.statuses = [];
 				
 				if(statusToInflict!==''){
