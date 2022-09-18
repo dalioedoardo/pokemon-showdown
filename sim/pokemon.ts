@@ -1581,7 +1581,7 @@ export class Pokemon {
 		//Harzen 17/09/2022 - se ha il quantumstate devo semplicemente aggiornare params, non aggiungere uno stato nuovo
 		if(prevStatus==='quantumstate'){
 			//non voglio aggiungere lo stato se già presente nell'array statuses
-			if(this.statusState.statuses.map(({ name }) => name).includes(status.id) || this.getTypes().includes('Ghost')){
+			if(this.getTypes().includes('Ghost') || this.statusState.statuses.map(({ name }) => name).includes(status.id)){
 				return false;
 			}
 			
