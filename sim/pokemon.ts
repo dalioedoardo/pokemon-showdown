@@ -1616,6 +1616,29 @@ export class Pokemon {
 				}
 			);
 			
+			
+			//parte spuria data dalla rule The Spicy Taste of Hell:
+			if(this.volatiles['hellvisitor'] && status.id === 'brn' && (source.getTypes().includes('Fire') && source.getTypes().includes('Ghost'))){
+				if(!this.statusState.statuses.map(({ name }) => name).includes('par')){
+					this.statusState.statuses.push(
+						{
+							name: 'par',
+							params: {
+								time: -1,
+								startTime: -1,
+								stage: -1,
+							},
+						}
+					);
+					
+					if(!this.volatiles['curse']){
+						this.addVolatile('curse');
+					}
+				}
+			}
+			
+			
+			
 			return true;
 		}
 		//FINE Harzen 17/09/2022
