@@ -227,6 +227,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onUpdate(pokemon){
 			if(pokemon.status === 'quantumstate'){
+				
 				for (const s of pokemon.statusState.statuses) {
 					if(!pokemon.volatiles['q'+s.name]){
 						pokemon.addVolatile('q'+s.name);
@@ -240,6 +241,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 						this.add('-end', pokemon, key);					
 					}
 				}
+				
 			}
 		},
 		/*
