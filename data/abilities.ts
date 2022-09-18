@@ -2082,7 +2082,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	merciless: {
 		onModifyCritRatio(critRatio, source, target) {
-			if (target && ['psn', 'tox'].includes(target.status)) return 5;
+			if (target && (['psn', 'tox'].includes(target.status) || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('psn')) || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('tox')))) return 5;
 		},
 		name: "Merciless",
 		rating: 1.5,
@@ -2582,6 +2582,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-activate', pokemon, 'ability: Pastel Veil');
 					ally.cureStatus();
 				}
+				if(ally.status === 'quantumstate' && ally.statusState.statuses.map(({ name }) => name).includes('psn')){
+					this.add('-activate', pokemon, 'ability: Pastel Veil');
+					const i = ally.statusState.statuses.findIndex((st) => st.name=="psn");
+					ally.statusState.statuses.splice(i, 1);
+				}
+				if(ally.status === 'quantumstate' && ally.statusState.statuses.map(({ name }) => name).includes('tox')){
+					this.add('-activate', pokemon, 'ability: Pastel Veil');
+					const i = ally.statusState.statuses.findIndex((st) => st.name=="tox");
+					ally.statusState.statuses.splice(i, 1);
+				}
 			}
 		},
 		onUpdate(pokemon) {
@@ -2589,11 +2599,31 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.add('-activate', pokemon, 'ability: Pastel Veil');
 				pokemon.cureStatus();
 			}
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('psn')){
+				this.add('-activate', pokemon, 'ability: Pastel Veil');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="psn");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox')){
+				this.add('-activate', pokemon, 'ability: Pastel Veil');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="tox");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
 		},
 		onAllySwitchIn(pokemon) {
 			if (['psn', 'tox'].includes(pokemon.status)) {
 				this.add('-activate', this.effectState.target, 'ability: Pastel Veil');
 				pokemon.cureStatus();
+			}
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('psn')){
+				this.add('-activate', pokemon, 'ability: Pastel Veil');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="psn");
+				pokemon.statusState.statuses.splice(i, 1);
+			}
+			if(pokemon.status === 'quantumstate' && pokemon.statusState.statuses.map(({ name }) => name).includes('tox')){
+				this.add('-activate', pokemon, 'ability: Pastel Veil');
+				const i = pokemon.statusState.statuses.findIndex((st) => st.name=="tox");
+				pokemon.statusState.statuses.splice(i, 1);
 			}
 		},
 		onSetStatus(status, target, source, effect) {
