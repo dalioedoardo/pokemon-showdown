@@ -215,7 +215,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 	},
 	
-	//this affects non-ghost type mons
+	//this affects should affect only non-ghost type mons
 	quantumstate: {
 		name: 'quantumstate',
 		effectType: 'Status',
@@ -245,7 +245,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				
 				//non posso rimuovere il quantumstate con clearstatus o curestatus.... devo procedere a mano:
 				pokemon.statusId = '';
-				pokemon.statusState = [];
+				pokemon.statusState.statuses = [];
 				
 				if(statusToInflict!==''){
 					pokemon.setStatus(statusToInflict, pokemon);
