@@ -1105,7 +1105,32 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
-	
+	vacuumlab: {
+		effectType: 'Rule',
+		name: 'Vacuum Lab',
+		desc: "All Ghost type pokémon will always score critical hits if they move before the target",
+		onBegin() {
+			this.add('rule', "Vacuum Lab");
+		},
+		onModifyMove(move, attacker) {
+			if(!attacker.getTypes().includes('Ghost')) return;
+			
+			let isFirst: boolean = true;
+			
+			for (const target of this.getAllActive()) {
+				if (target === attacker) continue;
+				if (!this.queue.willMove(target)) { //uno si è già mosso...
+					isFirst = false;
+					break;
+				}
+			}
+			
+			if(isFirst){
+				move.willCrit = true;
+			}
+
+		},
+	},
 
 		
 		
