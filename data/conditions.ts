@@ -236,9 +236,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 					
 					//rimuovo le qvolatiles:
 					for(const key of Object.keys(pokemon.volatiles)){
-					if(['qbrn', 'qpar', 'qfrz', 'qslp', 'qpsn', 'qtox'].includes(key)){
-						pokemon.removeVolatile(key);
-						this.add('-end', pokemon, key);					
+						if(['qbrn', 'qpar', 'qfrz', 'qslp', 'qpsn', 'qtox'].includes(key)){
+							pokemon.removeVolatile(key);
+							this.add('-end', pokemon, key);					
+						}
 					}
 				}
 				
@@ -268,7 +269,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 						this.add('-end', pokemon, key);					
 					}
 				}
-				
+			
 			}
 		},
 		/*
