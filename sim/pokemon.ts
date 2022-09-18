@@ -82,6 +82,9 @@ export class Pokemon {
 	statusState: EffectState;
 	volatiles: {[id: string]: EffectState};
 	showCure?: boolean;
+	
+	//Harzen 18/09/2022 - aggiunta variabile usata dalla rule 5.2
+	damageAccumulation: number = 0;
 
 	/**
 	 * These are the basic stats that appear on the in-game stats screen:
