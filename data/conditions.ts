@@ -230,9 +230,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if(pokemon.status === 'quantumstate' && pokemon.getTypes().includes('Ghost')){
 				//infliggo come stato principale uno degli stati presenti in statuses
 				let statusToInflict : string = '';
+				let prevParams : array = [];
 				
 				if(pokemon.statusState.statuses.length>0){
-					statusToInflict = (pokemon.statusState.statuses[this.random(1000)%pokemon.statusState.statuses.length]).name;
+					const randomIndex = this.random(1000)%pokemon.statusState.statuses.length;
+					statusToInflict = (pokemon.statusState.statuses[randomIndex]).name;
+					prevParams = pokemon.statusState.statuses[randomIndex].params;
 					
 					//rimuovo le qvolatiles:
 					for(const key of Object.keys(pokemon.volatiles)){
@@ -249,6 +252,15 @@ export const Conditions: {[k: string]: ConditionData} = {
 				
 				if(statusToInflict!==''){
 					pokemon.setStatus(statusToInflict, pokemon);
+					
+					//ripristino i parametri:
+					if(statusToInflict==='slp'){
+						pokemon.statusState.time = prevParams.time;
+						pokemon.statusState.startTime = prevParams.startTime;
+					}
+					if(statusToInflict==='tox'){
+						pokemon.statusState.stage = prevParams.stage;
+					}
 				}
 					
 				return;
