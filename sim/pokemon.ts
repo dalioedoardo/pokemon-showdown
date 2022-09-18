@@ -1570,11 +1570,39 @@ export class Pokemon {
 		const prevStatusState = this.statusState;
 		
 		//Harzen 17/09/2022 - se lo status che devo andare a settare è il quantumstate, procedo subito senza indugi e ritorno
+		//Harzen 18/09/2022 - aggiunta anche la casistica in cui il mon abbia già uno stato
 		if(status.id==='quantumstate'){
+			let prevtime: number = -1;
+			let prevstartTime: number = -1;
+			let prevstage: number = -1;
+			if(prevStatus==='slp'){
+				prevtime = prevStatusState.time;
+				prevstartTime = prevStatusState.startTime;				
+			}
+			if(prevStatus==='tox'){
+				prevstage = prevStatusState.stage;
+			}
+			
 			this.status = status.id;
 			this.statusState = {id: status.id, target: this, statuses: []};
 			if (source) this.statusState.source = source;
-
+         
+			if(prevStatus){
+				this.battle.add('-curestatus', this, prevStatus, ''); //questa serve per rimuovere visivamente il tag dello status
+				
+				//aggiungo lo status che aveva in origine
+				this.statusState.statuses.push(
+					{
+						name: prevStatus,
+						params: {
+							time: prevtime,
+							startTime: prevstartTime,
+							stage: prevstage,
+						},
+					}
+				);
+			}
+			
 			return true;
 		}
 		
