@@ -2710,7 +2710,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	poisonheal: {
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
-			if (effect.id === 'psn' || effect.id === 'tox') {
+			if (effect.id === 'psn' || effect.id === 'tox' || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('tox')) || (target.status === 'quantumstate' && target.statusState.statuses.map(({ name }) => name).includes('tox'))) {
 				this.heal(target.baseMaxhp / 8);
 				return false;
 			}
