@@ -1013,7 +1013,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Quantum Festival',
 		desc: "All non-Ghost type pokémon can be affected by multiple non-volatile status conditions at the same time and for the first 3 turns all Ghost type pokémon have their EVASION maximized",
 		onBegin() {
-			this.add('rule', 'Quantum Festival');
+			if(!this.ruleTable.has('quantumbreath') && !this.ruleTable.has('whimofthesithlord'))
+				this.add('rule', 'Quantum Festival');
 		},
 		onSwitchIn(pokemon){
 			if(!pokemon.getTypes().includes('Ghost') && pokemon.status!=='quantumstate'){
@@ -1110,7 +1111,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Vacuum Lab',
 		desc: "All Ghost type pokémon will always score critical hits if they move before the target",
 		onBegin() {
-			this.add('rule', "Vacuum Lab");
+			if(!this.ruleTable.has('quantumbreath') && !this.ruleTable.has('whimofthesithlord'))
+				this.add('rule', "Vacuum Lab");
 		},
 		onModifyMove(move, attacker) {
 			if(!attacker.getTypes().includes('Ghost')) return;
