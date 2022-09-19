@@ -1188,7 +1188,14 @@ export const Rulesets: {[k: string]: FormatData} = {
 			for(const mon of this.getAllPokemon()){
 				if(!mon.fainted){
 					if(mon.yohohoho===this.turn){
+						let frzmessage : string = ''; //non verrebbe visualizzato il messaggio "[MON] was frozen solid!" se ha il quantumstate
+						if(mon.status==='quantumstate' && !mon.statusState.statuses.map(({ name }) => name).includes('frz')){
+							frzmessage = mon.name+" was frozen solid!";
+						}
 						mon.trySetStatus('frz');
+						if(frzmessage!=''){
+							this.add('-message', frzmessage);
+						}
 						this.hint('yohohoho~');
 						mon.yohohoho = 0;
 					}
