@@ -418,42 +418,40 @@ export const Conditions: {[k: string]: ConditionData} = {
 	},
 	
 	quantumentropy: {
-		name: 'Quantum Entropy',
+		name: 'quantumentropy',
 		onStart(pokemon) {
-				this.add('-start', pokemon, 'Quantum Entropy');
-				const newatk = pokemon.storedStats.spa;
-				const newspa = pokemon.storedStats.atk;
-				const newdef = pokemon.storedStats.spd;
-				const newspd = pokemon.storedStats.def;
-				pokemon.storedStats.atk = newatk;
-				pokemon.storedStats.def = newdef;
-				pokemon.storedStats.spa = newspa;
-				pokemon.storedStats.spd = newspd;
-			},
-			onCopy(pokemon) {
-				const newatk = pokemon.storedStats.spa;
-				const newspa = pokemon.storedStats.atk;
-				const newdef = pokemon.storedStats.spd;
-				const newspd = pokemon.storedStats.def;
-				pokemon.storedStats.atk = newatk;
-				pokemon.storedStats.def = newdef;
-				pokemon.storedStats.spa = newspa;
-				pokemon.storedStats.spd = newspd;
-			},
-			onEnd(pokemon) {
-				this.add('-end', pokemon, 'Quantum Entropy');
-				const newatk = pokemon.storedStats.spa;
-				const newspa = pokemon.storedStats.atk;
-				const newdef = pokemon.storedStats.spd;
-				const newspd = pokemon.storedStats.def;
-				pokemon.storedStats.atk = newatk;
-				pokemon.storedStats.def = newdef;
-				pokemon.storedStats.spa = newspa;
-				pokemon.storedStats.spd = newspd;
-			},
-			onRestart(pokemon) {
-				pokemon.removeVolatile('Quantum Entropy');
-			},
+			const newatk = pokemon.storedStats.spa;
+			const newspa = pokemon.storedStats.atk;
+			const newdef = pokemon.storedStats.spd;
+			const newspd = pokemon.storedStats.def;
+			pokemon.storedStats.atk = newatk;
+			pokemon.storedStats.def = newdef;
+			pokemon.storedStats.spa = newspa;
+			pokemon.storedStats.spd = newspd;
+		},
+		onCopy(pokemon) {
+			const newatk = pokemon.storedStats.spa;
+			const newspa = pokemon.storedStats.atk;
+			const newdef = pokemon.storedStats.spd;
+			const newspd = pokemon.storedStats.def;
+			pokemon.storedStats.atk = newatk;
+			pokemon.storedStats.def = newdef;
+			pokemon.storedStats.spa = newspa;
+			pokemon.storedStats.spd = newspd;
+		},
+		onEnd(pokemon) {
+			const newatk = pokemon.storedStats.spa;
+			const newspa = pokemon.storedStats.atk;
+			const newdef = pokemon.storedStats.spd;
+			const newspd = pokemon.storedStats.def;
+			pokemon.storedStats.atk = newatk;
+			pokemon.storedStats.def = newdef;
+			pokemon.storedStats.spa = newspa;
+			pokemon.storedStats.spd = newspd;
+		},
+		onRestart(pokemon) {
+				pokemon.removeVolatile('quantumentropy');
+		},
 	},
 	
 	
