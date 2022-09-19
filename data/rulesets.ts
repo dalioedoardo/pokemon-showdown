@@ -1209,8 +1209,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Entropic Aura',
 		desc: "All non-MEGA BOSS pokèmon swap their ATK with their SPATK and their DEF with their SPDEF",
 		onUpdate(pokemon){
-			if(this.turn>3 && !pokemon.volatiles['Quantum Entropy'] && pokemon.species.id !== 'gengarmega'){
-				pokemon.addVolatile('Quantum Entropy');
+			if(this.turn>3 && !pokemon.volatiles['quantumentropy'] && pokemon.species.id !== 'gengarmega'){
+				pokemon.addVolatile('quantumentropy');
 			}
 		},
 	},	
