@@ -85,7 +85,9 @@ export class Pokemon {
 	
 	//Harzen 18/09/2022 - aggiunta variabile usata dalla rule 5.2
 	damageAccumulation: number = 0;
-
+	//Harzen 19/09/20222 - aggiunta variabile usata dalla rule 5.5
+	yohohoho: number = 0;
+	
 	/**
 	 * These are the basic stats that appear on the in-game stats screen:
 	 * calculated purely from the species base stats, level, IVs, EVs,
