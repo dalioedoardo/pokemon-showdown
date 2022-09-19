@@ -1139,7 +1139,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Quantum Breath',
 		desc: "Quantum Festival+Vacuum Lab",
 		onBegin() {
-			this.add('rule', 'Quantum Breath');
+			if(!this.ruleTable.has('whimofthesithlord'))
+				this.add('rule', 'Quantum Breath');
 		},
 		ruleset: ['Quantum Festival', 'Vacuum Lab'],
 	},	
@@ -1147,9 +1148,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 	fancymask: {
 		effectType: 'Rule',
 		name: 'Fancy Mask',
-		desc: "",
+		desc: "All damages that are received by a Ghost type pokèmon from a Dark type move are halved",
 		onBegin() {
-			this.add('rule', 'Fancy Mask');
+			if(!this.ruleTable.has('whimofthesithlord'))
+				this.add('rule', 'Fancy Mask');
 		},
 		onModifyDamage(damage, source, target, move) {
 			if(target.getTypes().includes('Ghost') && move.type==='Dark'){
@@ -1157,7 +1159,43 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
-		
+	
+	whimofthesithlord: {
+		effectType: 'Rule',
+		name: 'Whim of the Sith Lord',
+		desc: "Quantum Breath+Fancy Mask",
+		onBegin() {
+			this.add('rule', 'Whim of the Sith Lord');
+		},
+		ruleset: ['Quantum Breath', 'Fancy Mask'],
+	},
+	
+	requiemlabanderoule: {
+		effectType: 'Rule',
+		name: 'Requiem Labanderoule',
+		desc: "All Ice type moves from a Ice/Ghost type pokémon will freeze the target the third turn after the move is successfully used",
+		onBegin() {
+			this.add('rule', 'Requiem Labanderoule');
+		},
+		onAfterMoveSecondary(target, source, move) {
+			if(move.type === 'Ice' && (source.getTypes().includes('Ice') && source.getTypes().includes('Ghost'))){
+				if(target.yohohoho===0){
+					target.yohohoho=this.turn+3;
+				}
+			}
+		},
+		onResidual(pokemon){
+			for(const mon of this.getAllPokemon()){
+				if(!mon.fainted){
+					if(mon.yohohoho===this.turn){
+						mon.trySetStatus('frz');
+						this.hint('yohohoho~');
+						mon.yohohoho = 0;
+					}
+				}
+			}
+		}
+	},
 		
 		
 	
