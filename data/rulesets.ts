@@ -66,7 +66,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onResidual(pokemon) {
 			if (!(pokemon.getTypes().includes('Grass') && pokemon.getTypes().includes('Rock')) && pokemon.hp && !pokemon.status && this.randomChance(50, 100)) {
-				this.add('-activate', pokemon, 'rule: Unexpected Comfort');
+				//this.add('-activate', pokemon, 'rule: Unexpected Comfort');
 				pokemon.setStatus('slp', pokemon);
 			}
 		},
