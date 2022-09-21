@@ -66,7 +66,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onResidual(pokemon) {
 			if (!(pokemon.getTypes().includes('Grass') && pokemon.getTypes().includes('Rock')) && pokemon.hp && !pokemon.status && this.randomChance(50, 100)) {
-				//this.add('-activate', pokemon, 'rule: Unexpected Comfort');
+				//this.add('-activate', pokemon, '');
+				this.hint(pokemon.name+' feels like taking a sweet nap .  .   .');
 				pokemon.setStatus('slp', pokemon);
 			}
 		},
@@ -82,7 +83,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onBeforeMove(pokemon, target, move) {
 			if (!(pokemon.getTypes().includes('Psychic') && pokemon.getTypes().includes('Rock')) && pokemon.hp) {
-				this.add('-activate', pokemon, 'rule: Solar Mirage');
+				this.hint(pokemon.name+' feels like getting out of bed today was not a good idea!');
 				pokemon.addVolatile('solarmiragerule');
 			}
 		},
@@ -98,7 +99,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onBeforeMove(pokemon, target, move) {
 			if (move.priority>=1) {
-				this.add('cant', pokemon, 'rule: Prehistoric Sirocco');
+				this.hint('The Prehistoric Sirocco is too strong for that!');
+				this.add('cant', pokemon, '');
 				return false;
 			}
 		},
@@ -365,6 +367,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 					const damage = this.actions.getDamage(source, target, move);
 					if(damage > target.baseMaxhp/2){
+						this.hint('The tengu must be playing some dirty tricks!');
 						const autodamage = this.actions.getDamage(source, source, move);
 						this.damage(autodamage, source, source);
 						return null;
@@ -407,6 +410,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 	
 			if(!pokemon.getTypes().includes('Grass') && pokemon.positiveBoosts()>0 && !pokemon.volatiles['royalpain']){
+				this.hint(pokemon.name+' is not used to all this royality!');
 				pokemon.addVolatile('royalpain');	
 			}
 		},
@@ -423,6 +427,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			if(!(source.getTypes().includes('Grass') && source.getTypes().includes('Ice'))){
 				if(['Fighting', 'Steel', 'Flying', 'Rock', 'Bug', 'Poison'].includes(move.type)){
 					if(this.randomChance(80,100)){
+						this.hint(source.name+' is punished beforehand by the Boundless Forest!');
 						this.damage(source.baseMaxhp, source, source);
 						return null;
 					}
@@ -454,6 +459,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 					return;
 				}
 			}
+			this.hint(source.name+' is taking the lead!');
 			source.addVolatile('ambusher');
 		},
 	},
@@ -474,7 +480,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 						amounts.push(target.baseMaxhp/6);
 					}
 				}
-				this.heal(amounts[0]);
+				pokemon.heal(amounts[0]); //Harzen 21/09/2022 - prima era this.heal.... va testata!
 			}
 		},
 	},
@@ -494,7 +500,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 				pokemon.addVolatile('psychicatmosphere');
 			}
 			if(pokemon.getTypes().includes('Psychic') && !pokemon.volatiles['freshminded']){
+				this.hint('The mind of '+pokemon.name+' is so fresh!');
 				pokemon.addVolatile('freshminded');
+			}
+			if(!pokemon.getTypes().includes('Psychic') && pokemon.volatiles['freshminded']){
+				this.hint('The mind of '+pokemon.name+' becomes duller...');
+				pokemon.removeVolatile('freshminded');
 			}
 		},
 		onAfterMoveSecondary(target, source, move){
@@ -659,6 +670,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 				delete move.flags['protect'];
 				move.accuracy = true;
+				this.hint(pokemon.name+" is being mindful!");
 			}
 		},
 	},
@@ -815,7 +827,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onModifyType(move, pokemon) {
-			if(move.type !== 'Flying') return;
+			if(move.type !== 'Flying' || !(pokemon.getTypes().includes('Flying') && pokemon.getTypes().includes('Steel'))) return;
 			
 			move.type = 'Steel';
 			move.willCrit = true;
@@ -999,6 +1011,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		desc: "Any damage that a non-MEGA BOSS pokèmon receives from the MEGA BOSS pokèmon is multiplied by 2",
 		onModifyDamage(damage, source, target, move) {
 			if(this.turn > 3 && source.species.id === 'metagrossmega'){
+				this.hint(source.name+" is using its own aura to boost the damage!");
 				return this.chainModify(2);
 			}
 		},
@@ -1042,6 +1055,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onSwitchIn(pokemon){
 			if(!(pokemon.getTypes().includes('Fire') && pokemon.getTypes().includes('Ghost'))){
+				this.hint(pokemon.name+" received a ticket for hell!");
 				pokemon.addVolatile('hellvisitor');
 			}
 		},
@@ -1071,11 +1085,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 				if(!target.volatiles['curse']){
 					target.addVolatile('curse');		
 				}
-			}
-		},
-		onUpdate(pokemon){
-			if(this.turn>3 && pokemon.volatiles['quantumquirk']){
-				pokemon.removeVolatile('quantumquirk');
 			}
 		},
 	},
