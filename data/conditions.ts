@@ -124,7 +124,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		// this is a volatile status [invisible]
 		onFractionalPriority(priority, pokemon) {
 			if (priority <= 0) {
-				this.hint('The mind of '+pokemon.name+' is so fresh!');
 				return 0.1;
 			}
 		},
