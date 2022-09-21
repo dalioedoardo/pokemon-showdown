@@ -97,7 +97,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Prehistoric Sirocco');
 		},
 		onBeforeMove(pokemon, target, move) {
-			if (move.priority>0.1) {
+			if (move.priority>=1) {
 				this.add('cant', pokemon, 'rule: Prehistoric Sirocco');
 				return false;
 			}
