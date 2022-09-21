@@ -18,7 +18,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onResidual(pokemon){
 			if(this.randomChance(75, 100)){
-				this.hint(pokemon.name+' is severely punished by the Boundless Forest!');
+				this.hint(pokemon.name+' is punished by the Boundless Forest!');
 				this.damage(pokemon.baseMaxhp);
 			}
 			else{
