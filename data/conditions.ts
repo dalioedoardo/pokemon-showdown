@@ -18,6 +18,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onResidual(pokemon){
 			if(this.randomChance(75, 100)){
+				this.hint(pokemon.name+' is severely punished by the Boundless Forest!');
 				this.damage(pokemon.baseMaxhp);
 			}
 			else{
@@ -41,6 +42,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				//this.add('-end', pokemon, 'royalpain');		
 			}
 			else if(this.randomChance(50, 100)){
+				this.hint(pokemon.name+' is afflicted by the Royal Pain!');
 				this.damage(pokemon.baseMaxhp);
 			}
 		}
@@ -122,6 +124,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		// this is a volatile status [invisible]
 		onFractionalPriority(priority, pokemon) {
 			if (priority <= 0) {
+				this.hint('The mind of '+pokemon.name+' is so fresh!');
 				return 0.1;
 			}
 		},
@@ -145,7 +148,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		// this is a volatile status [invisible]
 		onStart(target, source, sourceEffect) {
 			if(this.turn>2){
-				pokemon.removeVolatile('ancestralprotection');
+				target.removeVolatile('ancestralprotection');
 			}
 		},
 		onUpdate(pokemon){
@@ -186,6 +189,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onWeather(target) {
 			if(!target.getTypes().includes('Steel')){
+				this.hint(target.name+' is hurt by the knifes!');
 				this.damage(target.baseMaxhp/6);	
 			}
 		},
@@ -420,6 +424,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 	quantumentropy: {
 		name: 'quantumentropy',
 		onStart(pokemon) {
+			this.hint(pokemon.name+' is feeling weeeeird!');
 			const newatk = pokemon.storedStats.spa;
 			const newspa = pokemon.storedStats.atk;
 			const newdef = pokemon.storedStats.spd;
