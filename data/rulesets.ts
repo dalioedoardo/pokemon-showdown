@@ -834,7 +834,9 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if(this.dex.moves.get(move.id).type !== 'Flying') return typeMod;
-			return typeMod + this.dex.getEffectiveness('Flying', type);
+			//se son qua ho a che fare con una mossa che era [originariamente] di tipo volante
+			if(type === 'Fighting' || type === 'Grass' || type === 'Bug')
+				return 1;
 		},
 	},
 	
