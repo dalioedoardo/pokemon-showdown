@@ -43,7 +43,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Water') {
 				move.accuracy = true;
-				this.add('-immune', target, '[from] rule: Scorching Dryness');
+				this.hint("There is no water here!");
+				this.add('-immune', target, '');
 				return null;
 			}
 		},
@@ -97,10 +98,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Prehistoric Sirocco');
 		},
-		onModifyDamage(damage, source, target, move) {
-			if (move && move.priority>=1) {
+		onTryHit(target, source, move) {
+			if (move && move.priority>=1 && target !== source) {
 				this.hint('The Prehistoric Sirocco is too strong for that!');
-				return this.chainModify(0);
+				this.add('-immune', target, '');
+				return null;
 			}
 		},
 		onUpdate(pokemon) {
