@@ -174,8 +174,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return this.chainModify(1.5);
 			}
 		},
-		onAnySetWeather(target, source, weather) {
+		onSetWeather(target, source, weather) {
 			//permanently set to this weather!!
+			this.hint("The Knife Rain won't subside!");
 			return false;
 		},
 		onFieldStart(field, source, effect) {
