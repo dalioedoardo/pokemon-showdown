@@ -434,6 +434,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 					}
 				}
 				if(move.type === 'Fire'){
+					this.hint(source.name+' is punished beforehand by the Boundless Forest!');
 					this.damage(source.baseMaxhp, source, source);		
 					return null;
 				}
