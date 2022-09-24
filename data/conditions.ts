@@ -202,10 +202,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 	quantumquirk: {
 		name: 'quantumquirk',
 		onStart(target, source, sourceEffect) {
-			this.effectState.prevEvasion = target.boosts['evasion'];
+			target.boosts['evasion'] = 6;
+		},
+		onUpdate(pokemon){
+			pokemon.boosts['evasion'] = 6;
 		},
 		onEnd(pokemon) {
-			pokemon.boosts['evasion'] = pokemon.volatiles['quantumquirk'].prevEvasion;
+			pokemon.boosts['evasion'] = 0;
 		},
 	},
 	
