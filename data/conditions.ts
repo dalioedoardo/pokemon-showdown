@@ -202,19 +202,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 	quantumquirk: {
 		name: 'quantumquirk',
 		onStart(target, source, sourceEffect) {
-			if(target.ability !== 'contrary'){
-				this.boost({evasion: 6}, target);
-			}
-			else{
-				this.boost({def: -6}, target);
-			}
 		},
-		onEnd(target){
-			if(target.ability !== 'contrary'){
-				this.boost({evasion: -6}, target);
-			}
-			else{
-				this.boost({def: 6}, target);
+		onBeforeMove(pokemon, target, move) {
+			if(target.volatiles['quantumquirk']){
+				target.boosts['evasion'] = 6;
 			}
 		},
 	},
