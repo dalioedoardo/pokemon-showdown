@@ -8074,7 +8074,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 65,
 		basePowerCallback(pokemon, target, move) {
 			if (target.status === 'quantumstate'){
-				if(target.status.statuses.length>0){
+				if(target.statusState.statuses.length>0){
 					return move.basePower * 2
 				}
 			}
