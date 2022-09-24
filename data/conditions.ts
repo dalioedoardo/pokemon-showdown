@@ -202,14 +202,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 	quantumquirk: {
 		name: 'quantumquirk',
 		onStart(target, source, sourceEffect) {
-		},
-		onBeforeMove(pokemon, target, move) {
-			if(target.volatiles['quantumquirk'] && this.turn<4){
-				target.boosts['evasion'] = 6;
-			}
-			else{
-				target.removeVolatile('quantumquirk');	
-			}
+			this.effectState.prevEvasion = target.boosts['evasion'];
 		},
 	},
 	
