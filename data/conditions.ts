@@ -204,6 +204,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onStart(target, source, sourceEffect) {
 			this.effectState.prevEvasion = target.boosts['evasion'];
 		},
+		onEnd(pokemon) {
+			pokemon.boosts['evasion'] = pokemon.volatiles['quantumquirk'].prevEvasion;
+		},
 	},
 	
 	//this affects should affect only non-ghost type mons
