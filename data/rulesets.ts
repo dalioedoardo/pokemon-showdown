@@ -1043,6 +1043,17 @@ export const Rulesets: {[k: string]: FormatData} = {
 				pokemon.addVolatile('quantumquirk');
 			}
 		},
+		onBeforeMove(pokemon, target, move) {
+			if(target.volatiles['quantumquirk']){
+				target.volatiles['quantumquirk'].prevEvasion = target.boosts['evasion'];
+				target.boosts['evasion'] = 6;
+			}
+		},
+		onAfterMove(target, source, move) {
+			if(target.volatiles['quantumquirk']){
+				target.boosts['evasion'] = target.volatiles['quantumquirk'].prevEvasion;
+			}
+		},
 		onUpdate(pokemon){
 			if(this.turn>3 && pokemon.volatiles['quantumquirk']){
 				pokemon.removeVolatile('quantumquirk');
