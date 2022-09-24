@@ -8073,7 +8073,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 65,
 		basePowerCallback(pokemon, target, move) {
-			if (target.status || target.hasAbility('comatose')) return move.basePower * 2;
+			if (target.status === 'quantumstate'){
+				if(target.status.statuses.length>0){
+					return move.basePower * 2
+				}
+			}
+			else{
+				if (target.status || target.hasAbility('comatose')) return move.basePower * 2;
+			}
+			
 			return move.basePower;
 		},
 		category: "Special",
