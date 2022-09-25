@@ -404,6 +404,18 @@ export const Rulesets: {[k: string]: FormatData} = {
 				pokemon.addVolatile('curse');	
 			}
 		},
+		onResidual(pokemon) {
+			if(!pokemon.getTypes().includes('Grass') || !pokemon.getTypes().includes('Ghost')){
+				if(this.randomChance(1,2)){
+					const negativeboost = (this.dex.abilities.get(pokemon.getAbility()).name !== 'Contrary') ? -1 : 1;
+					this.boost({atk: negativeboost}, pokemon);	
+					this.boost({spa: negativeboost}, pokemon);
+					this.boost({def: negativeboost}, pokemon);	
+					this.boost({spd: negativeboost}, pokemon);	
+					this.boost({spe: negativeboost}, pokemon);
+				}
+			}
+		},
 	},
 
 	royalinfluence: {
