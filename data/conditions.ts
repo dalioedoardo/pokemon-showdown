@@ -171,7 +171,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onTryMovePriority: 1,
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Steel') {
-				return this.chainModify(1.5);
+				return this.chainModify(2);
 			}
 		},
 		onSetWeather(target, source, weather) {
