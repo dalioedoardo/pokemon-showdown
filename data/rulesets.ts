@@ -130,10 +130,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Endless Litostream');
 		},
 		onUpdate(pokemon) {
-			if(pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Water')) {
+			if(pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Water') && pokemon.getAbility().id !== 'moldbreaker') {
 				const oldAbility = pokemon.setAbility('moldbreaker', pokemon);
 				if (oldAbility && this.dex.abilities.get(oldAbility).name !== 'Mold Breaker') {
-					this.add('-activate', pokemon, 'ability: Mold Breaker', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
+					//non serve questo, altrimenti appare troppe volte...
+					//this.add('-activate', pokemon, 'ability: Mold Breaker', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
 				}
 			}
 		},
