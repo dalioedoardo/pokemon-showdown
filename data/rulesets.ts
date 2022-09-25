@@ -129,6 +129,14 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Endless Litostream');
 		},
+		onUpdate(pokemon) {
+			if(pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Water')) {
+				const oldAbility = pokemon.setAbility('moldbreaker', pokemon);
+				if (oldAbility && this.dex.abilities.get(oldAbility).name !== 'Mold Breaker') {
+					this.add('-activate', pokemon, 'ability: Mold Breaker', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
+				}
+			}
+		},
 		onModifyPriority(priority, pokemon, target, move) {
 			if(pokemon.getTypes().includes('Rock') && pokemon.getTypes().includes('Water')) return priority + 2;
 		},
