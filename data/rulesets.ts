@@ -1291,6 +1291,24 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
+	enchantedwaterworks: {
+		effectType: 'Rule',
+		name: 'Enchanted Waterworks',
+		desc: "Water/Fairy type pokémon cannot be statused, for the first three turns, any damage that a Water/Fairy type pokémon deals is multiplied by 3, for the first three turns, any damage that a Water/Fairy type pokémon receives is divided by 3",
+		onBegin() {
+			this.add('rule', 'Marine Optimization');
+		},
+		onModifyDamage(damage, source, target, move) {
+			if(this.turn < 4){
+				if(target.getTypes().includes('Water') && target.getTypes().includes('Fairy')){
+					return this.chainModify(0.33);
+				}
+				if(source.getTypes().includes('Water') && source.getTypes().includes('Fairy')){
+					return this.chainModify(3);
+				}
+			}
+		},
+	},
 	
 	
 	
