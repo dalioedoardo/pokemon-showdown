@@ -428,6 +428,19 @@ export const Formats: FormatList = [
 	
 	
 	
+	//--WATER!
+	{
+		name: "[Gen 8] 6.1 WATER TYPE GYM CHALLENGE",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Enchanted Waterworks', 'Marine Optimization'],
+		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
+	},
 	
 	
 	
@@ -448,7 +461,7 @@ export const Formats: FormatList = [
 	
 	
 	
-	
+	/*
 	
 	// Sw/Sh Singles
 	///////////////////////////////////////////////////////////////////
@@ -4452,4 +4465,6 @@ export const Formats: FormatList = [
 		battle: {trunc: Math.trunc},
 		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
+	
+	*/
 ];
