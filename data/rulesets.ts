@@ -1251,6 +1251,55 @@ export const Rulesets: {[k: string]: FormatData} = {
 	
 	
 	
+	
+	//---DAVIDE'S REALM:
+	
+	marineoptimization: {
+		effectType: 'Rule',
+		name: 'Marine Optimization',
+		desc: "Water type pokémon raise three of their stats by 1 stage at the end of each turn",
+		onBegin() {
+			this.add('rule', 'Marine Optimization');
+		},
+		onResidual(pokemon) {
+			if (pokemon.hasType('Water')) {
+				
+				const boosts = [{atk: 1}, {def: 1}, {spa: 1}, {spd: 1}, {spe: 1}, {accuracy: 1}, {evasion: 1}];
+				const nerfs = [{atk: -1}, {def: -1}, {spa: -1}, {spd: -1}, {spe: -1}, {accuracy: -1}, {evasion: -1}];
+				
+				let randomNumber1 : number = this.random(0,7);
+				let randomNumber2 : number = -1;
+				let randomNumber3 : number = -1;
+				
+				while(randomNumber2<0 || randomNumber2 === randomNumber1)
+					randomNumber2 = this.random(0,7);
+				
+				while(randomNumber3<0 || (randomNumber3 === randomNumber1 || randomNumber3 === randomNumber2))
+					randomNumber3 = this.random(0,7);
+				
+				if(pokemon.getAbility().id !== 'contrary'){
+					this.boost(boosts[randomNumber1], pokemon);
+					this.boost(boosts[randomNumber2], pokemon);
+					this.boost(boosts[randomNumber3], pokemon);
+				}
+				else{
+					this.boost(nerfs[randomNumber1], pokemon);
+					this.boost(nerfs[randomNumber2], pokemon);
+					this.boost(nerfs[randomNumber3], pokemon);
+				}
+			}
+		},
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
