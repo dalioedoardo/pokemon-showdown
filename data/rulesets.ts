@@ -1267,7 +1267,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				const boosts = [{atk: 1}, {def: 1}, {spa: 1}, {spd: 1}, {spe: 1}, {accuracy: 1}, {evasion: 1}];
 				const nerfs = [{atk: -1}, {def: -1}, {spa: -1}, {spd: -1}, {spe: -1}, {accuracy: -1}, {evasion: -1}];
 				
-				let randomNumber1 : number = this.random(0,7);
+				let randomNumber1 : number = this.random(0, 7);
 				let randomNumber2 : number = -1;
 				let randomNumber3 : number = -1;
 				
@@ -1306,6 +1306,24 @@ export const Rulesets: {[k: string]: FormatData} = {
 				if(source.getTypes().includes('Water') && source.getTypes().includes('Fairy')){
 					return this.chainModify(3);
 				}
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if(!(target.getTypes().includes('Water') && target.getTypes().includes('Fairy'))) return;
+			
+			if (!effect || !source) return;
+			if (effect.id === 'yawn') return;
+			if (target !== source) {
+				this.debug('interrupting setStatus');
+				return null;
+			}
+		},
+		onTryAddVolatile(status, target, source, effect) {
+			if(!(target.getTypes().includes('Water') && target.getTypes().includes('Fairy'))) return;
+			
+			if (!effect || !source) return;
+			if ((status.id === 'confusion' || status.id === 'yawn') && target !== source) {
+				return null;
 			}
 		},
 	},
