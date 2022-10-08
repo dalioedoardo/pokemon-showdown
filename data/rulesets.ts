@@ -1277,6 +1277,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 				while(randomNumber3<0 || (randomNumber3 === randomNumber1 || randomNumber3 === randomNumber2))
 					randomNumber3 = this.random(0,7);
 				
+				this.hint("The sea itself is optimizing "+pokemon.name+"!")
+				
 				if(pokemon.getAbility().id !== 'contrary'){
 					this.boost(boosts[randomNumber1], pokemon);
 					this.boost(boosts[randomNumber2], pokemon);
@@ -1296,7 +1298,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Enchanted Waterworks',
 		desc: "Water/Fairy type pokémon cannot be statused, for the first three turns, any damage that a Water/Fairy type pokémon deals is multiplied by 3, for the first three turns, any damage that a Water/Fairy type pokémon receives is divided by 3",
 		onBegin() {
-			this.add('rule', 'Marine Optimization');
+			this.add('rule', 'Enchanted Waterworks');
 		},
 		onModifyDamage(damage, source, target, move) {
 			if(this.turn < 4){
