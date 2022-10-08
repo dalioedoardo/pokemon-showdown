@@ -428,7 +428,10 @@ export const Formats: FormatList = [
 	
 	
 	
-	//--WATER!
+	//---WATER!
+	{
+		section: "GHOST TYPE GYM CHALLENGES",
+	},
 	{
 		name: "[Gen 8] 6.1 WATER TYPE GYM CHALLENGE",
 		threads: [
