@@ -1389,6 +1389,21 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
+	frozenpanthalassa: {
+		effectType: 'Rule',
+		name: 'Frozen Panthalassa',
+		desc: "Any non-Ice type pokémon has 50% chance to freeze at the end of each turn",
+		onBegin() {
+			this.add('rule', 'Frozen Panthalassa');
+		},
+		onResidual(pokemon){
+			if(!pokemon.getTypes().includes('Ice')){
+				if(this.randomChance(1,2)){
+					pokemon.trySetStatus('frz', pokemon);
+				}
+			}
+		},
+	},
 	
 	
 	
