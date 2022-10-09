@@ -119,16 +119,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		}
 	},
 	
-	freshminded: {
-		name: 'freshminded',
-		// this is a volatile status [invisible]
-		onFractionalPriority(priority, pokemon) {
-			if (priority <= 0) {
-				return 0.1;
-			}
-		},
-	},
-	
 	abundance: {
 		name: 'abundance',
 		// this is a volatile status [invisible]
