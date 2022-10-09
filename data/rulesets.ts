@@ -180,6 +180,9 @@ export const Rulesets: {[k: string]: FormatData} = {
 									|| (set.name === 'Medicham' && this.format.name.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
 									|| (set.name === 'Metagross' && this.format.name.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
 									|| (set.name === 'Gengar' && this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
+									|| (set.name === 'Swampert' && this.format.name.includes('6.6 WATER TYPE BOSS CHALLENGE'))
+									|| (set.name === 'Lucario' && this.format.name.includes('7.6 FIGHTING TYPE BOSS CHALLENGE'))
+									|| (set.name === 'Ampharos' && this.format.name.includes('8.6 ELECTRIC TYPE BOSS CHALLENGE'))
 								)
 						)
 						possibleBoss.push(set);
@@ -214,6 +217,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 				restrictedMegastone.push('Metagrossite');
 			else if(this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
 				restrictedMegastone.push('Gengarite');
+			else if(this.format.name.includes('6.6 WATER TYPE BOSS CHALLENGE'))
+				restrictedMegastone.push('Swampertite');
+			else if(this.format.name.includes('7.6 FIGHTING TYPE BOSS CHALLENGE'))
+				restrictedMegastone.push('Lucarionite');
+			else if(this.format.name.includes('8.6 ELECTRIC TYPE BOSS CHALLENGE'))
+				restrictedMegastone.push('Ampharosite');
 			else
 				restrictedMegastone.push('');
 			
@@ -237,7 +246,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 							|| (pokemon.species.name === 'Medicham' && pokemon.item === 'medichamite' && this.format.name.includes('3.6 PSYCHIC TYPE BOSS CHALLENGE'))
 							|| (pokemon.species.name === 'Metagross' && pokemon.item === 'metagrossite' && this.format.name.includes('4.6 STEEL TYPE BOSS CHALLENGE'))
 							|| (pokemon.species.name === 'Gengar' && pokemon.item === 'gengarite' && this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
-						 )
+							|| (pokemon.species.name === 'Swampert' && pokemon.item === 'swampertite' && this.format.name.includes('6.6 WATER TYPE BOSS CHALLENGE'))
+							|| (pokemon.species.name === 'Lucario' && pokemon.item === 'lucarionite' && this.format.name.includes('7.6 FIGHTING TYPE BOSS CHALLENGE'))
+							|| (pokemon.species.name === 'Ampharos' && pokemon.item === 'ampharosite' && this.format.name.includes('8.6 ELECTRIC TYPE BOSS CHALLENGE'))
+					 )
 				  ){
 					pokemon.addVolatile('boss');
 				}
@@ -295,6 +307,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 						this.add('rule', 'Mighty Aura');
 					else if(this.format.name.includes('5.6 GHOST TYPE BOSS CHALLENGE'))
 						this.add('rule', 'Entropic Aura');
+					else if(this.format.name.includes('6.6 WATER TYPE BOSS CHALLENGE'))
+						this.add('rule', 'Overflowing Aura');
+					else if(this.format.name.includes('7.6 FIGHTING TYPE BOSS CHALLENGE'))
+						this.add('rule', 'Resolute Aura');
+					else if(this.format.name.includes('8.6 ELECTRIC TYPE BOSS CHALLENGE'))
+						this.add('rule', 'Brightening Aura');
 					
 					this.add('rule', 'Rising Energy');
 
@@ -308,7 +326,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Relentless Aura',
 		desc: "After each turn, all non-MEGA BOSS pokèmon lose ⅓ of their maximum HP (this effect bypasses any protection and any semi-invulnerability condition).",
 		onResidual(pokemon) {
-			if(this.turn > 3 && pokemon.species.id !== 'tyranitarmega'){
+			if(this.turn > 3 && !pokemon.volatiles['boss']){
 				this.damage(pokemon.baseMaxhp/3, pokemon, pokemon);
 			}
 		},
@@ -492,7 +510,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Voracious Aura',
 		desc: "After each turn, all non-MEGA BOSS pokèmon lose ⅙ of their maximum HP and the MEGA BOSS pokèmon gains the sum of that amount of HP",
 		onResidual(pokemon) {
-			if(this.turn > 3 && pokemon.species.id === 'venusaurmega'){
+			if(this.turn > 3 && pokemon.volatiles['boss']){
 				const amounts = [];
 				for (const target of pokemon.adjacentFoes()) {
 					this.damage(target.baseMaxhp/6, target, target);
@@ -503,7 +521,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 						amounts.push(target.baseMaxhp/6);
 					}
 				}
-				pokemon.heal(amounts[0]); //Harzen 21/09/2022 - prima era this.heal.... va testata!
+				pokemon.heal(amounts[0]);
 			}
 		},
 	},
@@ -672,7 +690,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Mindful Aura',
 		desc: "Every move used by the MEGA BOSS pokémon will always hit",
 		onUpdate(pokemon) {
-			if(this.turn > 3 && pokemon.species.id === 'medichammega'){
+			if(this.turn > 3 && pokemon.volatiles['boss']){
 				if(!pokemon.volatiles['mindfulness']){
 					pokemon.addVolatile('mindfulness');
 				}
@@ -1035,7 +1053,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Mighty Aura',
 		desc: "Any damage that a non-MEGA BOSS pokèmon receives from the MEGA BOSS pokèmon is multiplied by 2",
 		onModifyDamage(damage, source, target, move) {
-			if(this.turn > 3 && source.species.id === 'metagrossmega'){
+			if(this.turn > 3 && source.volatiles['boss']){
 				this.hint(source.name+" is using its own aura to boost the damage!");
 				return this.chainModify(2);
 			}
