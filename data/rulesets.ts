@@ -1331,6 +1331,24 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
+	eternalwaterfallninjutsu: {
+		effectType: 'Rule',
+		name: 'Eternal Waterfall Ninjutsu',
+		desc: "All the attacks of a Water/Dark type pokémon will always score critical hits and Water/Dark type pokémon will always move first in their priority bracket",
+		onBegin() {
+				this.add('rule', "Eternal Waterfall Ninjutsu");
+		},
+		onModifyMove(move, attacker) {
+			if(attacker.getTypes().includes('Water') && attacker.getTypes().includes('Dark'))
+				move.willCrit = true;
+		},
+		onFractionalPriority(priority, pokemon) {
+			if(pokemon.getTypes().includes('Water') && pokemon.getTypes().includes('Dark'))
+				return (priority+0.1);
+			}
+		},
+	},
+	
 	
 	
 	
