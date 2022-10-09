@@ -1373,6 +1373,22 @@ export const Rulesets: {[k: string]: FormatData} = {
 		}
 	},
 	
+	neptuneswrath: {
+		effectType: 'Rule',
+		name: "Neptune's Wrath",
+		desc: "Every time a Water/Steel type pokémon is damaged by the opponent, the opponent has 80% chance to lose half of its current HP",
+		onBegin() {
+			this.add('rule', "Neptune's Wrath");
+		},
+		onAfterMoveSecondary(target, source, move) {
+			if(move.category !== 'Status' && target.getTypes().includes('Water') && target.getTypes().includes('Steel')){
+				if(this.randomChance(80, 100)){
+					this.damage(source.baseMaxhp/2, source, source);
+				}
+			}
+		},
+	},
+	
 	
 	
 	
