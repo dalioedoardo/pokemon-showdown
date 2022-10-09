@@ -1349,7 +1349,27 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
-	
+	oceanification: {
+		effectType: 'Rule',
+		name: 'Oceanification',
+		desc: "The weather is permanently set to Rain and Water type pokémon gain an amount of HP equals to the damage they deal to the opponent if they use a Water type move",
+		onBegin() {
+			this.add('rule', "Oceanification");
+		},
+		onStart(source){
+			this.field.setWeather('primordialsea');
+		},
+		onModifyMove(move, attacker) {
+			if(attacker.getTypes().includes('Water') && move.type === 'Water')){
+				move.flags['heal'] = 1;
+				move.drain = [1, 1];
+			}
+		},
+		onAnySetWeather(target, source, weather) {
+			if(weather !== 'primordialsea')
+				return false;
+		}
+	},
 	
 	
 	
