@@ -104,6 +104,16 @@ export const Conditions: {[k: string]: ConditionData} = {
 	
 	//---LEO'S CONDITIONS:
 	
+	freshminded: {
+		name: 'freshminded',
+		// this is a volatile status [invisible]
+		onFractionalPriority(priority, pokemon){
+			if(pokemon.getTypes().includes('Psychic')){
+				return priority+0.1;	
+			}
+		},
+	},
+	
 	psychicatmosphere: {
 		name: 'psychicatmosphere',
 		// this is a volatile status [invisible]
