@@ -1356,8 +1356,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', "Oceanification");
 		},
-		onStart(source){
-			this.field.setWeather('primordialsea');
+		onUpdate(pokemon){
+			if(this.field.getWeather().id !== 'primordialsea'){
+				this.field.setWeather('primordialsea');
+			}
 		},
 		onModifyMove(move, attacker) {
 			if(attacker.getTypes().includes('Water') && move.type === 'Water'){
