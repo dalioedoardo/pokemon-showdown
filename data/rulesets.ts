@@ -1423,6 +1423,35 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
+	overflowingaura: {
+		effectType: 'Rule',
+		name: 'Overflowing Aura',
+		desc: "of their maximum HP and the MEGA BOSS pokèmon gains the sum of that amount of HP",
+		onResidual(pokemon) {
+			if(this.turn > 3 && pokemon.volatiles['boss']){
+				const amounts = [];
+				for (const target of pokemon.adjacentFoes()) {
+					this.damage(target.baseMaxhp/6, target, target);
+					if(amounts.length>0){
+						amounts.push(amounts.pop()+(target.baseMaxhp/6));
+					}
+					else{
+						amounts.push(target.baseMaxhp/6);
+					}
+				}
+				pokemon.heal(amounts[0]);
+			}
+		},
+		onTryHit(target, source, move){
+			if(this.turn > 3 && target.volatiles['boss']){
+				const damage = this.actions.getDamage(source, target, move);
+				if(damage > target.baseMaxhp*30/100){
+					this.hint('The overflowing aura of '+target.name+' is absorbing the hit!');
+					return null;
+				}
+			}
+		},
+	},
 	
 	
 	
