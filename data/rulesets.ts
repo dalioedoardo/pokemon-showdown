@@ -1360,7 +1360,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.field.setWeather('primordialsea');
 		},
 		onModifyMove(move, attacker) {
-			if(attacker.getTypes().includes('Water') && move.type === 'Water')){
+			if(attacker.getTypes().includes('Water') && move.type === 'Water'){
 				move.flags['heal'] = 1;
 				move.drain = [1, 1];
 			}
