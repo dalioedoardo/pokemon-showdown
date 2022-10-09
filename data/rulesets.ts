@@ -1330,7 +1330,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 	},
 	
-	
 	eternalwaterfallninjutsu: {
 		effectType: 'Rule',
 		name: 'Eternal Waterfall Ninjutsu',
@@ -1339,16 +1338,16 @@ export const Rulesets: {[k: string]: FormatData} = {
 				this.add('rule', "Eternal Waterfall Ninjutsu");
 		},
 		onModifyMove(move, attacker) {
-			if(attacker.getTypes().includes('Water') && attacker.getTypes().includes('Dark'))
+			if(attacker.getTypes().includes('Water') && attacker.getTypes().includes('Dark')){
 				move.willCrit = true;
+			}
 		},
 		onFractionalPriority(priority, pokemon) {
-			if(pokemon.getTypes().includes('Water') && pokemon.getTypes().includes('Dark'))
-				return (priority+0.1);
+			if(pokemon.getTypes().includes('Water') && pokemon.getTypes().includes('Dark')){
+				return priority+0.1;
 			}
 		},
 	},
-	
 	
 	
 	
