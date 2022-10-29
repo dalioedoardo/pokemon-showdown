@@ -6,7 +6,39 @@ import {Pokemon} from "../sim/pokemon";
 // The list of formats is stored in config/formats.js
 export const Rulesets: {[k: string]: FormatData} = {
 
+	
+	//---POWERUP CLAUSE:
+	powerupclause: {
+		effectType: 'Rule',
+		name: 'Powerup Clause',
+		desc: "Introduces changes in some pokèmon stats, abilities, moves, types",
+		onBegin() {
+			this.add('rule', 'Powerup Clause');
+		},
+		onModifySpeciesPriority: 1,
+		onModifySpecies(species) {
+			
+			//Edo's team modification
+			if(species.name === 'Seedot'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.bst = 140+40+150+30+130+30; //BST: 520
+				newSpecies.baseStats['hp'] = 140;
+				newSpecies.baseStats['atk'] = 140;
+				newSpecies.baseStats['def'] = 140;
+				newSpecies.baseStats['spa'] = 140;
+				newSpecies.baseStats['spd'] = 140;
+				newSpecies.baseStats['spe'] = 140;
+				
+				return newSpecies;
+			}
+			
+			
+			
+		},
+	},
 
+	
+	
 	//----------------CUSTOM GYM LEADER RULES
 	
 	
