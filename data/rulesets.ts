@@ -23,11 +23,13 @@ export const Rulesets: {[k: string]: FormatData} = {
 				const newSpecies = this.dex.deepClone(species);
 				newSpecies.bst = 140+40+150+30+130+30; //BST: 520
 				newSpecies.baseStats['hp'] = 140;
-				newSpecies.baseStats['atk'] = 140;
-				newSpecies.baseStats['def'] = 140;
-				newSpecies.baseStats['spa'] = 140;
-				newSpecies.baseStats['spd'] = 140;
-				newSpecies.baseStats['spe'] = 140;
+				newSpecies.baseStats['atk'] = 40;
+				newSpecies.baseStats['def'] = 150;
+				newSpecies.baseStats['spa'] = 30;
+				newSpecies.baseStats['spd'] = 130;
+				newSpecies.baseStats['spe'] = 30;
+				
+				newSpecies.abilities = {0: 'Chlorophyll', 1: 'Early Bird', H: 'Kingpin'};
 				
 				return newSpecies;
 			}
