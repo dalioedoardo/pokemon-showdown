@@ -39,6 +39,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 0.1,
 		num: 0,
 	},
+	
+	
+	kingpin: {
+		onModifyMove(move) {
+			move.overrideOffensivePokemon = 'target';
+		},
+		name: "Kingpin",
+		rating: 4,
+		num: 1000,
+	},
+	
+	
+	
+	
+	
+	
 	adaptability: {
 		onModifyMove(move) {
 			move.stab = 2;
