@@ -32,7 +32,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Powerup Clause'],
+		ruleset: ['Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause'],
 	},	
 	
 	
