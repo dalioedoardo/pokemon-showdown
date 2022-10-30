@@ -94,6 +94,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 				
 				newSpecies.abilities = {0: 'Insomnia', 1: 'Forewarn', H: 'Hypnotist'};
 				
+				newSpecies.types = ['Psychic', 'Fairy'];
+				
 				return newSpecies;
 			}
 			
