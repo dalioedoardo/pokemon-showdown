@@ -27,6 +27,39 @@ sound: Has no effect on Pokemon with the Soundproof Ability.
 */
 
 export const Moves: {[moveid: string]: MoveData} = {
+	
+	
+	//CUSTOM MOVES - POWERUP IMPLEMENTATION FANART
+	diamonddaisho: {
+		num: 1000,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		name: "Diamond Daisho",
+		pp: 30,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: 2,
+		basePowerCallback(pokemon, target, move) {
+			return 40 * move.hit;
+		},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Fighting' || type === 'Ground') return 1;
+		},
+		target: "normal",
+		type: "Rock",
+		zMove: {basePower: 180},
+		maxMove: {basePower: 140},
+		contestType: "Tough",
+	},
+	
+	
+	
+	
+	
+	
+	
+	
 	"10000000voltthunderbolt": {
 		num: 719,
 		accuracy: true,
