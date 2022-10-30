@@ -53,7 +53,29 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Tough",
 	},
 	
-	
+	overslam: {
+		num: 1001,
+		accuracy: 100,
+		basePower: 150,
+		category: "Physical",
+		name: "Overslam",
+		pp: 30,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					atk: 2,
+					spe: 2,
+					spa: -1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Dragon",
+		contestType: "Tough",
+	},
 	
 	
 	
