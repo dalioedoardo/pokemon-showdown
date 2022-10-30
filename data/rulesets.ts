@@ -45,6 +45,59 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return newSpecies;
 			}
 			
+			if(species.name === 'Kabutops'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 100, atk: 130, def: 125, spa: 45, spd: 80, spe: 110};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Swift Swim', 1: 'Tough Claws', H: 'Weak Armor'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Tyranitar'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 100, atk: 144, def: 130, spa: 85, spd: 120, spe: 71};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Sand Stream', H: 'Guts'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Venusaur'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 85, atk: 92, def: 98, spa: 115, spd: 115, spe: 85};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Overgrow', 1: 'Thick Fat', H: 'Beast Boost'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Hypno'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 105, atk: 93, def: 115, spa: 93, spd: 130, spe: 47};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Insomnia', 1: 'Forewarn', H: 'Hypnotist'};
+				
+				return newSpecies;
+			}
+			
+			
 			
 		},
 	},
