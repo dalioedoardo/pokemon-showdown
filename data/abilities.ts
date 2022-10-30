@@ -84,7 +84,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1002,
 	},
 	
-	
+	glacialcare: {
+		onStart(source) {
+			if(!source.side.getSideCondition('auroraveil')){
+				source.side.addSideCondition('auroraveil');
+			}
+		},
+		name: "Glacial Care",
+		rating: 4,
+		num: 1003,
+	},
 	
 	
 	
