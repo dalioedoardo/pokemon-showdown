@@ -116,7 +116,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onResidualOrder: 9,
 			onResidual(pokemon) {
-				const target = this.getAtSlot(pokemon.volatiles['doomweb'].sourceSlot);
 				const nerfs = [{atk: -1}, {def: -1}, {spa: -1}, {spd: -1}, {spe: -1}, {accuracy: -1}, {evasion: -1}];
 				
 				let randomNumber1 : number = this.random(0, 7);
@@ -129,9 +128,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 				while(randomNumber3<0 || (randomNumber3 === randomNumber1 || randomNumber3 === randomNumber2))
 					randomNumber3 = this.random(0,7);
 				
-				this.boost(nerfs[randomNumber1], target);
-				this.boost(nerfs[randomNumber2], target);
-				this.boost(nerfs[randomNumber3], target);
+				this.boost(nerfs[randomNumber1], pokemon);
+				this.boost(nerfs[randomNumber2], pokemon);
+				this.boost(nerfs[randomNumber3], pokemon);
 			},
 		},
 		onHit(target, source, move) {
