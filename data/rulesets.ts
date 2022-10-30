@@ -94,12 +94,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 				
 				newSpecies.abilities = {0: 'Insomnia', 1: 'Forewarn', H: 'Hypnotist'};
 				
-				newSpecies.types = ['Psychic', 'Fairy'];
+				//se faccio qua il cambio tipo il client lo evidenzia durante la battaglia.... meglio cambiare data/pokedex direttamente
+				//newSpecies.types = ['Psychic', 'Fairy'];
 				
 				return newSpecies;
 			}
-			
-			
 			
 		},
 	},
