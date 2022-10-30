@@ -53,6 +53,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 	},
 	
+	hypnotist: {
+		name: "Hypnotist",
+		rating: 4,
+		num: 1001,
+		onResidual(pokemon) {
+			for (const target of pokemon.foes()) {
+				this.randomChance(5, 10){
+					target.trySetStatus('slp', pokemon);	
+				}
+			}
+		},
+	},
 	
 	
 	
