@@ -20,8 +20,9 @@ The column value will be ignored for repeat sections.
 export const Formats: FormatList = [
 
 	// POWERUP BATTLE - Harzen 29/19/2022
+	
 	{
-		section: "ROCK TYPE GYM CHALLENGES",
+		section: "POWERUP BATTLE",
 	},
 	{
 		name: "[Gen 8] POWERUP BATTLE",
@@ -38,6 +39,9 @@ export const Formats: FormatList = [
 	
 	
 	
+	{
+		section: "ROCK TYPE GYM CHALLENGES",
+	},
 	
 	// GYM CHALLENGES - Harzen 04/09/2022
 	///////////////////////////////////////////////////////////////////
