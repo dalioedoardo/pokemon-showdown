@@ -25,7 +25,7 @@ export const Formats: FormatList = [
 		section: "POWERUP BATTLE",
 	},
 	{
-		name: "[Gen 8] POWERUP BATTLE",
+		name: "[Gen 8] National Dex AG",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -34,15 +34,6 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		ruleset: ['Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause'],
-	},	
-	{
-		name: "[Gen 8] National Dex AG",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3672423/">National Dex AG</a>`,
-		],
-
-		mod: 'gen8',
-		ruleset: ['Standard NatDex'],
 	},
 	
 	
