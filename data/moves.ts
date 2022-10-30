@@ -77,7 +77,111 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Tough",
 	},
 	
+	sacreddance: {
+		num: 1002,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Sacred Dance",
+		pp: 30,
+		priority: 0,
+		flags: {snatch: 1, dance: 1},
+		boosts: {
+			atk: 1,
+			def: 1,
+			spe: 1,
+			accuracy: 1,
+			spa: -2,
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cool",
+	},
 	
+	doomweb: {
+		num: 1003,
+		accuracy: 90,
+		basePower: 0,
+		category: "Status",
+		name: "Doom Web",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		volatileStatus: 'doomweb',
+		condition: {
+			onStart(target) {
+				this.add('-start', target, 'move: Doom Web');
+			},
+			onResidualOrder: 9,
+			onResidual(pokemon) {
+				const target = this.getAtSlot(pokemon.volatiles['doomweb'].sourceSlot);
+				const nerfs = [{atk: -1}, {def: -1}, {spa: -1}, {spd: -1}, {spe: -1}, {accuracy: -1}, {evasion: -1}];
+				
+				let randomNumber1 : number = this.random(0, 7);
+				let randomNumber2 : number = -1;
+				let randomNumber3 : number = -1;
+				
+				while(randomNumber2<0 || randomNumber2 === randomNumber1)
+					randomNumber2 = this.random(0,7);
+				
+				while(randomNumber3<0 || (randomNumber3 === randomNumber1 || randomNumber3 === randomNumber2))
+					randomNumber3 = this.random(0,7);
+				
+				this.boost(nerfs[randomNumber1], target);
+				this.boost(nerfs[randomNumber2], target);
+				this.boost(nerfs[randomNumber3], target);
+			},
+		},
+		onHit(target, source, move) {
+			return target.addVolatile('trapped', source, move, 'trapper');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Bug",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	
+	royalblow: {
+		num: 1004,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Royal Blow",
+		pp: 30,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Water' || type === 'Steel' || type === 'Fire') return 1;
+		},
+		target: "normal",
+		type: "Steel",
+		zMove: {basePower: 180},
+		maxMove: {basePower: 140},
+		contestType: "Tough",
+	},
+	
+	pixiestorm: {
+		num: 1005,
+		accuracy: 100,
+		basePower: 175,
+		category: "Special",
+		name: "Pixie Storm",
+		pp: 30,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		self: {
+			chance: 70,
+			boosts: {
+				evasion: 1,
+			},
+		},
+		target: "normal",
+		type: "Fairy",
+		contestType: "Beautiful",
+	},
 	
 	
 	
