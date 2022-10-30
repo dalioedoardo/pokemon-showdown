@@ -84,6 +84,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1002,
 	},
 	
+	silkyshield: {
+		onSourceModifyDamage(damage, source, target, move) {
+				return this.chainModify(0.75);
+		},
+		isBreakable: true,
+		name: "Silky Shield",
+		rating: 4,
+		num: 1003,
+	},
+	
+	
 	glacialcare: {
 		onStart(source) {
 			if(!source.side.getSideCondition('auroraveil')){
@@ -92,7 +103,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		name: "Glacial Care",
 		rating: 4,
-		num: 1003,
+		num: 1004,
 	},
 	
 	
