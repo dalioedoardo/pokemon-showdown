@@ -40,7 +40,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 0,
 	},
 	
-	
 	kingpin: {
 		name: "Kingpin",
 		rating: 4,
@@ -59,7 +58,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1001,
 		onResidual(pokemon) {
 			for (const target of pokemon.foes()) {
-				this.randomChance(5, 10){
+				if(this.randomChance(5, 10)){
 					target.trySetStatus('slp', pokemon);	
 				}
 			}
