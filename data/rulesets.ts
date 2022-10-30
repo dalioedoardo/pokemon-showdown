@@ -34,6 +34,14 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return newSpecies;
 			}
 			
+			if(species.name === 'Jolteon'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.bst = 85+55+80+130+95+147; //BST: 692
+				newSpecies.baseStats = {hp: 85, atk: 55, def: 80, spa: 130, spd: 95, spe: 147};
+				newSpecies.abilities = {0: 'Volt Absorb', H: 'Dazzling'};
+				
+				return newSpecies;
+			}
 			
 			
 		},
