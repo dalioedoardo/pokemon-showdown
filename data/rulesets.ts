@@ -197,6 +197,295 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return newSpecies;
 			}
 			
+			
+			
+			
+			//Leo's team modification
+			if(species.name === 'Medicham'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 60, atk: 80, def: 85, spa: 80, spd: 85, spe: 100};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Pure Power', H: 'Telepathy'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Medicham-Mega'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 85, atk: 130, def: 105, spa: 80, spd: 105, spe: 130};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Pure Power'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Dusclops'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 60, atk: 80, def: 170, spa: 70, spd: 170, spe: 25};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Pressure', H: 'Regenerator'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Xatu'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 105, atk: 85, def: 90, spa: 110, spd: 90, spe: 110};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Noctowl'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 130, atk: 46, def: 103, spa: 106, spd: 137, spe: 70};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Insomnia', 1: 'Fur Coat', H: 'Tinted Lens'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Ariados'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 135, atk: 95, def: 140, spa: 60, spd: 140, spe: 35};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Swarm', 1: 'Sniper', H: 'Silky Shield'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Oranguru'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 145, atk: 40, def: 90, spa: 125, spd: 152, spe: 53};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Inner Focus', 1: 'Telepathy', H: 'Simple'};
+				
+				return newSpecies;
+			}
+			
+			
+			
+			
+			
+			
+			//Elia's team modification
+			if(species.name === 'Aron'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 85, atk: 100, def: 240, spa: 40, spd: 75, spe: 30};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Sturdy', 1: 'Rock Head', H: 'Wonder Guard'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Salamence'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 95, atk: 140, def: 95, spa: 110, spd: 100, spe: 110};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Intimidate', H: 'Moxie'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Metagross'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 80, atk: 145, def: 150, spa: 95, spd: 100, spe: 80};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Clear Body', H: 'Tough Claws'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Metagross-Mega'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 85, atk: 150, def: 155, spa: 105, spd: 110, spe: 115};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Tough Claws'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Charizard'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 80, atk: 121, def: 83, spa: 114, spd: 90, spe: 102};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Levitate'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Crobat'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 85, atk: 100, def: 80, spa: 100, spd: 80, spe: 153};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Libero', H: 'Infiltrator'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Scyther'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 75, atk: 125, def: 95, spa: 55, spd: 95, spe: 130};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Swarm', 1: 'Technician', H: 'Adaptability'};
+				
+				return newSpecies;
+			}
+			
+			
+			
+					
+			
+		
+			//Piccia's team modification
+			if(species.name === 'Whimsicott'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 90, atk: 47, def: 115, spa: 117, spd: 95, spe: 141};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Prankster', 1: 'Infiltrator', H: 'Fluffy'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Vileplume'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 125, atk: 80, def: 85, spa: 135, spd: 90, spe: 70};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Soul-Heart', H: 'Effect Spore'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Gengar'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 60, atk: 95, def: 80, spa: 150, spd: 95, spe: 110};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Cursed Body'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Gengar-Mega'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 80, atk: 105, def: 95, spa: 201, spd: 100, spe: 140};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Ampharos'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 95, atk: 75, def: 105, spa: 145, spd: 115, spe: 60};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Static', H: 'Unaware'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Shuckle'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 120, atk: 10, def: 230, spa: 10, spd: 230, spe: 5};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Sturdy', 1: 'Contrary', H: 'Huge Power'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Froslass'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 70, atk: 105, def: 95, spa: 105, spd: 95, spe: 120};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Snow Cloak', H: 'Glacial Care'};
+				
+				return newSpecies;
+			}
+			
+			
+			
+			
+			
 		},
 	},
 
