@@ -21,13 +21,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 			//Edo's team modification
 			if(species.name === 'Seedot'){
 				const newSpecies = this.dex.deepClone(species);
-				newSpecies.bst = 140+40+150+30+130+30; //BST: 520
-				newSpecies.baseStats['hp'] = 140;
-				newSpecies.baseStats['atk'] = 40;
-				newSpecies.baseStats['def'] = 150;
-				newSpecies.baseStats['spa'] = 30;
-				newSpecies.baseStats['spd'] = 130;
-				newSpecies.baseStats['spe'] = 30;
+				newSpecies.baseStats = {hp: 140, atk: 40, def: 150, spa: 30, spd: 130, spe: 30};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
 				
 				newSpecies.abilities = {0: 'Chlorophyll', 1: 'Early Bird', H: 'Kingpin'};
 				
@@ -36,8 +34,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			if(species.name === 'Jolteon'){
 				const newSpecies = this.dex.deepClone(species);
-				newSpecies.bst = 85+55+80+130+95+147; //BST: 692
 				newSpecies.baseStats = {hp: 85, atk: 55, def: 80, spa: 130, spd: 95, spe: 147};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
 				newSpecies.abilities = {0: 'Volt Absorb', H: 'Dazzling'};
 				
 				return newSpecies;
