@@ -11,7 +11,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 	powerupclause: {
 		effectType: 'Rule',
 		name: 'Powerup Clause',
-		desc: "Introduces changes in some pokèmon stats, abilities, moves, types",
+		desc: "Introduces changes in some pokèmon stats, abilities, moves",
 		onBegin() {
 			this.add('rule', 'Powerup Clause');
 		},
@@ -84,6 +84,19 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return newSpecies;
 			}
 			
+			if(species.name === 'Venusaur-Mega'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 92, atk: 82, def: 153, spa: 157, spd: 152, spe: 85};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Thick Fat'};
+				
+				return newSpecies;
+			}
+			
 			if(species.name === 'Hypno'){
 				const newSpecies = this.dex.deepClone(species);
 				newSpecies.baseStats = {hp: 105, atk: 93, def: 115, spa: 93, spd: 130, spe: 47};
@@ -96,6 +109,90 @@ export const Rulesets: {[k: string]: FormatData} = {
 				
 				//se faccio qua il cambio tipo il client lo evidenzia durante la battaglia.... meglio cambiare data/pokedex direttamente
 				//newSpecies.types = ['Psychic', 'Fairy'];
+				
+				return newSpecies;
+			}
+			
+			
+			
+			//Nilox' team modifications
+			
+			//venu già fatto
+			
+			if(species.name === 'Pidgeot'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 103, atk: 110, def: 85, spa: 91, spd: 84, spe: 127};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Keen Eye', 1: 'Tangled Feet', H: 'Initiative'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Typhlosion'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 94, atk: 74, def: 90, spa: 146, spd: 85, spe: 105};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Blaze', H: 'Berserk'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Gyarados'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 115, atk: 135, def: 96, spa: 91, spd: 110, spe: 103};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Intimidate', 1: 'Moxie', H: 'Mold Breaker'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Nidoqueen'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 150, atk: 72, def: 102, spa: 100, spd: 95, spe: 76};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Poison Point', 1: 'Stamina', H: 'Sheer Force'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Sceptile'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 90, atk: 95, def: 75, spa: 115, spd: 85, spe: 120};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Overgrow', H: 'Shed Skin'};
+				
+				return newSpecies;
+			}
+			
+			if(species.name === 'Sceptile-Mega'){
+				const newSpecies = this.dex.deepClone(species);
+				newSpecies.baseStats = {hp: 90, atk: 120, def: 80, spa: 172, spd: 90, spe: 172};
+				newSpecies.bst = 0;
+				for(const stat in newSpecies.baseStats){
+					newSpecies.bst += stat; 	
+				}
+				
+				newSpecies.abilities = {0: 'Protean'};
 				
 				return newSpecies;
 			}
