@@ -60,7 +60,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			
 			if(species.name === 'Tyranitar'){
 				const newSpecies = this.dex.deepClone(species);
-				newSpecies.baseStats = {hp: 100, atk: 144, def: 130, spa: 85, spd: 120, spe: 71};
+				newSpecies.baseStats = {hp: 110, atk: 144, def: 130, spa: 75, spd: 120, spe: 71};
 				newSpecies.bst = 0;
 				for(const stat in newSpecies.baseStats){
 					newSpecies.bst += stat; 	
