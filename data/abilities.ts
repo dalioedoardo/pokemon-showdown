@@ -65,6 +65,29 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 	},
 	
+	initiative: {
+		onBasePower(basePower, pokemon) {
+			let boosted = true;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (!this.queue.willMove(target)) {
+					boosted = false;
+					break;
+				}
+			}
+			if (boosted) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Initiative",
+		rating: 4,
+		num: 1002,
+	},
+	
+	
+	
+	
+	
 	
 	
 	
