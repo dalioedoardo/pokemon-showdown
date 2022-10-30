@@ -42,12 +42,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	
 	
 	kingpin: {
-		onModifyMove(move) {
-			move.overrideOffensivePokemon = 'target';
-		},
 		name: "Kingpin",
 		rating: 4,
 		num: 1000,
+		onModifyMove(move) {
+			move.overrideOffensivePokemon = 'target';
+		},
+		onBasePower(basePower, pokemon) {
+			return this.chainModify(1.5);
+		},
 	},
 	
 	
