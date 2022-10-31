@@ -2004,10 +2004,16 @@ export const Rulesets: {[k: string]: FormatData} = {
 		effectType: 'ValidatorRule',
 		name: 'Standard NatDex',
 		desc: "The standard ruleset for all National Dex tiers",
+		/*
 		ruleset: [
 			'Obtainable', '+Unobtainable', '+Past', 'Sketch Gen 8 Moves', 'Team Preview', 'Nickname Clause', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause',
 		],
+		*/
+		ruleset: [
+			'+Past', 'Team Preview', 'Cancel Mod', 'HP Percentage Mod', 'Nickname Clause', 'Sketch Gen 8 Moves'
+		],
 		onValidateSet(set) {
+			/*
 			// These Pokemon are still unobtainable
 			const unobtainables = [
 				'Eevee-Starter', 'Floette-Eternal', 'Pichu-Spiky-eared', 'Pikachu-Belle', 'Pikachu-Cosplay', 'Pikachu-Libre',
@@ -2033,6 +2039,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				if (this.ruleTable.has(`+item:${item.id}`)) return;
 				return [`${set.name}'s item ${item.name} does not exist in Gen ${this.dex.gen}.`];
 			}
+			*/
 		},
 	},
 	obtainable: {
