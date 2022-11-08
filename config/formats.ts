@@ -33,7 +33,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause'],
+		ruleset: ['Cancel Mod', 'Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause'],
 	},
 	
 	
@@ -58,7 +58,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Scorching Dryness', 'Ancient Sand'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Scorching Dryness', 'Ancient Sand'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -70,7 +70,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Unexpected Comfort', 'Ancient Sand'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Unexpected Comfort', 'Ancient Sand'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -82,7 +82,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Solar Mirage', 'Ancient Sand'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Solar Mirage', 'Ancient Sand'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -94,7 +94,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Prehistoric Sirocco', 'Ancient Sand'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Prehistoric Sirocco', 'Ancient Sand'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -106,7 +106,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Endless Litostream', 'Ancient Sand'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Endless Litostream', 'Ancient Sand'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -119,7 +119,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		gameType: 'triples',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Relentless Aura', 'Rising Energy', 'Ancient Sand'],
+		ruleset: ['Cancel Mod', 'Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Relentless Aura', 'Rising Energy', 'Ancient Sand'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -139,7 +139,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', "Tengu's Trick", 'Wrath of the Forest'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', "Tengu's Trick", 'Wrath of the Forest'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -151,7 +151,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', "Green Curse", 'Wrath of the Forest'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', "Green Curse", 'Wrath of the Forest'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -163,7 +163,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', "Royal Influence", 'Wrath of the Forest'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', "Royal Influence", 'Wrath of the Forest'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -175,7 +175,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Wrath of the Snowy Forest'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Wrath of the Snowy Forest'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -187,7 +187,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', "Ambusher's Playground", 'Wrath of the Forest'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', "Ambusher's Playground", 'Wrath of the Forest'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -200,7 +200,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		gameType: 'triples',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Voracious Aura', 'Rising Energy', 'Wrath of the Forest'],
+		ruleset: ['Cancel Mod', 'Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Voracious Aura', 'Rising Energy', 'Wrath of the Forest'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -220,7 +220,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Natural Abundance', 'Fresh Mind'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Natural Abundance', 'Fresh Mind'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -232,7 +232,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Wu Wei', 'Fresh Mind'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Wu Wei', 'Fresh Mind'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -244,7 +244,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Silent Insight', 'Fresh Mind'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Silent Insight', 'Fresh Mind'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -256,7 +256,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Ancestral Ruins', 'Fresh Mind'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Ancestral Ruins', 'Fresh Mind'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -268,7 +268,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Neat Wisdom', 'Fresh Mind'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Neat Wisdom', 'Fresh Mind'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -281,7 +281,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		gameType: 'triples',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Mindful Aura', 'Rising Energy', 'Fresh Mind'],
+		ruleset: ['Cancel Mod', 'Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Mindful Aura', 'Rising Energy', 'Fresh Mind'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -299,7 +299,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Explosive Expertise', 'Training Hall'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Explosive Expertise', 'Training Hall'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -311,7 +311,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Knife Rain', 'Training Hall'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Knife Rain', 'Training Hall'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -323,7 +323,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Bulletproof Sky Patroller', 'Training Hall'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Bulletproof Sky Patroller', 'Training Hall'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -335,7 +335,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Haunted Training Hall'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Haunted Training Hall'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -347,7 +347,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Ultimate Armor', 'Training Hall'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Ultimate Armor', 'Training Hall'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -360,7 +360,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		gameType: 'triples',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Mighty Aura', 'Rising Energy', 'Training Hall'],
+		ruleset: ['Cancel Mod', 'Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Mighty Aura', 'Rising Energy', 'Training Hall'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -378,7 +378,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'The Spicy Taste of Hell', 'Quantum Festival'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'The Spicy Taste of Hell', 'Quantum Festival'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -390,7 +390,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', "It's Adleiavde!", 'Quantum Festival'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', "It's Adleiavde!", 'Quantum Festival'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -402,7 +402,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Vacuum Lab', 'Quantum Festival'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Vacuum Lab', 'Quantum Festival'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -415,7 +415,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Fancy Mask', 'Quantum Breath'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Fancy Mask', 'Quantum Breath'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -428,7 +428,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Requiem Labanderoule', 'Whim of the Sith Lord'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Requiem Labanderoule', 'Whim of the Sith Lord'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -442,7 +442,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		gameType: 'triples',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Entropic Aura', 'Rising Energy', 'Whim of the Sith Lord'],
+		ruleset: ['Cancel Mod', 'Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Entropic Aura', 'Rising Energy', 'Whim of the Sith Lord'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
@@ -461,7 +461,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Enchanted Waterworks', 'Marine Optimization'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Enchanted Waterworks', 'Marine Optimization'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -473,7 +473,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Eternal Waterfall Ninjutsu', 'Marine Optimization'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Eternal Waterfall Ninjutsu', 'Marine Optimization'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -485,7 +485,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Oceanification', 'Marine Optimization'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', 'Oceanification', 'Marine Optimization'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -497,7 +497,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', "Neptune's Wrath", 'Marine Optimization'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', "Neptune's Wrath", 'Marine Optimization'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},	
 	{
@@ -509,7 +509,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', "Frozen Panthalassa", 'Marine Optimization'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 1', 'Dynamax Clause', 'OHKO Clause', "Frozen Panthalassa", 'Marine Optimization'],
 		banlist: ['all items', 'Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	{
@@ -522,7 +522,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		gameType: 'triples',
-		ruleset: ['Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Overflowing Aura', 'Rising Energy', 'Marine Optimization'],
+		ruleset: ['Cancel Mod', 'Dynamax Clause', 'OHKO Clause', 'Boss Challenge', 'Overflowing Aura', 'Rising Energy', 'Marine Optimization'],
 		banlist: ['Endeavor', 'Destiny Bond', 'Counter', 'Mirror Coat', 'Metal Burst', 'Super Fang', "Nature's Madness"],
 	},
 	
