@@ -1857,10 +1857,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		desc: "The weather is permanently set to Rain and Water type pokémon gain an amount of HP equals to the damage they deal to the opponent if they use a Water type move",
 		onBegin() {
 			this.add('rule', "Oceanification");
-		},
-		onUpdate(pokemon){
 			if(this.field.getWeather().id !== 'primordialsea'){
-				this.field.setWeather('primordialsea');
+				this.field.setWeather('primordialsea'); //fa un errore... dice che vuole il mon che crea il weather.... potrei bypassare il setWeather, ma probabilmente il client non creerebbe l'animazione della pioggia
 			}
 		},
 		onModifyMove(move, attacker) {
@@ -1869,7 +1867,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				move.drain = [1, 1];
 			}
 		},
-		onAnySetWeather(target, source, weather) {
+		onAnySetWeather(weather) {
 			if(weather !== 'primordialsea')
 				return false;
 		}
