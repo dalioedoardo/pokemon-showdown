@@ -69,14 +69,15 @@ export class Field {
 		const prevWeatherState = this.weatherState;
 		this.weather = status.id;
 		this.weatherState = {id: status.id};
+		this.weatherState.permanent = forcePermanent; //Harzen 10/12/2022
 		if (source) {
 			this.weatherState.source = source;
 			this.weatherState.sourceSlot = source.getSlot();
 		}
-		if (status.duration && !forcePermanent) {
+		if (status.duration && !prevWeatherState.permanent) {
 			this.weatherState.duration = status.duration;
 		}
-		if (status.durationCallback && !forcePermanent) {
+		if (status.durationCallback && !prevWeatherState.permanent) {
 			if (!source) throw new Error(`setting weather without a source`);
 			this.weatherState.duration = status.durationCallback.call(this.battle, source, source, sourceEffect);
 		}
