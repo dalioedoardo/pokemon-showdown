@@ -1857,11 +1857,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		desc: "The weather is permanently set to Rain and Water type pokémon gain an amount of HP equals to the damage they deal to the opponent if they use a Water type move",
 		onBegin() {
 			this.add('rule', "Oceanification");
-		},
-		onSwitchIn(pokemon){
-			if(this.field.getWeather().id !== 'primordialsea' && pokemon.getTypes().includes('Water')){
-				this.field.setWeather('primordialsea');
-			}
+			this.field.setWeather('raindance', null, null, true); //true=forcePermanent (il mio nuovo parametro, aggiunto a sim/field.ts)
 		},
 		onModifyMove(move, attacker) {
 			if(attacker.getTypes().includes('Water') && move.type === 'Water'){
@@ -1869,10 +1865,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 				move.drain = [1, 1];
 			}
 		},
-		onAnySetWeather(weather) {
-			if(weather !== 'primordialsea')
-				return false;
-		}
 	},
 	
 	neptuneswrath: {
