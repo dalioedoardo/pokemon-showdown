@@ -36,7 +36,8 @@ export class Field {
 		return State.serializeField(this);
 	}
 
-	setWeather(status: string | Condition, source: Pokemon | 'debug' | null = null, sourceEffect: Effect | null = null) {
+	//Harzen 10/12/2022 : aggiunta possibilità di forzare il tempo a una durata infinita (serve per la 6.3)
+	setWeather(status: string | Condition, source: Pokemon | 'debug' | null = null, sourceEffect: Effect | null = null, forceInfinite: boolean = false) {
 		status = this.battle.dex.conditions.get(status);
 		if (!sourceEffect && this.battle.effect) sourceEffect = this.battle.effect;
 		if (!source && this.battle.event && this.battle.event.target) source = this.battle.event.target;
@@ -72,10 +73,10 @@ export class Field {
 			this.weatherState.source = source;
 			this.weatherState.sourceSlot = source.getSlot();
 		}
-		if (status.duration) {
+		if (status.duration && !forceInfinite) {
 			this.weatherState.duration = status.duration;
 		}
-		if (status.durationCallback) {
+		if (status.durationCallback && !forceInfinite) {
 			if (!source) throw new Error(`setting weather without a source`);
 			this.weatherState.duration = status.durationCallback.call(this.battle, source, source, sourceEffect);
 		}
@@ -87,7 +88,7 @@ export class Field {
 		this.battle.runEvent('WeatherStart', source, source, status);
 		return true;
 	}
-
+	
 	clearWeather() {
 		if (!this.weather) return false;
 		const prevWeather = this.getWeather();
