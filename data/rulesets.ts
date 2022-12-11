@@ -18,7 +18,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onSwitchIn(mon) {
 			
 			//only SANTA is affected:
-			const santaTeam = ['Stantler', 'Minior', 'Wigglytuff', 'Delibird', 'Jynx', 'Sceptile', 'Sceptile-Mega'];
+			const santaTeam = ['Rudolph', 'Shooting Star', 'Elven Henchmon', 'Delivery Manager', "Anime's Tribute", 'CHRISTMAS TREE!'];
 			const fullTeam = mon.side.pokemon;
 			for (const ally of fullTeam){
 				if(!santaTeam.includes(ally.name))
@@ -32,13 +32,15 @@ export const Rulesets: {[k: string]: FormatData} = {
 					numOfFaintedAllies++;
 			}
 			
-			this.boost({atk: numOfFaintedAllies}, mon);	
-			this.boost({spa: numOfFaintedAllies}, mon);
-			this.boost({def: numOfFaintedAllies}, mon);	
-			this.boost({spd: numOfFaintedAllies}, mon);	
-			this.boost({spe: numOfFaintedAllies}, mon);
-			this.boost({accuracy: numOfFaintedAllies}, mon);
-			this.boost({evasion: numOfFaintedAllies}, mon);
+			if(numOfFaintedAllies > 0){
+				this.boost({atk: numOfFaintedAllies}, mon);	
+				this.boost({spa: numOfFaintedAllies}, mon);
+				this.boost({def: numOfFaintedAllies}, mon);	
+				this.boost({spd: numOfFaintedAllies}, mon);	
+				this.boost({spe: numOfFaintedAllies}, mon);
+				this.boost({accuracy: numOfFaintedAllies}, mon);
+				this.boost({evasion: numOfFaintedAllies}, mon);
+			}
 		},
 	},
 	
