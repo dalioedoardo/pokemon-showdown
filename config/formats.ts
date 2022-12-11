@@ -21,6 +21,7 @@ export const Formats: FormatList = [
 
 	// POWERUP BATTLE - Harzen 29/19/2022
 	
+	/*
 	{
 		section: "POWERUP BATTLE",
 	},
@@ -35,7 +36,7 @@ export const Formats: FormatList = [
 		mod: 'gen8',
 		ruleset: ['Cancel Mod', 'Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause'],
 	},
-	
+	*/
 
 	{
 		section: "SANTA'S CHALLENGE",
@@ -49,7 +50,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Cancel Mod', 'Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause', 'Christmas Time!'],
+		ruleset: ['Cancel Mod', 'Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause', 'CHRISTMAS TIME!'],
 	},
 	
 	
