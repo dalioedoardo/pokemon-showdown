@@ -13,7 +13,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'CHRISTMAS TIME!',
 		desc: "On switch in every SANTA's mon receives a +1 in all stats for each SANTA's defeated mon",
 		onBegin() {
-			this.add('rule', 'Powerup Clause');
+			this.add('rule', 'CHRISTMAS TIME!');
 		},
 		onSwitchIn(mon) {
 			
