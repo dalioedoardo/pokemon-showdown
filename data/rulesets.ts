@@ -18,7 +18,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onSwitchIn(mon) {
 			
 			//only SANTA is affected:
-			const santaTeam = ['Stantler', 'Minior', 'Alcremie', 'Delibird', 'Jynx', 'Sceptile', 'Sceptile-Mega'];
+			const santaTeam = ['Stantler', 'Minior', 'Wigglytuff', 'Delibird', 'Jynx', 'Sceptile', 'Sceptile-Mega'];
 			const fullTeam = mon.side.pokemon;
 			for (const ally of fullTeam){
 				if(!santaTeam.includes(ally.name))
