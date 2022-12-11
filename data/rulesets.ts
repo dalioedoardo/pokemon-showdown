@@ -7,6 +7,34 @@ import {Pokemon} from "../sim/pokemon";
 export const Rulesets: {[k: string]: FormatData} = {
 
 	
+	//---CHRISTMAS TIME!:
+	christmastime: {
+		effectType: 'Rule',
+		name: 'CHRISTMAS TIME!',
+		desc: "On switch in every SANTA's mon receives a +1 in all stats for each SANTA's defeated mon",
+		onBegin() {
+			this.add('rule', 'Powerup Clause');
+		},
+		onSwitchIn(mon) {
+			
+			//only SANTA is affected:
+			const santaTeam = ['Stantler', 'Minior', 'Alcremie', 'Delibird', 'Jynx', 'Sceptile', 'Sceptile-Mega'];
+			const fullTeam = mon.side.pokemon;
+			for (const ally of fullTeam){
+				if(ally.name)	
+			}
+			
+			
+			for (const ally of fullTeam) {
+				if (ally !== source && ally.hasAbility('soundproof')) continue;
+				if (ally.cureStatus()) success = true;
+			}
+			
+		},
+	},
+	
+	
+	
 	//---POWERUP CLAUSE:
 	powerupclause: {
 		effectType: 'Rule',
