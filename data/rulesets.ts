@@ -21,15 +21,24 @@ export const Rulesets: {[k: string]: FormatData} = {
 			const santaTeam = ['Stantler', 'Minior', 'Alcremie', 'Delibird', 'Jynx', 'Sceptile', 'Sceptile-Mega'];
 			const fullTeam = mon.side.pokemon;
 			for (const ally of fullTeam){
-				if(ally.name)	
+				if(!santaTeam.includes(ally.name))
+					return; //not Santa's team...
 			}
 			
+			let numOfFaintedAllies : number = 0;
 			
 			for (const ally of fullTeam) {
-				if (ally !== source && ally.hasAbility('soundproof')) continue;
-				if (ally.cureStatus()) success = true;
+				if (ally.fainted)
+					numOfFaintedAllies++;
 			}
 			
+			this.boost({atk: numOfFaintedAllies}, mon);	
+			this.boost({spa: numOfFaintedAllies}, mon);
+			this.boost({def: numOfFaintedAllies}, mon);	
+			this.boost({spd: numOfFaintedAllies}, mon);	
+			this.boost({spe: numOfFaintedAllies}, mon);
+			this.boost({accuracy: numOfFaintedAllies}, mon);
+			this.boost({evasion: numOfFaintedAllies}, mon);
 		},
 	},
 	
