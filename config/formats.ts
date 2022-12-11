@@ -36,6 +36,22 @@ export const Formats: FormatList = [
 		ruleset: ['Cancel Mod', 'Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause'],
 	},
 	
+
+	{
+		section: "SANTA'S CHALLENGE",
+	},
+	{
+		name: "[Gen 8] National Dex AG",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Cancel Mod', 'Standard NatDex', 'Dynamax Clause', 'OHKO Clause', 'Powerup Clause', 'Christmas Time!'],
+	},
+	
 	
 	
 	{
