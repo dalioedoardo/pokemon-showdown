@@ -7,6 +7,63 @@ import {Pokemon} from "../sim/pokemon";
 export const Rulesets: {[k: string]: FormatData} = {
 
 	
+	//--BASIC RULES PER LA GYM LEADER RUSH MODE CHALLENGE
+	
+	
+	stubbornwill: {
+		effectType: 'Rule',
+		name: 'Stubborn Will',
+		desc: "PILLARS MANAGEMENT + Any Rock type pokèmon receives ⅛ damage from the opponent’s attacks and any damage from a Rock type pokèmon is multiplied by 4",
+		onBegin() {
+			this.add('rule', 'Stubborn Will');
+		},
+		onModifyDamage(damage, source, target, move) {
+			if(target.getTypes().includes('Rock')){
+				return this.chainModify(0.125);
+			}
+			if(source.getTypes().includes('Rock')){
+				return this.chainModify(4);
+			}
+		},
+		onSwitchIn(mon) {	
+			//only GYM LEADER has special mons:
+			const harzenTeam = ['Magcargo', 'Cradily', 'Solrock', 'Archeops', 'Kabutops', 'Tyranitar', 'Tyranitar-Mega'];
+			const fullTeam = mon.side.pokemon;
+			for (const ally of fullTeam){
+				if(!harzenTeam.includes(ally.species.name))
+					return; //not gym leader's team
+			}
+			
+			let boosts : number = 0;
+			
+			if(mon.species.name=='Archeops'){
+				boosts = 2;
+			}
+			
+			if(mon.species.name=='Kabutops'){
+				boosts = 4;	
+			}
+			
+			if(mon.species.name=='Tyranitar' || mon.species.name=='Tyranitar-Mega'){
+				boosts = 6;
+			}
+			
+			if(mon.ability == 'contrary'){
+				boosts = -boosts;	
+			}
+			
+			
+			//applying the boosts
+			if(boosts != 0){
+				this.boost({atk: boosts}, mon);	
+				this.boost({def: boosts}, mon);		
+				this.boost({spe: boosts}, mon);	
+			}
+		},
+	},
+	
+	
+	
 	//---CHRISTMAS TIME!:
 	christmastime: {
 		effectType: 'Rule',
