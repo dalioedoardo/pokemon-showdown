@@ -13,7 +13,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 	stubbornwill: {
 		effectType: 'Rule',
 		name: 'Stubborn Will',
-		desc: "PILLARS MANAGEMENT + Any Rock type pokèmon receives ⅛ damage from the opponent’s attacks and any damage from a Rock type pokèmon is multiplied by 4",
+		desc: "PILLARS MANAGEMENT + Any Rock type pokèmon receives ⅛ damage from the opponent’s attacks and any damage from a Rock type pokèmon is multiplied by 2",
 		onBegin() {
 			this.add('rule', 'Stubborn Will');
 		},
