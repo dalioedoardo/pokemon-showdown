@@ -105,7 +105,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	charizard: {
 		num: 6,
 		name: "Charizard",
-		types: ["Fire", "Dragon"],
+		types: ["Fire", "Flying"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 78, atk: 84, def: 78, spa: 109, spd: 85, spe: 100},
 		abilities: {0: "Blaze", H: "Solar Power"},
@@ -2145,7 +2145,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Gengar-Mega",
 		baseSpecies: "Gengar",
 		forme: "Mega",
-		types: ["Ghost", "Dark"],
+		types: ["Ghost", "Poison"],
 		baseStats: {hp: 60, atk: 65, def: 80, spa: 170, spd: 95, spe: 130},
 		abilities: {0: "Shadow Tag"},
 		heightm: 1.4,
@@ -2195,7 +2195,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	hypno: {
 		num: 97,
 		name: "Hypno",
-		types: ["Psychic", "Fairy"],
+		types: ["Psychic"],
 		baseStats: {hp: 85, atk: 73, def: 70, spa: 73, spd: 115, spe: 67},
 		abilities: {0: "Insomnia", 1: "Forewarn", H: "Inner Focus"},
 		heightm: 1.6,
@@ -2801,7 +2801,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	gyarados: {
 		num: 130,
 		name: "Gyarados",
-		types: ["Water", "Dragon"],
+		types: ["Water", "Flying"],
 		baseStats: {hp: 95, atk: 125, def: 79, spa: 60, spd: 100, spe: 81},
 		abilities: {0: "Intimidate", H: "Moxie"},
 		heightm: 6.5,
@@ -3450,7 +3450,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	noctowl: {
 		num: 164,
 		name: "Noctowl",
-		types: ["Dark", "Flying"],
+		types: ["Normal", "Flying"],
 		baseStats: {hp: 100, atk: 50, def: 50, spa: 86, spd: 96, spe: 70},
 		abilities: {0: "Insomnia", 1: "Keen Eye", H: "Tinted Lens"},
 		heightm: 1.6,
@@ -3688,7 +3688,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	ampharos: {
 		num: 181,
 		name: "Ampharos",
-		types: ["Electric", "Dragon"],
+		types: ["Electric"],
 		baseStats: {hp: 90, atk: 75, def: 85, spa: 115, spd: 90, spe: 55},
 		abilities: {0: "Static", H: "Plus"},
 		heightm: 1.4,
@@ -5588,7 +5588,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	aron: {
 		num: 304,
 		name: "Aron",
-		types: ["Steel"],
+		types: ["Steel", "Rock"],
 		baseStats: {hp: 50, atk: 70, def: 100, spa: 40, spd: 40, spe: 30},
 		abilities: {0: "Sturdy", 1: "Rock Head", H: "Heavy Metal"},
 		heightm: 0.4,
