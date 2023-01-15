@@ -146,8 +146,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 				
 				newSpecies.abilities = {0: 'Insomnia', 1: 'Forewarn', H: 'Hypnotist'};
 				
-				//se faccio qua il cambio tipo il client lo evidenzia durante la battaglia.... meglio cambiare data/pokedex direttamente
-				//newSpecies.types = ['Psychic', 'Fairy'];
+				//se faccio qua il cambio tipo il client lo evidenzia durante la battaglia.... pazienza!!
+				newSpecies.types = ['Psychic', 'Fairy'];
 				
 				return newSpecies;
 			}
@@ -193,6 +193,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 				
 				newSpecies.abilities = {0: 'Intimidate', 1: 'Moxie', H: 'Mold Breaker'};
+				newSpecies.types = ['Water', 'Dragon'];
 				
 				return newSpecies;
 			}
@@ -299,6 +300,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 				
 				newSpecies.abilities = {0: 'Insomnia', 1: 'Fur Coat', H: 'Tinted Lens'};
+				newSpecies.types = ['Dark', 'Flying'];
 				
 				return newSpecies;
 			}
@@ -344,6 +346,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 				
 				newSpecies.abilities = {0: 'Sturdy', 1: 'Rock Head', H: 'Wonder Guard'};
+				newSpecies.types = ['Steel'];
 				
 				return newSpecies;
 			}
@@ -396,6 +399,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 				
 				newSpecies.abilities = {0: 'Levitate'};
+				newSpecies.types = ['Fire', 'Dragon'];
 				
 				return newSpecies;
 			}
@@ -478,6 +482,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				for(const stat in newSpecies.baseStats){
 					newSpecies.bst += stat; 	
 				}
+				newSpecies.types = ['Ghost', 'Dark'];
 				
 				return newSpecies;
 			}
@@ -491,6 +496,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				}
 				
 				newSpecies.abilities = {0: 'Static', H: 'Unaware'};
+				newSpecies.types = ['Electric', 'Dragon'];
 				
 				return newSpecies;
 			}
