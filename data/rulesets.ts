@@ -22,11 +22,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 				return this.chainModify(0.125);
 			}
 			if(source.getTypes().includes('Rock')){
-				return this.chainModify(4);
+				return this.chainModify(2);
 			}
 		},
 		onSwitchIn(mon) {	
-			//only GYM LEADER has special mons:
+			//only the GYM LEADER has special mons:
 			const harzenTeam = ['Magcargo', 'Cradily', 'Solrock', 'Archeops', 'Kabutops', 'Tyranitar', 'Tyranitar-Mega'];
 			const fullTeam = mon.side.pokemon;
 			for (const ally of fullTeam){
