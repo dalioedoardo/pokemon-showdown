@@ -1,21 +1,22 @@
 export const Conditions: {[k: string]: ConditionData} = {
 	
 	
-	boundlessgrowth: {
-		name: 'boundlessgrowth',
+	endlessgrowth: {
+		name: 'endlessgrowth',
 		onStart(target, source, sourceEffect) {
 			this.effectState.stage = 0;
 		},
 		onSwitchIn() {
 			this.effectState.stage = 0;
 		},
-		onResidualOrder: 20,
+		onResidualOrder: 10,
 		onResidual(pokemon) {
-			if (this.effectState.stage < 15) {
+			if (this.effectState.stage < 8) {
 				this.effectState.stage++;
 			}
 			if(pokemon.hp < pokemon.baseMaxhp){
-				pokemon.heal(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectState.stage);
+				//NB!!! USARE this.heal(...), NON pokemon.heal(...)
+				this.heal((pokemon.baseMaxhp / 16) * this.effectState.stage);
 			}
 			else{
 				let boosts : number = (pokemon.ability == 'contrary') ? -1 : 1;
