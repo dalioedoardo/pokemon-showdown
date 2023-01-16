@@ -1,8 +1,8 @@
 export const Conditions: {[k: string]: ConditionData} = {
 	
 	
-	endlessgrowth: {
-		name: 'endlessgrowth',
+	bondlessgrowth: {
+		name: 'bondlessgrowth',
 		onStart(target, source, sourceEffect) {
 			this.effectState.stage = 0;
 		},
