@@ -1,5 +1,38 @@
 export const Conditions: {[k: string]: ConditionData} = {
 	
+	
+	boundlessgrowth: {
+		name: 'boundlessgrowth',
+		onStart(target, source, sourceEffect) {
+			this.effectState.stage = 0;
+		},
+		onSwitchIn() {
+			this.effectState.stage = 0;
+		},
+		onResidualOrder: 20,
+		onResidual(pokemon) {
+			if (this.effectState.stage < 15) {
+				this.effectState.stage++;
+			}
+			if(pokemon.hp < pokemon.baseMaxhp){
+				pokemon.heal(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectState.stage);
+			}
+			else{
+				let boosts : number = (pokemon.ability == 'contrary') ? -1 : 1;
+				
+				this.boost({atk: boosts}, pokemon);
+				this.boost({def: boosts}, pokemon);
+				this.boost({spa: boosts}, pokemon);
+				this.boost({spd: boosts}, pokemon);
+				this.boost({spe: boosts}, pokemon);
+				this.boost({evasion: boosts}, pokemon);
+				this.boost({accuracy: boosts}, pokemon);
+			}
+		},
+	},
+	
+	
+	
 	//Harzen 10/09/2022
 	boss: {
 		name: 'boss',
