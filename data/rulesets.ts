@@ -72,7 +72,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onSwitchIn(mon) {
 			if(mon.getTypes().includes('Grass')){
-				mon.addVolatile('boundlessgrowth');
+				mon.addVolatile('endlessgrowth');
 			}
 			
 			//only the GYM LEADER has special mons:
