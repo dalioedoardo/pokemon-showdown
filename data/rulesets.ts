@@ -63,6 +63,57 @@ export const Rulesets: {[k: string]: FormatData} = {
 	},
 	
 	
+	boundlessgrowth: {
+		effectType: 'Rule',
+		name: 'Boundless Growth',
+		desc: "At the end of each turn, any grass type pokèmon recovers N * x, where N starts at 1 and x is 1/8 of its maximum HP. If its current HP is equal to its maximum HP, all its stats are raised by 1 instead",
+		onBegin() {
+			this.add('rule', 'Boundless Growth');
+		},
+		onSwitchIn(mon) {
+			if(mon.getTypes().includes('Grass')){
+				mon.addVolatile('boundlessgrowth');
+			}
+			
+			//only the GYM LEADER has special mons:
+			const gymleaderTeam = ['Shiftry', 'Trevenant', 'Serperior', 'Abomasnow', 'Sceptile', 'Venusaur', 'Venusaur-Mega'];
+			const fullTeam = mon.side.pokemon;
+			for (const ally of fullTeam){
+				if(!gymleaderTeam.includes(ally.species.name))
+					return; //not gym leader's team
+			}
+			
+			let boosts : number = 0;
+			
+			if(mon.species.name==gymleaderTeam[3]){
+				boosts = 2;
+			}
+			
+			if(mon.species.name==gymleaderTeam[4]){
+				boosts = 4;	
+			}
+			
+			if(mon.species.name==gymleaderTeam[5] || mon.species.name==gymleaderTeam[6]){
+				boosts = 6;
+			}
+			
+			if(mon.ability == 'contrary'){
+				boosts = -boosts;	
+			}
+			
+			
+			//applying the boosts
+			if(boosts != 0){
+				this.boost({atk: boosts}, mon);	
+				this.boost({spa: boosts}, mon);		
+				this.boost({spe: boosts}, mon);	
+			}
+		},
+	},
+	
+	
+	
+	
 	
 	//---CHRISTMAS TIME!:
 	christmastime: {
