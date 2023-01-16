@@ -70,6 +70,18 @@ export const Formats: FormatList = [
 	},
 	
 	
+	{
+		name: "[Gen 8] GRASS TYPE GYM CHALLENGE - RUSH MODE",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666572/">National Dex Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Cancel Mod', 'Dynamax Clause', 'OHKO Clause', 'Boundless Growth', 'Wrath of the Forest'],
+	},
+	
 	
 	
 	
