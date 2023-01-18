@@ -27,24 +27,24 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onSwitchIn(mon) {	
 			//only the GYM LEADER has special mons:
-			const harzenTeam = ['Magcargo', 'Cradily', 'Solrock', 'Archeops', 'Kabutops', 'Tyranitar', 'Tyranitar-Mega'];
+			const gymleaderTeam = ['Magcargo', 'Cradily', 'Solrock', 'Archeops', 'Kabutops', 'Tyranitar', 'Tyranitar-Mega'];
 			const fullTeam = mon.side.pokemon;
 			for (const ally of fullTeam){
-				if(!harzenTeam.includes(ally.species.name))
+				if(!gymleaderTeam.includes(ally.species.name))
 					return; //not gym leader's team
 			}
 			
 			let boosts : number = 0;
 			
-			if(mon.species.name=='Archeops'){
+			if(mon.species.name==gymleaderTeam[3]){
 				boosts = 2;
 			}
 			
-			if(mon.species.name=='Kabutops'){
+			if(mon.species.name==gymleaderTeam[4]){
 				boosts = 4;	
 			}
 			
-			if(mon.species.name=='Tyranitar' || mon.species.name=='Tyranitar-Mega'){
+			if(mon.species.name==gymleaderTeam[5] || mon.species.name==gymleaderTeam[6]){
 				boosts = 6;
 			}
 			
@@ -52,11 +52,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 				boosts = -boosts;	
 			}
 			
-			
 			//applying the boosts
 			if(boosts != 0){
 				this.boost({atk: boosts}, mon);	
-				this.boost({def: boosts}, mon);		
+				this.boost({spa: boosts}, mon);		
 				this.boost({spe: boosts}, mon);	
 			}
 		},
@@ -110,6 +109,67 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
+	
+	
+	
+	reveredmantra: {
+		effectType: 'Rule',
+		name: 'Revered Mantra',
+		desc: "SHRINES MANAGEMENT + Psychic type pokèmon are immune to the opponent’s status moves and their weaknesses become resistances",
+		onBegin() {
+			this.add('rule', 'Revered Mantra');
+		},
+		onTryHit(target, source, move) {
+			if(!target.getTypes().includes('Psychic')){
+				if (move.category === 'Status' && target !== source) {
+					this.add('-immune', target, '[from] ability: Revered Mantra');
+					return null;
+				}
+			}
+		},
+		onEffectiveness(typeMod, target, type, move) {
+			if (target.getTypes().includes('Psychic') && target.getMoveHitData(move).typeMod === 1){
+				return -1;
+			}
+		},
+		onSwitchIn(mon) {	
+			//only the GYM LEADER has special mons:
+			//!!!CAMBIARE PER OGNI GYMLEADER!!!
+			const gymleaderTeam = ['Exeggutor', 'Slowbro', 'Hatterene', 'Xatu', 'Oranguru', 'Medicham', 'Medicham-Mega'];
+			const fullTeam = mon.side.pokemon;
+			for (const ally of fullTeam){
+				if(!gymleaderTeam.includes(ally.species.name))
+					return; //not gym leader's team
+			}
+			
+			let boosts : number = 0;
+			
+			if(mon.species.name==gymleaderTeam[3]){
+				boosts = 2;
+			}
+			
+			if(mon.species.name==gymleaderTeam[4]){
+				boosts = 4;	
+			}
+			
+			if(mon.species.name==gymleaderTeam[5] || mon.species.name==gymleaderTeam[6]){
+				boosts = 6;
+			}
+			
+			if(mon.ability == 'contrary'){
+				boosts = -boosts;	
+			}
+			
+			//applying the boosts
+			//!!!CAMBIARE PER OGNI GYMLEADER!!!
+			if(boosts != 0){
+				this.boost({spa: boosts}, mon);	
+				this.boost({def: boosts}, mon);		
+				this.boost({spd: boosts}, mon);	
+			}
+		},
+	},
+	
 	
 	
 	
