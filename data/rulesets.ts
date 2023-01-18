@@ -120,7 +120,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Revered Mantra');
 		},
 		onTryHit(target, source, move) {
-			if(!target.getTypes().includes('Psychic')){
+			if(target.getTypes().includes('Psychic')){
 				if (move.category === 'Status' && target !== source) {
 					this.add('-immune', target, '[from] ability: Revered Mantra');
 					return null;
@@ -128,7 +128,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 		onEffectiveness(typeMod, target, type, move) {
-			if (target.getTypes().includes('Psychic') && target.getMoveHitData(move).typeMod === 1){
+			if (target.getTypes().includes('Psychic') && typeMod == 1){
 				return -1;
 			}
 		},
