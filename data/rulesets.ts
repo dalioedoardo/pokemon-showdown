@@ -174,6 +174,59 @@ export const Rulesets: {[k: string]: FormatData} = {
 	
 	
 	
+	legendarystrength: {
+		effectType: 'Rule',
+		name: 'Legendary Strength',
+		desc: "GEARS MANAGEMENT + Steel type moves become super effective on any other type if the user is a Steel type pokèmon and the target is not a Steel type pokèmon",
+		onBegin() {
+			this.add('rule', 'Legendary Strength');
+		},
+		onSwitchIn(mon) {
+			//assegno ai tipi acciaio la legendary strength
+			if(mon.getTypes().includes('Steel')){
+				mon.addVolatile('steelstrength');
+			}
+			
+			//only the GYM LEADER has special mons:
+			//!!!CAMBIARE PER OGNI GYMLEADER!!!
+			const gymleaderTeam = ['Forretress', 'Empoleon', 'Corvknight', 'Aegislash', 'Aggron', 'Metagross', 'Metagross-Mega'];
+			const fullTeam = mon.side.pokemon;
+			for (const ally of fullTeam){
+				if(!gymleaderTeam.includes(ally.species.name))
+					return; //not gym leader's team
+			}
+			
+			let boosts : number = 0;
+			
+			if(mon.species.name==gymleaderTeam[3]){
+				boosts = 2;
+			}
+			
+			if(mon.species.name==gymleaderTeam[4]){
+				boosts = 4;	
+			}
+			
+			if(mon.species.name==gymleaderTeam[5] || mon.species.name==gymleaderTeam[6]){
+				boosts = 6;
+			}
+			
+			if(mon.ability == 'contrary'){
+				boosts = -boosts;	
+			}
+			
+			//applying the boosts
+			//!!!CAMBIARE PER OGNI GYMLEADER!!!
+			if(boosts != 0){
+				this.boost({atk: boosts}, mon);	
+				this.boost({def: boosts}, mon);		
+				this.boost({spd: boosts}, mon);	
+			}
+		},
+	},
+	
+	
+	
+	
 	
 	//---CHRISTMAS TIME!:
 	christmastime: {
