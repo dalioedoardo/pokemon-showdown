@@ -9,6 +9,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onSwitchIn() {
 			this.effectState.stage = 0;
 		},
+		onUpdate(pokemon){
+			//ci sono casi in cui un pkm può perdere il tipo di riferimento, e quindi perdere lo status 
+			if(pokemon.volatiles['bondlessgrowth'] && !pokemon.getTypes().includes('Grass')){
+				pokemon.removeVolatile('bondlessgrowth');
+			}
+		},
 		onResidualOrder: 10,
 		onResidual(pokemon) {
 			if (this.effectState.stage < 8) {
@@ -32,6 +38,18 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 	},
 	
+	
+	steelstrength: {
+		name: 'steelstrength',
+		onStart(target, source, sourceEffect) {
+		},
+		onUpdate(pokemon){
+			//ci sono casi in cui un pkm può perdere il tipo di riferimento, e quindi perdere lo status 
+			if(pokemon.volatiles['steelstrength'] && !pokemon.getTypes().includes('Steel')){
+				pokemon.removeVolatile('steelstrength');
+			}
+		},
+	},
 	
 	
 	//Harzen 10/09/2022
