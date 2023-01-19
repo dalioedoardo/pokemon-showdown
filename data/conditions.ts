@@ -49,6 +49,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 				pokemon.removeVolatile('steelstrength');
 			}
 		},
+		onEffectiveness(typeMod, target, type, move) {
+			if (!target.getTypes().includes('Steel')){
+				return 1;
+			}
+		},
 	},
 	
 	
