@@ -38,25 +38,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 	},
 	
-	
-	steelstrength: {
-		name: 'steelstrength',
-		onStart(target, source, sourceEffect) {
-		},
-		onUpdate(pokemon){
-			//ci sono casi in cui un pkm può perdere il tipo di riferimento, e quindi perdere lo status 
-			if(pokemon.volatiles['steelstrength'] && !pokemon.getTypes().includes('Steel')){
-				pokemon.removeVolatile('steelstrength');
-			}
-		},
-		onEffectiveness(typeMod, target, type, move) {
-			if (!target.getTypes().includes('Steel')){
-				return 1;
-			}
-		},
-	},
-	
-	
 	//Harzen 10/09/2022
 	boss: {
 		name: 'boss',
