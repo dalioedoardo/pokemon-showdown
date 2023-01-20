@@ -181,12 +181,13 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Legendary Strength');
 		},
-		onSwitchIn(mon) {
-			//assegno ai tipi acciaio la legendary strength
-			if(mon.getTypes().includes('Steel')){
-				mon.addVolatile('steelstrength');
+		onEffectiveness(typeMod, target, type, move) {
+			//è un po' contorta: devo risalire a chi effettua la mossa attraverso il target... vale solo per le single battles!!!
+			if (!target.getTypes().includes('Steel') && target.adjacentFoes()[0].getTypes().includes('Steel')){
+				return 1;
 			}
-			
+		},
+		onSwitchIn(mon) {
 			//only the GYM LEADER has special mons:
 			//!!!CAMBIARE PER OGNI GYMLEADER!!!
 			const gymleaderTeam = ['Forretress', 'Empoleon', 'Corvknight', 'Aegislash', 'Aggron', 'Metagross', 'Metagross-Mega'];
