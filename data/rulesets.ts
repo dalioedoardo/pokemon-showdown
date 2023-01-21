@@ -183,7 +183,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			//è un po' contorta: devo risalire a chi effettua la mossa attraverso il target... vale solo per le single battles!!!
-			if (!target.getTypes().includes('Steel') && target.adjacentFoes()[0].getTypes().includes('Steel')){
+			if (move.type == 'Steel' && !target.getTypes().includes('Steel') && target.adjacentFoes()[0].getTypes().includes('Steel')){
 				return 1;
 			}
 		},
