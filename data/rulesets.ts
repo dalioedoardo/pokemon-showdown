@@ -227,6 +227,78 @@ export const Rulesets: {[k: string]: FormatData} = {
 	
 	
 	
+	warlockssurvey: {
+		effectType: 'Rule',
+		name: "Warlock's Survey",
+		desc: "CLOAKS MANAGEMENT + Any non-Ghost type pokèmon has 50% chance to be affected by a random non-volatile status condition at the end of each turn",
+		onBegin() {
+			this.add('rule', "Warlock's Survey");
+		},
+		onResidual(pokemon) {
+			if(!pokemon.getTypes().includes('Ghost')){
+				const chances = this.random(120);
+				//possibili stati: tox, psn, brn, slp, frz, par
+				if(chances < 11)
+					pokemon.trySetStatus('tox');
+				else if(chances < 21)
+					pokemon.trySetStatus('psn');
+				else if(chances < 31)
+					pokemon.trySetStatus('brn')
+				else if(chances < 41)
+					pokemon.trySetStatus('slp');
+				else if(chances < 51)
+					pokemon.trySetStatus('frz');
+				else if(chances < 61)
+					pokemon.trySetStatus('par');
+			}
+		},
+		onSwitchIn(mon) {
+			//only the GYM LEADER has special mons:
+			//!!!CAMBIARE PER OGNI GYMLEADER!!!
+			const gymleaderTeam = ['Chandelure', 'Shedinja', 'Dragapult', 'Mimikyu', 'Froslass', 'Gengar', 'Gengar-Mega'];
+			const fullTeam = mon.side.pokemon;
+			for (const ally of fullTeam){
+				if(!gymleaderTeam.includes(ally.species.name))
+					return; //not gym leader's team
+			}
+			
+			let boosts : number = 0;
+			
+			if(mon.species.name==gymleaderTeam[3]){
+				boosts = 2;
+			}
+			
+			if(mon.species.name==gymleaderTeam[4]){
+				boosts = 4;	
+			}
+			
+			if(mon.species.name==gymleaderTeam[5] || mon.species.name==gymleaderTeam[6]){
+				boosts = 6;
+			}
+			
+			if(mon.ability == 'contrary'){
+				boosts = -boosts;	
+			}
+			
+			//applying the boosts
+			//!!!CAMBIARE PER OGNI GYMLEADER!!!
+			if(boosts != 0){
+				this.boost({spa: boosts}, mon);	
+				this.boost({evasion: boosts}, mon);		
+				this.boost({accuracy: boosts}, mon);	
+			}
+		},
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//---CHRISTMAS TIME!:
