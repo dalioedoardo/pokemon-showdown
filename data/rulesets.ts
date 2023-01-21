@@ -190,7 +190,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onSwitchIn(mon) {
 			//only the GYM LEADER has special mons:
 			//!!!CAMBIARE PER OGNI GYMLEADER!!!
-			const gymleaderTeam = ['Forretress', 'Empoleon', 'Corvknight', 'Aegislash', 'Aggron', 'Metagross', 'Metagross-Mega'];
+			const gymleaderTeam = ['Forretress', 'Empoleon', 'Corviknight', 'Aegislash', 'Aggron', 'Metagross', 'Metagross-Mega'];
 			const fullTeam = mon.side.pokemon;
 			for (const ally of fullTeam){
 				if(!gymleaderTeam.includes(ally.species.name))
