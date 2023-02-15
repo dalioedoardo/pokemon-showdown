@@ -55,7 +55,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			//applying the boosts
 			if(boosts != 0){
 				this.boost({atk: boosts}, mon);	
-				this.boost({spa: boosts}, mon);		
+				this.boost({def: boosts}, mon);		
 				this.boost({spe: boosts}, mon);	
 			}
 		},
